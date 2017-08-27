@@ -42,7 +42,7 @@ class ReplayService
             do {
                 $filename = uniqid();
             } while ($disk->exists($filename));
-            $disk->putFileAs('', $file, "$filename.StormReplay");
+            $disk->putFileAs('', $file, "$filename.StormReplay", 'public');
 
             $replay = new Replay($parseResult->data);
             $replay->filename = $filename;
