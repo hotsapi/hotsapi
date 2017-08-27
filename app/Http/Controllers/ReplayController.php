@@ -71,7 +71,7 @@ class ReplayController extends Controller
             });
         }
 
-        return $query->get()->toJson();
+        return $query->limit(100)->get()->toJson();
     }
 
     /**
