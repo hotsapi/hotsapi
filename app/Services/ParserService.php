@@ -17,7 +17,7 @@ class ParserService
     const STATUS_CUSTOM_GAME = "CustomGame";
     const STATUS_PTR_REGION = "PtrRegion";
     const STATUS_TOO_OLD = "TooOld";
-    const STATUS_PARSE_ERROR = "ParseError";
+    const STATUS_UPLOAD_ERROR = "UploadError";
     const STATUS_INCOMPLETE = "Incomplete";
 
     const MIN_SUPPORTED_BUILD = 43905;
@@ -132,12 +132,12 @@ class ParserService
 
             $result->status = self::STATUS_SUCCESS;
             if ($result->data['game_type'] == self::GAME_TYPE_UNKNOWN) {
-                $result->status = self::STATUS_PARSE_ERROR;
+                $result->status = self::STATUS_UPLOAD_ERROR;
             }
             return $result;
         } catch (Exception $e) {
             Log::error("Error parsing replay: $e");
-            $result->status = self::STATUS_PARSE_ERROR;
+            $result->status = self::STATUS_UPLOAD_ERROR;
             return $result;
         }
     }

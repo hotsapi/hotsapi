@@ -37,7 +37,7 @@ class ReplayService
     {
         $parseResult = $this->parser->analyze($file->getRealPath());
 
-        if ($parseResult->status == ParserService::STATUS_SUCCESS || (env('ALLOW_BROKEN_REPLAYS', false) && $parseResult->status == ParserService::STATUS_PARSE_ERROR && isset($parseResult->data))) {
+        if ($parseResult->status == ParserService::STATUS_SUCCESS || (env('ALLOW_BROKEN_REPLAYS', false) && $parseResult->status == ParserService::STATUS_UPLOAD_ERROR && isset($parseResult->data))) {
             $disk = Storage::cloud();
             do {
                 $filename = uniqid();
