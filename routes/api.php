@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,6 +11,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get ('replays', 'ReplayController@index'); //start_date end_date map game_type player min_id
+Route::post('upload', 'ReplayController@store');
+Route::post('replays', 'ReplayController@store');
+Route::get ('replays/fingerprints/{fingerprint}', 'ReplayController@check');
+Route::post('replays/fingerprints', 'ReplayController@massCheck');
+Route::get ('replays/min-build', 'ReplayController@minimumBuild');
+Route::get ('replays/{replay}', 'ReplayController@show');
