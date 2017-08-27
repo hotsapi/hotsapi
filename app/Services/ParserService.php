@@ -132,6 +132,7 @@ class ParserService
 
             $result->status = self::STATUS_SUCCESS;
             if ($result->data['game_type'] == self::GAME_TYPE_UNKNOWN) {
+                Log::error("Error parsing replay: Unknown game type");
                 $result->status = self::STATUS_UPLOAD_ERROR;
             }
             return $result;
