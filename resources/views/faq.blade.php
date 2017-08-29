@@ -31,12 +31,12 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
-                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-3">How can I donate?</a>
+                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse-3">How can I support the project?</a>
                 </h4>
             </div>
             <div id="collapse-3" class="panel-collapse collapse">
                 <div class="panel-body">
-                    The best way to donate is using our <a href="https://www.patreon.com/hotsapi">Patreon page</a>
+                    You can help with service development via GitHub, donate via <a href="https://www.patreon.com/hotsapi">Patreon</a>, or just upload your replays to help our database grow
                 </div>
             </div>
         </div>

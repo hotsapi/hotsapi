@@ -22,9 +22,11 @@
             <h1>Welcome to HotsApi</h1>
             <h4>HotsApi an open Heroes of the Storm replay database where everyone can download replays</h4>
             <p>
-                We want all developers to have access to large community replay database. Whether you want to continuously pull
-                new replays from our database, or download them all once, or just query their metadata.
+                We want all developers to have access to a large community replay database. Whether you want to continuously get
+                new replays, download them all once, or just query their metadata, our service helps
+                you to start development faster.
             </p>
+            {{--<p>Check out our <a href="https://reddit.com/r/heroesofthestorm/...">Reddit thread</a></p>--}}
         </div>
     </div>
 
