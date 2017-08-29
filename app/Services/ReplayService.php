@@ -47,6 +47,7 @@ class ReplayService
             $replay = new Replay($parseResult->data);
             $replay->filename = $filename;
             $replay->size = $file->getSize();
+            // todo fix replay encodings
             if (strlen($replay->game_map) > 30) {
                 //Log::error("Error parsing game map: $replay->game_map");
                 $replay->game_map = null;

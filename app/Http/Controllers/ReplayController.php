@@ -71,6 +71,16 @@ class ReplayController extends Controller
             });
         }
 
+        if ($request->hero) {
+            $query->whereHas('players', function ($query) use ($request) {
+                $query->where('hero', $request->hero);
+            });
+        }
+
+        if ($request->with_players) {
+            $query->with('players');
+        }
+
         return $query->limit(100)->get()->toJson();
     }
 
