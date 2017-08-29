@@ -26,7 +26,7 @@
                 new replays, download them all once, or just query their metadata, our service helps
                 you to start development faster.
             </p>
-            {{--<p>Check out our <a href="https://reddit.com/r/heroesofthestorm/...">Reddit thread</a></p>--}}
+            <p>Check out our <a href="https://www.reddit.com/r/heroesofthestorm/comments/6wqlvd/introducing_hotsapinet_an_open_source_shared/">Reddit thread</a></p>
         </div>
     </div>
 
