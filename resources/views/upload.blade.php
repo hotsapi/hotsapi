@@ -39,7 +39,7 @@
     <img class="pull-right screenshot" src="{{asset('img/uploader.png')}}" width="261px">
     <h1>Replay uploader app</h1>
     <p>The easiest way to upload your replays it to get our uploader app</p>
-    <a class="btn btn-primary btn-lg" id="download-setup" href="https://github.com/poma/Hotsapi.Uploader/releases/latest">Download</a>
+    <a class="btn btn-primary btn-lg" href="{{ $setupLink }}">Download</a>
 
     <div class="clearfix"></div>
     <hr>
@@ -84,11 +84,6 @@
                     $('#progress').removeClass('hidden');
                     $('#progress .progress-bar').css('width', progress + '%');
                 }
-            });
-
-            // Get direct link to Setup.exe
-            $.getJSON("https://api.github.com/repos/poma/Hotsapi.Uploader/releases/latest").done(function (release) {
-                $("#download-setup").attr("href", release.assets.find(function (a) { return a.name === "Setup.exe"; }).browser_download_url);
             });
         });
     </script>
