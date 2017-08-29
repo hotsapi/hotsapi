@@ -1,6 +1,6 @@
 #!/bin/bash
+php artisan down
 set -e
-artisan down
 git pull origin master
 chown -R www-data:www-data .
 chmod -R a+w storage

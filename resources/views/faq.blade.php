@@ -12,7 +12,7 @@
             </div>
             <div id="collapse-1" class="panel-collapse collapse in">
                 <div class="panel-body">
-                    ˚
+                    Here are GitHub repos for <a href="https://github.com/poma/hotsapi">website</a>, <a href="https://github.com/poma/hotsapi.chef">deployment scripts</a>, and <a href="https://github.com/poma/Hotsapi.Uploader">uploader</a>
                 </div>
             </div>
         </div>
