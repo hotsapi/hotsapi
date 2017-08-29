@@ -8,6 +8,7 @@
         "php": ">=7.0",
         "barryvdh/laravel-ide-helper": "^2.4",
         "doctrine/dbal": "^2.5",
+        "kozz/laravel-guzzle-provider": "~6.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "league/flysystem-aws-s3-v3": "^1.0",

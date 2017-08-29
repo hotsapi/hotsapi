@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $game_map
  * @property string|null $game_type
  * @property string $fingerprint
+ * @property string|null $game_version
+ * @property-read string $url
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Player[] $players
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFilename($value)
@@ -30,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprint($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameVersion($value)
  */
 class Replay extends Model
 {

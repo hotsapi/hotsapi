@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $hero_level
  * @property int $team
  * @property bool $winner
+ * @property int|null $region
+ * @property int|null $blizz_id
  * @property-read \App\Replay $replay
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereBattletag($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereHero($value)
@@ -23,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereReplayId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereTeam($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereWinner($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereBlizzId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereRegion($value)
  */
 class Player extends Model
 {
