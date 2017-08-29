@@ -185,6 +185,7 @@ class ParserService
                 return self::GAME_TYPE_TEAM_LEAGUE;
 
             default:
+                Log::error("Unknown game type: $gameModeId");
                 return self::GAME_TYPE_UNKNOWN;
         }
     }
