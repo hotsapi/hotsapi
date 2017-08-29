@@ -47,8 +47,16 @@ class ReplayService
             $replay = new Replay($parseResult->data);
             $replay->filename = $filename;
             $replay->size = $file->getSize();
+            if (strlen($replay->game_map) > 30) {
+                Log::error("Error parsing game map: $replay->game_map");
+                $replay->game_map = null;
+            }
             $replay->save();
             foreach ($parseResult->data['players'] as $playerData) {
+                if (strlen($playerData['hero']) > 30) {
+                    Log::error("Error parsing hero name: " . $playerData['hero']);
+                    $playerData['hero'] = null;
+                }
                 $replay->players()->save(new Player($playerData));
             }
 
