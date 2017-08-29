@@ -24,7 +24,7 @@ class ReplayController extends Controller
 
         $result = $replayService->store($request->file('file'));
 
-        $response = ['success' => true, 'status' => $result->status];
+        $response = ['success' => true, 'status' => $result->status, 'originalName' => $request->file('file')->getClientOriginalName()];
         if (isset($result->replay)) {
             $response += [
                 'filename' => $result->replay->filename,
