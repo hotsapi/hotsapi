@@ -60,8 +60,9 @@ class ParserService
             }
 
             $gameDescription = $replay->initdata->m_syncLobbyState->m_gameDescription;
-            if (Replay::where('fingerprint', $gameDescription->m_randomValue)->exists()) {
+            if ($duplicate = Replay::where('fingerprint', $gameDescription->m_randomValue)->first()) {
                 $result->status = self::STATUS_DUPLICATE;
+                $result->replay = $duplicate;
                 return $result;
             }
 

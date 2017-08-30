@@ -20,7 +20,7 @@
     <div class="main-text">
         <div align="center">
             <h1>Welcome to HotsApi</h1>
-            <h4>HotsApi an open Heroes of the Storm replay database where everyone can download replays</h4>
+            <h4>HotsApi is an open Heroes of the Storm replay database where everyone can download replays</h4>
             <p>
                 We want all developers to have access to a large community replay database. Whether you want to continuously get
                 new replays, download them all once, or just query their metadata, our service helps
