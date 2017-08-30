@@ -39,9 +39,7 @@ class ReplayService
 
         if ($parseResult->status == ParserService::STATUS_SUCCESS || (env('ALLOW_BROKEN_REPLAYS', false) && $parseResult->status == ParserService::STATUS_UPLOAD_ERROR && isset($parseResult->data))) {
             $disk = Storage::cloud();
-            do {
-                $filename = uniqid();
-            } while ($disk->exists($filename));
+            $filename = $parseResult->data['fingerprint']; // we already checked that this is unique among other replays
             $disk->putFileAs('', $file, "$filename.StormReplay", 'public');
 
             $replay = new Replay($parseResult->data);
