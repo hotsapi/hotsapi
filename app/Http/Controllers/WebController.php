@@ -31,7 +31,7 @@ class WebController extends Controller
         $link = Cache::remember('setupLink', 60, function () {
             try {
                 $release = json_decode((new Client())->get('https://api.github.com/repos/poma/Hotsapi.Uploader/releases/latest')->getBody());
-                return collect($release->assets)->where('name', 'Setup.exe')->first()->browser_download_url;
+                return collect($release->assets)->where('name', 'HotsApiUploaderSetup.exe')->first()->browser_download_url;
             } catch (Exception $e) {
                 Log::warning("Error getting setup link: $e");
                 return 'https://github.com/poma/Hotsapi.Uploader/releases/latest';
