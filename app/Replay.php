@@ -44,7 +44,7 @@ class Replay extends Model
      * @var array
      */
     protected $guarded = ['id', 'filename', 'size', 'created_at', 'updated_at', 'players'];
-    protected $hidden = ['created_at', 'updated_at', 'fingerprint', 'fingerprint_v2'];
+    protected $hidden = ['created_at', 'updated_at']; //todo rename and hide old fingerprint
     protected $appends = ['url'];
     protected $dates = [
         'created_at',
