@@ -102,7 +102,20 @@ class ReplayController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function check(Request $request)
+    public function checkV2(Request $request)
+    {
+        $exists = Replay::where('fingerprint_v2', $request->fingerprint)->exists();
+        return response()->json(['exists' => $exists]);
+    }
+
+    /**
+     * Check whether a replay with given fingerprint is already uploaded
+     * This if old fingerprint version, retained for compatibility
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function checkV1(Request $request)
     {
         $exists = Replay::where('fingerprint', $request->fingerprint)->exists();
         return response()->json(['exists' => $exists]);

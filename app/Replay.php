@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $game_map
  * @property string|null $game_type
  * @property string $fingerprint
+ * @property string $fingerprint_v2
  * @property string|null $game_version
  * @property-read string $url
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Player[] $players
@@ -31,6 +32,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprint($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprintV2($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameVersion($value)
  */
@@ -42,7 +44,7 @@ class Replay extends Model
      * @var array
      */
     protected $guarded = ['id', 'filename', 'size', 'created_at', 'updated_at', 'players'];
-    protected $hidden = ['created_at', 'updated_at', 'fingerprint'];
+    protected $hidden = ['created_at', 'updated_at', 'fingerprint', 'fingerprint_v2'];
     protected $appends = ['url'];
     protected $dates = [
         'created_at',

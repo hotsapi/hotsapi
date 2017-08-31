@@ -14,7 +14,8 @@
 Route::get ('replays', 'ReplayController@index'); //start_date end_date map game_type player min_id
 Route::post('upload', 'ReplayController@store');
 Route::post('replays', 'ReplayController@store');
-Route::get ('replays/fingerprints/{fingerprint}', 'ReplayController@check');
+Route::get ('replays/fingerprints/v2/{fingerprint}', 'ReplayController@checkV2');
+Route::get ('replays/fingerprints/{fingerprint}', 'ReplayController@checkV1');
 Route::post('replays/fingerprints', 'ReplayController@massCheck');
 Route::get ('replays/min-build', 'ReplayController@minimumBuild');
 Route::get ('replays/{replay}', 'ReplayController@show');
