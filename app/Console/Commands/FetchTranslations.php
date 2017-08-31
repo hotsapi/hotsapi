@@ -52,7 +52,12 @@ class FetchTranslations extends Command
             if (!$dbMap) {
                 $dbMap = Map::create(['name' => $map->PrimaryName]);
             }
-            foreach (array_merge(explode(',', $map->Translations), [$map->PrimaryName]) as $translation) {
+            $translations = explode(',', $map->Translations);
+            $translations []= $map->PrimaryName;
+            $translations = array_map(function ($x) { return mb_strtolower($x); }, $translations);
+            $translations = array_unique($translations);
+            foreach ($translations as $translation) {
+                $translation = mb_strtolower($translation);
                 if ($dbMap->translations->where('name', $translation)->isEmpty()) {
                     $dbMap->translations()->save(new MapTranslation(['name' => $translation]));
                 }
@@ -69,7 +74,12 @@ class FetchTranslations extends Command
             if (!$dbHero) {
                 $dbHero = Hero::create(['name' => $hero->PrimaryName]);
             }
-            foreach (array_merge(explode(',', $hero->Translations), [$hero->PrimaryName]) as $translation) {
+            $translations = explode(',', $hero->Translations);
+            $translations []= $hero->PrimaryName;
+            $translations = array_map(function ($x) { return mb_strtolower($x); }, $translations);
+            $translations = array_unique($translations);
+            foreach ($translations as $translation) {
+                $translation = mb_strtolower($translation);
                 if ($dbHero->translations->where('name', $translation)->isEmpty()) {
                     $dbHero->translations()->save(new HeroTranslation(['name' => $translation]));
                 }

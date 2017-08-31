@@ -79,7 +79,7 @@ class ParserService
                 'game_type' => $this->DetectGameMode($gameDescription->m_gameOptions->m_ammId),
                 'game_date' => $this->FiletimeToDatetime($replay->details->m_timeUTC),
                 'game_length' => (int)($replay->header->m_elapsedGameLoops / 16),
-                'game_map' => $replay->details->m_title,
+                'game_map' => mb_strtolower(utf8_decode($replay->details->m_title)), // convert to lower case for translation
                 'game_version' => "$version->m_major.$version->m_minor.$version->m_revision.$version->m_build",
             ];
 
@@ -92,8 +92,8 @@ class ParserService
             foreach ($replay->details->m_playerList as $i => $player) {
                 $playerData = [
                     // todo extract full battletag from battlelobby
-                    'battletag' => $player->m_name,
-                    'hero' => $player->m_hero,
+                    'battletag' => utf8_decode($player->m_name),
+                    'hero' => mb_strtolower(utf8_decode($player->m_hero)), // convert to lower case for translation
                     'team' => $player->m_teamId,
                     'winner' => $player->m_result == 1,
                     'region' => $player->m_toon->m_region,
