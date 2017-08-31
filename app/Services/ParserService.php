@@ -71,6 +71,11 @@ class ParserService
                 'players' => []
             ];
 
+            if (!$gameDescription->m_gameOptions->m_amm) {
+                $result->status = self::STATUS_CUSTOM_GAME;
+                return $result;
+            }
+
             // After this point all data is considered non-essential
             // We can still add such replays even if parsing fails
 
