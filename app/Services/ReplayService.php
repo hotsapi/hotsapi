@@ -50,6 +50,7 @@ class ReplayService
             $replay = new Replay($parseResult->data);
             $replay->filename = $filename;
             $replay->size = $file->getSize();
+            $replay->region = $parseResult->region;
             // todo fix replay encodings
             $replay->save();
             foreach ($parseResult->data['players'] as $playerData) {

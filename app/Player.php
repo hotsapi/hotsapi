@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $hero_level
  * @property int $team
  * @property bool $winner
- * @property int|null $region
  * @property int|null $blizz_id
  * @property-read \App\Replay $replay
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereBattletag($value)

@@ -94,14 +94,18 @@ class ParserService
             }
 
             $winnerCheck = false;
+            $result->region = null;
             foreach ($replay->details->m_playerList as $i => $player) {
+                if ($result->region === null) {
+                    $result->region = $player->m_toon->m_region;
+                }
+
                 $playerData = [
                     // todo extract full battletag from battlelobby
                     'battletag' => utf8_decode($player->m_name),
                     'hero' => mb_strtolower(utf8_decode($player->m_hero)), // convert to lower case for translation
                     'team' => $player->m_teamId,
                     'winner' => $player->m_result == 1,
-                    'region' => $player->m_toon->m_region,
                     'blizz_id' => $player->m_toon->m_id,
                 ];
 
@@ -116,7 +120,7 @@ class ParserService
                     return $result;
                 }
 
-                if ($playerData["region"] > 90) {
+                if ($result->region > 90) {
                     $result->status = self::STATUS_PTR_REGION;
                     return $result;
                 }
