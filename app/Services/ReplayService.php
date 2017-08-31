@@ -2,16 +2,9 @@
 
 namespace App\Services;
 
-use App\Hero;
-use App\HeroTranslation;
-use App\MapTranslation;
-use App\Player;
 use App\Replay;
-use Exception;
 use Illuminate\Http\UploadedFile;
-use Log;
 use Storage;
-use Symfony\Component\Process\Process;
 
 class ReplayService
 {
@@ -45,43 +38,19 @@ class ReplayService
             $filename = $parseResult->data['fingerprint']; // we already checked that this is unique among other replays
             $disk->putFileAs('', $file, "$filename.StormReplay", 'public');
 
-            $this->translateNames($parseResult->data);
-
             $replay = new Replay($parseResult->data);
             $replay->filename = $filename;
             $replay->size = $file->getSize();
             // todo fix replay encodings
             $replay->save();
             foreach ($parseResult->data['players'] as $playerData) {
-                $replay->players()->save(new Player($playerData));
+                $replay->players()->create($playerData);
             }
 
             $parseResult->replay = $replay;
         }
 
         return $parseResult;
-    }
-
-    private function translateNames(&$replayData)
-    {
-        $mapTranslation = MapTranslation::where('name', $replayData['game_map'])->with('map')->first();
-        if (!$mapTranslation) {
-            Log::error("Error translating map: " . $replayData['game_map']);
-            $replayData['game_map'] = null;
-        } else {
-            $replayData['game_map'] = $mapTranslation->map->name;
-        }
-
-        $heroTranslations = HeroTranslation::whereIn('name', collect($replayData['players'])->pluck('hero'))->with('hero')->get();
-        foreach ($replayData['players'] as &$player) {
-            $heroTranslation = $heroTranslations->where('name', $player['hero'])->first();
-            if (!$heroTranslation) {
-                Log::error("Error translating hero: " . $player['hero']);
-                $player['hero'] = null;
-            } else {
-                $player['hero'] = $heroTranslation->hero->name;
-            }
-        }
     }
 
     /**

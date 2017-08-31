@@ -1,5 +1,7 @@
 <?php namespace App\Services;
 
+use App\HeroTranslation;
+use App\MapTranslation;
 use App\Replay;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
@@ -38,9 +40,10 @@ class ParserService
      * Extract metadata from replay
      *
      * @param string $filename
+     * @param bool $skipDuplicateCheck Don't check for duplicates. Needed for reparse command.
      * @return stdClass
      */
-    public function analyze($filename)
+    public function analyze($filename, $skipDuplicateCheck = false)
     {
         // todo this big method needs refactoring
         $result = new stdClass();
@@ -60,7 +63,7 @@ class ParserService
             }
 
             $gameDescription = $replay->initdata->m_syncLobbyState->m_gameDescription;
-            if ($duplicate = Replay::where('fingerprint', $gameDescription->m_randomValue)->first()) {
+            if (!$skipDuplicateCheck && $duplicate = Replay::where('fingerprint', $gameDescription->m_randomValue)->first()) {
                 $result->status = self::STATUS_DUPLICATE;
                 $result->replay = $duplicate;
                 return $result;
@@ -84,7 +87,7 @@ class ParserService
                 'game_type' => $this->DetectGameMode($gameDescription->m_gameOptions->m_ammId),
                 'game_date' => $this->FiletimeToDatetime($replay->details->m_timeUTC),
                 'game_length' => (int)($replay->header->m_elapsedGameLoops / 16),
-                'game_map' => mb_strtolower(utf8_decode($replay->details->m_title)), // convert to lower case for translation
+                'game_map' => $this->translateMapName(utf8_decode($replay->details->m_title)),
                 'game_version' => "$version->m_major.$version->m_minor.$version->m_revision.$version->m_build",
             ];
 
@@ -98,7 +101,7 @@ class ParserService
                 $playerData = [
                     // todo extract full battletag from battlelobby
                     'battletag' => utf8_decode($player->m_name),
-                    'hero' => mb_strtolower(utf8_decode($player->m_hero)), // convert to lower case for translation
+                    'hero' => utf8_decode($player->m_hero),
                     'team' => $player->m_teamId,
                     'winner' => $player->m_result == 1,
                     'region' => $player->m_toon->m_region,
@@ -126,6 +129,8 @@ class ParserService
                 }
             }
 
+            $this->translateHeroNames($result->data['players']);
+
             if (count($result->data['players']) <= 5 || $gameDescription->m_maxUsers != 10) {
                 $result->status = self::STATUS_AI_DETECTED;
                 return $result;
@@ -146,6 +151,42 @@ class ParserService
             Log::error("Error parsing replay: $e");
             $result->status = self::STATUS_UPLOAD_ERROR;
             return $result;
+        }
+    }
+
+    /**
+     * Translates map and hero names to canonical english names
+     * @param $players
+     */
+    private function translateHeroNames(&$players)
+    {
+        $heroTranslations = HeroTranslation::whereIn('name', collect($players)->pluck('hero'))->with('hero')->get();
+        foreach ($players as &$player) {
+            $heroTranslation = $heroTranslations->where('name', $player['hero'])->first();
+            if (!$heroTranslation) {
+                Log::error("Error translating hero: " . $player['hero']);
+                $player['hero'] = null;
+            } else {
+                $player['hero'] = $heroTranslation->hero->name;
+            }
+        }
+    }
+
+    /**
+     * Translates map to canonical english name
+     *
+     * @param $name
+     * @return string|null
+     */
+    private function translateMapName($name)
+    {
+        $name = mb_strtolower($name);
+        $mapTranslation = MapTranslation::where('name', $name)->with('map')->first();
+        if (!$mapTranslation) {
+            Log::error("Error translating map: " . $name);
+            return null;
+        } else {
+            return $mapTranslation->map->name;
         }
     }
 
