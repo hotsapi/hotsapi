@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $fingerprint
  * @property string $fingerprint_v2
  * @property string|null $game_version
+ * @property int|null $region
  * @property-read string $url
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Player[] $players
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereCreatedAt($value)
