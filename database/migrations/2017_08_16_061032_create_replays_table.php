@@ -16,7 +16,7 @@ class CreateReplaysTable extends Migration
         Schema::create('replays', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->string('filename', 32)->unique();
+            $table->string('filename', 37)->unique();
             $table->integer('size');
             $table->string('game_type', 32)->nullable()->index();
             $table->dateTime('game_date')->nullable()->index();

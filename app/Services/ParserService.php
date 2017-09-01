@@ -103,7 +103,7 @@ class ParserService
                 $playerData = [
                     // todo extract full battletag from battlelobby
                     'battletag' => utf8_decode($player->m_name),
-                    'hero' => utf8_decode($player->m_hero),
+                    'hero' => mb_strtolower(utf8_decode($player->m_hero)), // to lower for translation
                     'team' => $player->m_teamId,
                     'winner' => $player->m_result == 1,
                     'region' => $player->m_toon->m_region,
