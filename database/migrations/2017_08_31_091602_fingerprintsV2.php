@@ -14,7 +14,7 @@ class FingerprintsV2 extends Migration
     public function up()
     {
         Schema::table('replays', function (Blueprint $table) {
-            $table->string('fingerprint_v2', 37)->unique();
+            $table->string('fingerprint_old', 37)->unique();
         });
     }
 

@@ -104,7 +104,7 @@ class ReplayController extends Controller
      */
     public function checkV2(Request $request)
     {
-        $exists = Replay::where('fingerprint_v2', $request->fingerprint)->exists();
+        $exists = Replay::where('fingerprint', $request->fingerprint)->exists();
         return response()->json(['exists' => $exists]);
     }
 
@@ -117,7 +117,7 @@ class ReplayController extends Controller
      */
     public function checkV1(Request $request)
     {
-        $exists = Replay::where('fingerprint', $request->fingerprint)->exists();
+        $exists = Replay::where('fingerprint_old', $request->fingerprint)->exists();
         return response()->json(['exists' => $exists]);
     }
 

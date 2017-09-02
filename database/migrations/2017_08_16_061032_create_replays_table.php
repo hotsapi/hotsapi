@@ -23,7 +23,7 @@ class CreateReplaysTable extends Migration
             $table->integer('game_length')->nullable();
             $table->string('game_map', 32)->nullable()->index();
             $table->string('game_version', 32)->nullable();
-            $table->string('fingerprint', 32)->unique();
+            $table->string('fingerprint', 37)->unique();
         });
     }
 

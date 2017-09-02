@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $game_map
  * @property string|null $game_type
  * @property string $fingerprint
- * @property string $fingerprint_v2
+ * @property string $fingerprint_old
  * @property string|null $game_version
  * @property int|null $region
  * @property-read string $url
@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprint($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprintV2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprintOld($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameVersion($value)
  */
@@ -45,7 +45,7 @@ class Replay extends Model
      * @var array
      */
     protected $guarded = ['id', 'filename', 'size', 'created_at', 'updated_at', 'players'];
-    protected $hidden = ['created_at', 'updated_at']; //todo rename and hide old fingerprint
+    protected $hidden = ['created_at', 'updated_at', 'fingerprint_old'];
     protected $appends = ['url'];
     protected $dates = [
         'created_at',
