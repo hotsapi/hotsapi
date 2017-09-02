@@ -29,3 +29,6 @@ In addition to defaul homestead config you will need:
 * Run chef `./bootstrap.sh`
 * Run hotsapi deploy script `cd /var/www/hotsapi && ./deploy.sh`
 
+# Contributing
+
+Pull requests are very much appreciated, with community involvement we could get much more features in much shorter time. You can see the list of current tasks in [project](https://github.com/poma/hotsapi/projects/1) page, you can freely pick one from "backlog" or "high priority" columns and start working on it.
