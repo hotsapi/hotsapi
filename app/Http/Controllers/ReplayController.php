@@ -81,7 +81,7 @@ class ReplayController extends Controller
             $query->with('players');
         }
 
-        return $query->orderBy('id')->limit(100)->get()->toJson();
+        return $query->orderBy('id')->limit(100)->get();
     }
 
     /**
@@ -92,8 +92,7 @@ class ReplayController extends Controller
      */
     public function show(Replay $replay)
     {
-        $replay->load('players');
-        return $replay->toJson();
+        return $replay->load('players');
     }
 
     /**
