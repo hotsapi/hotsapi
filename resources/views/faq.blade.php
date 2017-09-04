@@ -36,7 +36,7 @@
             </div>
             <div id="collapse-3" class="panel-collapse collapse">
                 <div class="panel-body">
-                    You can help with service development via GitHub, donate via <a href="https://www.patreon.com/hotsapi">Patreon</a>, or just upload your replays to help our database grow
+                    You can help with service development via <a href="https://github.com/poma/hotsapi">GitHub</a>, donate via <a href="https://www.patreon.com/hotsapi">Patreon</a>, or just upload your replays to help our database grow
                 </div>
             </div>
         </div>
