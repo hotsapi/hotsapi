@@ -20,7 +20,7 @@
         <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html">"Requester pays" mode</a>
         which means that traffic fees are payed by clients that download files instead of website owner. This allows us
         to keep server costs low and run service even with low donations. S3 traffic is <em>free</em> if you download
-        to an AWS EC2 instance in eu-west-1 region or $0.09/GB if you download to non-amazon server. A good way for
+        to an AWS EC2 instance in EU (Ireland) (eu-west-1) region or $0.09/GB if you download to non-amazon server. A good way for
         you to avoid costs is to launch a free tier EC2 instance, use it to download and analyze replays, and then
         stream results to your main website. In any case you will need an AWS account and authenticate every request
         to download files. Further documentation can be found
