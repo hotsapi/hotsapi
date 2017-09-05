@@ -30,9 +30,7 @@
         .screenshot {
             margin-top: 22px;
         }
-
     </style>
-
 @endsection
 
 @section('content')
@@ -68,7 +66,6 @@
 
     <table id="files" class="table"><tbody></tbody></table>
 @endsection
-
 
 @section('body')
     <script>
