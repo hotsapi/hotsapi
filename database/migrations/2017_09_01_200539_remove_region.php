@@ -14,7 +14,7 @@ class RemoveRegion extends Migration
     public function up()
     {
         Schema::table('players', function (Blueprint $table) {
-            $table->removeColumn('region');
+            $table->dropColumn('region');
         });
     }
 
