@@ -29,7 +29,8 @@
             <p>Check out our <a href="https://www.reddit.com/r/heroesofthestorm/comments/6wqlvd/introducing_hotsapinet_an_open_source_shared/">Reddit thread</a></p>
 
             <br><br>
-            <h4>[Here will be a gallery of websites/apps that use this service]</h4>
+            <h1>Services that use our API</h1>
+            <a href="http://stormspy.net"><img src="https://stormspy.net/img/stormspy-logo.png"></a>
         </div>
     </div>
 
