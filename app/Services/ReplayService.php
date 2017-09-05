@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Player;
 use App\Replay;
 use Illuminate\Http\UploadedFile;
 use Storage;
@@ -44,9 +45,21 @@ class ReplayService
             $replay->region = $parseResult->region;
             // todo fix replay encodings
             $replay->save();
+
+            // bulk insert to increase performance
+            $toInsert = [];
             foreach ($parseResult->data['players'] as $playerData) {
-                $replay->players()->create($playerData);
+                $toInsert [] = [
+                    'replay_id' => $replay->id,
+                    'battletag' => $playerData['battletag'],
+                    'hero' => $playerData['hero'],
+                    'hero_level' => $playerData['hero_level'],
+                    'team' => $playerData['team'],
+                    'winner' => $playerData['winner'],
+                    'blizz_id' => $playerData['blizz_id'],
+                ];
             }
+            Player::insert($toInsert);
 
             $parseResult->replay = $replay;
         }
