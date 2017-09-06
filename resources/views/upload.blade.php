@@ -99,12 +99,6 @@
             });
         });
         
-        //disable default full-window drag and drop to avoid triggering both upload widgets
-        // $(document).bind('drop dragover', function (e) {
-            // e.preventDefault();
-            // return false;
-        // });
-        
         //check for directory-selection compatibility. same test used in Modernizr.
         //repurposed from https://stackoverflow.com/questions/12169585/how-to-detect-directory-select-capability-in-browsers
         function isInputDirSupported() {
