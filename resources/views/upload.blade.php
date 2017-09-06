@@ -20,7 +20,6 @@
             direction: ltr;
             cursor: pointer;
         }
-
         .upload-Success {
             color: #2b542c;
         }
@@ -74,6 +73,12 @@
                 url: '/api/v1/replays',
                 sequentialUploads: true,
                 dataType: 'json',
+                drop: function (e, data) {
+                    if ($(this).attr('id') == "fileupload_dir") {
+                        e.preventDefault();
+                        return false;
+                    }
+                },
                 done: function (e, data) {
                     let status = data.result.status ? data.result.status : "UploadError";
                     $("#files").find('tbody')
@@ -94,6 +99,12 @@
             });
         });
         
+        //disable default full-window drag and drop to avoid triggering both upload widgets
+        // $(document).bind('drop dragover', function (e) {
+            // e.preventDefault();
+            // return false;
+        // });
+        
         //check for directory-selection compatibility. same test used in Modernizr.
         //repurposed from https://stackoverflow.com/questions/12169585/how-to-detect-directory-select-capability-in-browsers
         function isInputDirSupported() {
@@ -108,6 +119,5 @@
         } else {
             $("#container_fileupload_dir_text,#container_fileupload_dir").hide()
         }
-
     </script>
 @endsection
