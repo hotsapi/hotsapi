@@ -61,7 +61,7 @@
     <hr>
 
     <h1>Or you can use the web uploader</h1>
-    <p>Choose replay files, or drag them onto this page. <span id="container_fileupload_dir_text hidden">Chrome users: If you are uploading &gt;700 replays, please select by directory</span></p>
+    <p>Choose replay files, or drag them onto this page. <span id="container_fileupload_dir_text" class="hidden">Chrome users: If you are uploading &gt;700 replays, please select by directory</span></p>
 
     <span class="btn btn-success fileinput-button">
         <i class="glyphicon glyphicon-plus"></i>
