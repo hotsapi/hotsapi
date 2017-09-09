@@ -27,7 +27,6 @@ In addition to defaul homestead config you will need:
 * `cd hotsapi.chef`
 * Modify a config file with your `.env` values `cp chef.example.json chef.json && vi chef.json`
 * Run chef `./bootstrap.sh`
-* Run hotsapi deploy script `cd /var/www/hotsapi && ./deploy.sh`
 
 # Contributing
 
