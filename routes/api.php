@@ -19,3 +19,7 @@ Route::get ('replays/fingerprints/{fingerprint}', 'ReplayController@checkV1');
 Route::post('replays/fingerprints', 'ReplayController@massCheck');
 Route::get ('replays/min-build', 'ReplayController@minimumBuild');
 Route::get ('replays/{replay}', 'ReplayController@show');
+
+// todo move to a separate controllers
+Route::get ('heroes/translations', 'ReplayController@heroTranslations');
+Route::get ('maps/translations', 'ReplayController@mapTranslations');

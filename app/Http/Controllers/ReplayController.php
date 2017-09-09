@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Hero;
+use App\Map;
 use App\Replay;
 use App\Services\ParserService;
 use App\Services\ReplayService;
@@ -135,8 +137,34 @@ class ReplayController extends Controller
         return response()->json(['exists' => $exists, 'absent' => $absent]);
     }
 
+    /**
+     * Get minimum supported buils
+     *
+     * @return int
+     */
     public function minimumBuild()
     {
         return ParserService::MIN_SUPPORTED_BUILD;
+    }
+
+    // todo move these methods to another controller
+    /**
+     * Fetch hero list with translations
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function heroTranslations()
+    {
+        return Hero::with('translations')->get();
+    }
+
+    /**
+     * Fetch map list with translations
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function mapTranslations()
+    {
+        return Map::with('translations')->get();
     }
 }
