@@ -12,6 +12,7 @@
 */
 
 Route::get ('replays', 'ReplayController@index'); //start_date end_date map game_type player min_id
+Route::get ('pagedreplays', 'ReplayController@paged'); //start_date end_date map game_type player min_id page
 Route::post('upload', 'ReplayController@store');
 Route::post('replays', 'ReplayController@store');
 Route::get ('replays/fingerprints/v2/{fingerprint}', 'ReplayController@checkV2');
