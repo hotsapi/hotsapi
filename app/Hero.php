@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\HeroTranslation[] $translations
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $name
+ * @property-read mixed $versions
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereName($value)
  */
 class Hero extends Model
 {

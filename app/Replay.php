@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprintOld($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameVersion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereRegion($value)
  */
 class Replay extends Model
 {
