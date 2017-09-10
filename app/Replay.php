@@ -69,6 +69,11 @@ class Replay extends Model
         return "http://" . env('AWS_BUCKET') . ".s3-website-" . env('AWS_REGION') . ".amazonaws.com/" . $this->filename . ".StormReplay";
     }
 
+    public function hotslogsUploads()
+    {
+        return $this->hasMany(HotslogsUpload::class);
+    }
+
 //    /**
 //     * Gets game time
 //     *

@@ -30,7 +30,7 @@ class ReplayService
      * @param UploadedFile $file
      * @return \stdClass
      */
-    public function store(UploadedFile $file)
+    public function store(UploadedFile $file, $uploadToHotslogs)
     {
         $parseResult = $this->parser->analyze($file->getRealPath());
 
@@ -62,6 +62,10 @@ class ReplayService
             Player::insert($toInsert);
 
             $parseResult->replay = $replay;
+        }
+
+        if (isset($parseResult->replay) && $uploadToHotslogs) {
+            HotslogsUploader::queueForUpload($parseResult->replay);
         }
 
         return $parseResult;

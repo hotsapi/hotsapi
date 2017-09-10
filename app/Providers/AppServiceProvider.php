@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton(ReplayService::class, function () {
-            return new ReplayService();
+            return new ReplayService(new ParserService());
         });
     }
 

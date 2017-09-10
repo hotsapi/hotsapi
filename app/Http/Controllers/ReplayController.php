@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Hero;
 use App\Map;
 use App\Replay;
+use App\Services\HotslogsUploader;
 use App\Services\ParserService;
 use App\Services\ReplayService;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class ReplayController extends Controller
             return response()->json(['success' => false, 'Error' => 'no file specified']);
         }
 
-        $result = $replayService->store($request->file('file'));
+        $result = $replayService->store($request->file('file'), $request->uploadToHotslogs);
 
         $response = ['success' => true, 'status' => $result->status, 'originalName' => $request->file('file')->getClientOriginalName()];
         if (isset($result->replay)) {
@@ -105,8 +106,11 @@ class ReplayController extends Controller
      */
     public function checkV2(Request $request)
     {
-        $exists = Replay::where('fingerprint', $request->fingerprint)->exists();
-        return response()->json(['exists' => $exists]);
+        $replay = Replay::where('fingerprint', $request->fingerprint)->first();
+        if ($replay != null && $request->uploadToHotslogs) {
+            HotslogsUploader::queueForUpload($replay);
+        }
+        return response()->json(['exists' => $replay != null]);
     }
 
     /**
