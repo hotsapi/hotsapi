@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 
 class ReplayController extends Controller
 {
+    const PAGE_SIZE = 100; 
+
     /**
      * Upload replay
      *
@@ -46,6 +48,12 @@ class ReplayController extends Controller
     public function index(Request $request)
     {
         $query = Replay::query();
+
+        $page = 1;
+
+        if ($request->page) {
+            $page = $request->page;
+        }
 
         if ($request->start_date) {
             $query->where('game_date', '>=', $request->start_date);
@@ -83,7 +91,14 @@ class ReplayController extends Controller
             $query->with('players');
         }
 
-        return $query->orderBy('id')->limit(100)->get();
+        $total = $query->count();
+        $pageCount = $total / ReplayController::PAGE_SIZE;
+        $metadata = ['per_page' => ReplayController::PAGE_SIZE, 'page' => $page, 'page_count' => $pageCount, 'total' => $pageCount];
+        $replays = $query->orderBy('id')->forPage($page, ReplayController::PAGE_SIZE)->get();
+
+        $response = ['_metadata' => $metadata, 'Replays' => $replays];
+        
+        return $response()->json();
     }
 
     /**
