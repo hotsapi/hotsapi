@@ -136,7 +136,7 @@ class ReplayController extends Controller
     {
         $all = preg_split("/\r\n|\n|\r/", $request->getContent());
         $exists = Replay::select('fingerprint')->whereIn('fingerprint', $all)->get()->map->fingerprint->toArray();
-        $absent = array_diff($all, $exists);
+        $absent = array_values(array_diff($all, $exists));
 
         return response()->json(['exists' => $exists, 'absent' => $absent]);
     }
