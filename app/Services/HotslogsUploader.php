@@ -62,7 +62,7 @@ class HotslogsUploader
         }
 
         if ($this->isDuplicate($this->upload->replay->fingerprint)) {
-            Log::info("Uploaded job " . $this->upload->id . " to hotslogs");
+            Log::debug("HotslogsUploader: job " . $this->upload->id . " marked as a duplicate");
             $this->setStatus(self::STATUS_SUCCESS, "duplicate");
             return true;
         }
@@ -72,23 +72,26 @@ class HotslogsUploader
             $this->s3copy(env('AWS_BUCKET'), $this->upload->replay->filename . ".StormReplay", 'heroesreplays', $filename);
             $resp = strtolower(Guzzle::get(self::BASE_URL . "&FileName=$filename")->getBody()->getContents());
             switch ($resp) {
-                case "duplicate":
                 case "success":
                 case "prealphawipe":
                 case "computerplayerfound":
                 case "trymemode":
-                    Log::info("Uploaded job " . $this->upload->id . " to hotslogs");
+                    Log::debug("HotslogsUploader: Uploaded job " . $this->upload->id);
+                    $this->setStatus(self::STATUS_SUCCESS, $resp);
+                    break;
+                case "duplicate":
+                    Log::warning("HotslogsUploader: got duplicate status during upload, job " . $this->upload->id);
                     $this->setStatus(self::STATUS_SUCCESS, $resp);
                     break;
                 case "maintenance":
-                    Log::warning("Hotslogs is currently under maintenance");
+                    Log::info("HotslogsUploader: Hotslogs is currently under maintenance");
                     return false;
                 default:
-                    Log::error("Could not upload file to hotslogs. Unknown status received: $resp");
+                    Log::error("HotslogsUploader: Could not upload file. Unknown status received: $resp");
                     $this->setStatus(self::STATUS_ERROR);
             }
         } catch (Exception $e) {
-            Log::error("Could not upload file to hotslogs: $e");
+            Log::error("HotslogsUploader: Could not upload file: $e");
             $this->setStatus(self::STATUS_ERROR);
         }
         return true;
@@ -106,7 +109,7 @@ class HotslogsUploader
             $result = strtolower(Guzzle::get(self::BASE_URL . "&ReplayHash=$fingerprint")->getBody()->getContents());
             return $result == "duplicate";
         } catch (Exception $e) {
-            Log::warning("Error checking hotslogs for duplicate: $e");
+            Log::warning("HotslogsUploader: Error checking for duplicate: $e");
             return false;
         }
     }
