@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property-read \App\Map $map
  * @mixin \Eloquent
+ * @property int $id
+ * @property int $map_id
+ * @property string $name
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MapTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MapTranslation whereMapId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\MapTranslation whereName($value)
  */
 class MapTranslation extends Model
 {

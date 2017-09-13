@@ -36,6 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprintOld($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameVersion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereRegion($value)
  */
 class Replay extends Model
 {
@@ -66,6 +67,11 @@ class Replay extends Model
     public function getUrlAttribute()
     {
         return "http://" . env('AWS_BUCKET') . ".s3-website-" . env('AWS_REGION') . ".amazonaws.com/" . $this->filename . ".StormReplay";
+    }
+
+    public function hotslogsUploads()
+    {
+        return $this->hasMany(HotslogsUpload::class);
     }
 
 //    /**

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Services\ParserService;
+use App\Services\ReplayService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +15,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->app->singleton(ParserService::class, function () {
+            return new ParserService();
+        });
+
+        $this->app->singleton(ReplayService::class, function () {
+            return new ReplayService(new ParserService());
+        });
     }
 
     /**

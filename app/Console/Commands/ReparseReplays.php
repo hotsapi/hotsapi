@@ -24,55 +24,70 @@ class ReparseReplays extends Command
     protected $description = 'Redo parsing for replays';
 
     /**
-     * Create a new command instance.
+     * @var ParserService
      */
-    public function __construct()
+    private $parser;
+
+    /**
+     * Create a new command instance.
+     *
+     * @param ParserService $parser
+     */
+    public function __construct(ParserService $parser)
     {
         parent::__construct();
+        $this->parser = $parser;
     }
 
     /**
      * Execute the console command.
      *
-     * @param ParserService $parser
      * @return mixed
      */
-    public function handle(ParserService $parser)
+    public function handle()
     {
         $min_id = $this->argument('min_id');
         $max_id = $this->argument('max_id');
         $this->info("Reparsing replays, id from $min_id to $max_id");
-        Replay::where('id', '>=', $min_id)->where('id', '<=', $max_id)->with('players')->chunk(100, function($replays) use ($parser) {
-            foreach ($replays as $replay) {
-                $this->info("Parsing replay id=$replay->id, file=$replay->filename");
-                $tmpFile = tempnam('', 'replay_');
-                try {
-                    $content = \Storage::cloud()->get("$replay->filename.StormReplay");
-                    file_put_contents($tmpFile, $content);
-                    $parseResult = $parser->analyze($tmpFile, true);
-                    if ($parseResult->status != ParserService::STATUS_SUCCESS) {
-                        $this->error("Error parsing file id=$replay->id, file=$replay->filename. Status: $parseResult->status");
-                        continue;
-                    }
-                    $replay->fill($parseResult->data)->save();
-                    foreach ($parseResult->data['players'] as $playerData) {
-                        $player = $replay->players->where('blizz_id', $playerData['blizz_id'])->first();
-                        if ($player) {
-                            $player->fill($playerData)->save();
-                        } else {
-                            // apparently `create` doesn't automatically add model to attribute array
-                            $replay->players []= $replay->players()->create($playerData);
-                        }
-                    }
-                    if (count($replay->players) != 10) {
-                        $this->error("Wrong player count " . count($replay->players) . ", replay id=$replay->id, file=$replay->filename");
-                    }
-                } catch (\Exception $e) {
-                    $this->error("Error parsing file id=$replay->id, file=$replay->filename: $e");
-                } finally {
-                    unlink($tmpFile);
+        Replay::where('id', '>=', $min_id)->where('id', '<=', $max_id)->with('players')->chunk(100, function ($x) { return $this->reparse($x); });
+    }
+
+    /**
+     * Reparse collection of replays
+     *
+     * @param $replays
+     */
+    public function reparse($replays)
+    {
+        foreach ($replays as $replay) {
+            $this->info("Parsing replay id=$replay->id, file=$replay->filename");
+            $tmpFile = tempnam('', 'replay_');
+            try {
+                $content = \Storage::cloud()->get("$replay->filename.StormReplay");
+                file_put_contents($tmpFile, $content);
+                $parseResult = $this->parser->analyze($tmpFile, true);
+                if ($parseResult->status != ParserService::STATUS_SUCCESS) {
+                    $this->error("Error parsing file id=$replay->id, file=$replay->filename. Status: $parseResult->status");
+                    continue;
                 }
+                $replay->fill($parseResult->data)->save();
+                foreach ($parseResult->data['players'] as $playerData) {
+                    $player = $replay->players->where('blizz_id', $playerData['blizz_id'])->first();
+                    if ($player) {
+                        $player->fill($playerData)->save();
+                    } else {
+                        // apparently `create` doesn't automatically add model to attribute array
+                        $replay->players []= $replay->players()->create($playerData);
+                    }
+                }
+                if (count($replay->players) != 10) {
+                    $this->error("Wrong player count " . count($replay->players) . ", replay id=$replay->id, file=$replay->filename");
+                }
+            } catch (\Exception $e) {
+                $this->error("Error parsing file id=$replay->id, file=$replay->filename: $e");
+            } finally {
+                unlink($tmpFile);
             }
-        });
+        }
     }
 }

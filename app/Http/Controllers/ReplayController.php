@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Hero;
+use App\Map;
 use App\Replay;
+use App\Services\HotslogsUploader;
 use App\Services\ParserService;
 use App\Services\ReplayService;
 use Illuminate\Http\Request;
@@ -22,7 +25,7 @@ class ReplayController extends Controller
             return response()->json(['success' => false, 'Error' => 'no file specified']);
         }
 
-        $result = $replayService->store($request->file('file'));
+        $result = $replayService->store($request->file('file'), $request->uploadToHotslogs);
 
         $response = ['success' => true, 'status' => $result->status, 'originalName' => $request->file('file')->getClientOriginalName()];
         if (isset($result->replay)) {
@@ -103,8 +106,11 @@ class ReplayController extends Controller
      */
     public function checkV2(Request $request)
     {
-        $exists = Replay::where('fingerprint', $request->fingerprint)->exists();
-        return response()->json(['exists' => $exists]);
+        $replay = Replay::where('fingerprint', $request->fingerprint)->first();
+        if ($replay != null && $request->uploadToHotslogs) {
+            HotslogsUploader::queueForUpload($replay);
+        }
+        return response()->json(['exists' => $replay != null]);
     }
 
     /**
@@ -130,13 +136,39 @@ class ReplayController extends Controller
     {
         $all = preg_split("/\r\n|\n|\r/", $request->getContent());
         $exists = Replay::select('fingerprint')->whereIn('fingerprint', $all)->get()->map->fingerprint->toArray();
-        $absent = array_diff($all, $exists);
+        $absent = array_values(array_diff($all, $exists));
 
         return response()->json(['exists' => $exists, 'absent' => $absent]);
     }
 
+    /**
+     * Get minimum supported buils
+     *
+     * @return int
+     */
     public function minimumBuild()
     {
         return ParserService::MIN_SUPPORTED_BUILD;
+    }
+
+    // todo move these methods to another controller
+    /**
+     * Fetch hero list with translations
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function heroTranslations()
+    {
+        return Hero::with('translations')->get();
+    }
+
+    /**
+     * Fetch map list with translations
+     *
+     * @return \Illuminate\Database\Eloquent\Collection|static[]
+     */
+    public function mapTranslations()
+    {
+        return Map::with('translations')->get();
     }
 }
