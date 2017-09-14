@@ -100,6 +100,23 @@ class ReplayController extends Controller
 
     /**
      * Check whether a replay with given fingerprint is already uploaded
+     * Compatible with HotsLogs
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function checkV3(Request $request)
+    {
+        $fingerprint = preg_replace('/^(\w+)-(\w+)-(\w{2})(\w{2})-/', '$1-$2-$4$3-', $request->fingerprint); // swap 2 bytes
+        $replay = Replay::where('fingerprint', $fingerprint)->first();
+        if ($replay != null && $request->uploadToHotslogs) {
+            HotslogsUploader::queueForUpload($replay);
+        }
+        return response()->json(['exists' => $replay != null]);
+    }
+
+    /**
+     * Check whether a replay with given fingerprint is already uploaded
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
