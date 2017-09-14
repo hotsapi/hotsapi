@@ -17,10 +17,10 @@ class CreateReplaysTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('filename', 36)->unique();
-            $table->integer('size');
-            $table->string('game_type', 32)->nullable()->index();
+            $table->integer('size')->unsigned();
+            $table->enum('game_type', ['QuickMatch', 'UnraknedDraft', 'HeroLeague', 'TeamLeague', 'Brawl'])->nullable()->index();
             $table->dateTime('game_date')->nullable()->index();
-            $table->integer('game_length')->nullable();
+            $table->smallInteger('game_length')->nullable()->unsigned();
             $table->string('game_map', 32)->nullable()->index();
             $table->string('game_version', 32)->nullable();
             $table->string('fingerprint', 36)->unique();
