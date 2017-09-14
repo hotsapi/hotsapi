@@ -107,8 +107,7 @@ class ReplayController extends Controller
      */
     public function checkV3(Request $request)
     {
-        $fingerprint = preg_replace('/^(\w+)-(\w+)-(\w{2})(\w{2})-/', '$1-$2-$4$3-', $request->fingerprint); // swap 2 bytes
-        $replay = Replay::where('fingerprint', $fingerprint)->first();
+        $replay = Replay::where('fingerprint', $request->fingerprint)->first();
         if ($replay != null && $request->uploadToHotslogs) {
             HotslogsUploader::queueForUpload($replay);
         }
@@ -123,7 +122,8 @@ class ReplayController extends Controller
      */
     public function checkV2(Request $request)
     {
-        $replay = Replay::where('fingerprint', $request->fingerprint)->first();
+        $fingerprint = preg_replace('/^(\w+)-(\w+)-(\w{2})(\w{2})-/', '$1-$2-$4$3-', $request->fingerprint); // swap 2 bytes
+        $replay = Replay::where('fingerprint', $fingerprint)->first();
         if ($replay != null && $request->uploadToHotslogs) {
             HotslogsUploader::queueForUpload($replay);
         }
