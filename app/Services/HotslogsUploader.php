@@ -81,7 +81,7 @@ class HotslogsUploader
                     break;
                 case "duplicate":
                     Log::warning("HotslogsUploader: got duplicate status during upload, job " . $this->upload->id);
-                    $this->setStatus(self::STATUS_SUCCESS, $resp);
+                    $this->setStatus(self::STATUS_SUCCESS, 'duplicate-upload');
                     break;
                 case "maintenance":
                     Log::info("HotslogsUploader: Hotslogs is currently under maintenance");
