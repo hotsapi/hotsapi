@@ -87,6 +87,11 @@ class HotslogsUploader
                 case "maintenance":
                     Log::info("HotslogsUploader: Hotslogs is currently under maintenance");
                     return false;
+                case "exception":
+                case "unexpectedresult":
+                    Log::error("HotslogsUploader: Could not upload file. Received status: $resp");
+                    $this->setStatus(self::STATUS_ERROR, $resp);
+                    break;
                 default:
                     Log::error("HotslogsUploader: Could not upload file. Unknown status received: $resp");
                     $this->setStatus(self::STATUS_ERROR);
