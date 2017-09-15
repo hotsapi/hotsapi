@@ -50,7 +50,7 @@ class ReplayController extends Controller
     public function index(Request $request)
     {
         $query = getQuery($request)
-        return $query->orderBy('id')->limit(ReplayController::PAGE_SIZE)->get();
+        return $query->limit(ReplayController::PAGE_SIZE)->get();
     }
 
     /**
@@ -63,10 +63,8 @@ class ReplayController extends Controller
     {
         $total = $query->count();
         $pageCount = $total / ReplayController::PAGE_SIZE;
-        $metadata = ['per_page' => ReplayController::PAGE_SIZE, 'page' => $page, 'page_count' => $pageCount, 'total' => $pageCount];
-        $replays = $query->orderBy('id')->forPage($page, ReplayController::PAGE_SIZE)->get();
-
-        $response = ['_metadata' => $metadata, 'Replays' => $replays];
+        $replays = $query->forPage($page, ReplayController::PAGE_SIZE)->get();
+        $response = ['per_page' => ReplayController::PAGE_SIZE, 'page' => $page, 'page_count' => $pageCount, 'total' => $total, 'Replays' => $replays];
 
         return $response()->json();
     }
@@ -198,6 +196,6 @@ class ReplayController extends Controller
             $query->with('players');
         }
 
-        return $query;
+        return $query->orderBy('id');
     }
 }
