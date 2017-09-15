@@ -15,15 +15,3 @@ Route::get('/', 'WebController@home');
 Route::get('/upload', 'WebController@upload');
 Route::get('/docs', 'WebController@docs');
 Route::get('/faq', 'WebController@faq');
-
-
-/**
- * Return nav-here if current path begins with this path.
- *
- * @param string $path
- * @return string
- */
-function setActive($path)
-{
-    return Request::is($path) ? ' class=active' :  '';
-}
