@@ -1,0 +1,26 @@
+language: php
+
+php:
+  - 7.0
+
+services:
+  - mysql
+
+before_script:
+  - chmod -R a+w storage # not sure if we need this
+  - phpenv config-rm xdebug.ini
+  - cp .env.travis .env
+  - mysql -e 'create database hotsapi;'
+  - composer self-update
+  - composer install --no-interaction
+  - php artisan key:generate
+  - php artisan migrate
+#  - elixir production
+
+script:
+  - vendor/bin/phpunit
+
+cache:
+  directories:
+    - node_modules
+    - vendor
