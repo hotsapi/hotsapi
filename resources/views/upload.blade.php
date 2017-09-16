@@ -139,15 +139,17 @@
     <div id='location_container'>
         <p><span id='location_toggle'>Help finding replays <span class="glyphicon glyphicon-question-sign"></span></span></p>
         <ul>
-            <li />
+            <li>
                 <span class='location_platform'>Windows:</span>
                 <span class='location_path'>C:\Users\<span class='blanks'>username</span>\Documents\Heroes of the Storm\Accounts\<span class='blanks'>id</span>\<span class='blanks'>region</span>-Hero-1-<span class='blanks'>id</span>\Replays\Multiplayer</span>
-            <li />
+            <li>
                 <span class='location_platform'>Mac:</span>
                 <span class='location_path'>~/Library/Application Support/Blizzard/Heroes of the Storm/Accounts/<span class='blanks'>id</span>/<span class='blanks'>region</span>-Hero-1-<span class='blanks'>id</span>/Replays/Multiplayer</span>
         </ul>
     </div>
 
+    <p><input type='checkbox' id='check_hotslogs' name='uploadToHotslogs'> <label for='check_hotslogs'>Send a copy to hotslogs</label></p>
+    
     <div id='button_container'>
         <span class="btn btn-success fileinput-button">
             <i class="glyphicon glyphicon-plus"></i>
@@ -213,6 +215,7 @@
                 
                 start: function(e) {
                     $('#progress,#stats_container').removeClass('hidden');
+                    $("#check_hotslogs").attr('disabled','disabled');
                 },
              
                 drop: function (e, data) {
@@ -272,6 +275,15 @@
                     //update the overall progress indicator
                     let progress = parseInt(data.loaded / data.total * 100, 10);
                     $('#progress .progress-bar').css('width', progress + '%');
+                    
+                },
+                
+                submit: function(e, data) {
+                    
+                    //include the uploadToHotslogs parameter if the checkbox is checked
+                    if (document.getElementById('check_hotslogs').checked) {
+                        data.formData = { uploadToHotslogs : 'true' };
+                    }
                     
                 }
             });
