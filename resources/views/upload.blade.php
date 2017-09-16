@@ -20,6 +20,30 @@
             direction: ltr;
             cursor: pointer;
         }
+        #location_container {
+            margin-bottom: 1em;
+        }
+        #location_container ul {
+            display:none;
+        }
+        #location_container ul li {
+            padding-bottom:1em;
+        }
+        #location_container ul li .blanks {
+            border:1px solid #CCC;
+            padding:2px;
+            color:#888;
+        }
+        #location_toggle:hover{
+            cursor:pointer;
+            color:#AAA;
+        }
+        .location_platform {
+            font-weight: bold;
+        }
+        .location_path {
+            margin-left:1em;
+        }
         .upload_filecount {
             text-align: center;
         }
@@ -111,6 +135,18 @@
 
     <h1>Or you can use the web uploader</h1>
     <p>Choose replay files, or drag them onto this page. <span id="container_fileupload_dir_text" class="hidden">Chrome users: If you are uploading &gt;700 replays, please select by directory</span></p>
+    
+    <div id='location_container'>
+        <p><span id='location_toggle'>Help finding replays <span class="glyphicon glyphicon-question-sign"></span></span></p>
+        <ul>
+            <li />
+                <span class='location_platform'>Windows:</span>
+                <span class='location_path'>C:\Users\<span class='blanks'>username</span>\Documents\Heroes of the Storm\Accounts\<span class='blanks'>id</span>\<span class='blanks'>region</span>-Hero-1-<span class='blanks'>id</span>\Replays\Multiplayer</span>
+            <li />
+                <span class='location_platform'>Mac:</span>
+                <span class='location_path'>~/Library/Application Support/Blizzard/Heroes of the Storm/Accounts/<span class='blanks'>id</span>/<span class='blanks'>region</span>-Hero-1-<span class='blanks'>id</span>/Replays/Multiplayer</span>
+        </ul>
+    </div>
 
     <div id='button_container'>
         <span class="btn btn-success fileinput-button">
@@ -134,7 +170,7 @@
         <div id='upload_stat_skipped'>
             <span class='upload_stat_num'>0</span>
             <span class='upload_stat_label'> Skipped</span>
-            <span id='upload_stat_skipped_toggle'> (?)</span>
+            <span id='upload_stat_skipped_toggle' class="glyphicon glyphicon-info-sign"></span>
         </div>
         <div id='upload_stat_skipped_hover'>
         </div>
@@ -212,9 +248,7 @@
                     
                     //number of skipped uploads
                     $('#upload_stat_skipped > .upload_stat_num').text(statusSum(filecount_status,[STATUS_SUCCESS]));
-                    
                     $('#upload_stat_skipped_hover').html(statusSummary(filecount_status,[STATUS_SUCCESS]));
-                    
                     
                 },
                 
@@ -246,6 +280,10 @@
                 function(e) { hoverdiv(e,'upload_stat_skipped_hover'); },
                 function(e) { hoverdiv(e,'upload_stat_skipped_hover'); }
             );
+            
+            $('#location_toggle').click(function(e) {
+                $("#location_container > ul").toggle('fast');
+            });
         });
         
         //check for directory-selection compatibility. same test used in Modernizr.
