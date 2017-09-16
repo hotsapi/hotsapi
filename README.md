@@ -15,7 +15,7 @@ In addition to defaul homestead config you will need:
 * Install [heroprotocol](https://github.com/Blizzard/heroprotocol) parser: `cd /opt && sudo git clone https://github.com/Blizzard/heroprotocol.git`
 * Make a globally availabe heroprotocol executable: `sudo ln -s /opt/heroprotocol/heroprotocol.py /usr/bin/heroprotocol`
 * Make sure heroprotocol has executable permission `chmod +x /opt/heroprotocol/heroprotocol.py`
-* Configure `.env` file
+* Configure `.env` file `cp .env.example .env`
 * Run `composer install`
 * Run `php artisan migrate`
 * Make sure `storage` dir is writable
