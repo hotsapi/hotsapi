@@ -21,7 +21,7 @@
             cursor: pointer;
         }
         #location_container {
-            margin-bottom: 1em;
+            margin-bottom: 0.5em;
         }
         #location_container ul {
             display:none;
