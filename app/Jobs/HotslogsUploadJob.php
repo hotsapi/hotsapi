@@ -46,7 +46,7 @@ class HotslogsUploadJob implements ShouldQueue
         }
         $uploader = new HotslogsUploader($this->upload);
         if (!$uploader->upload()) {
-            Cache::set(self::HOTSLOGS_MAINTENANCE, 1, CarbonInterval::hours(1));
+            Cache::set(self::HOTSLOGS_MAINTENANCE, 1, CarbonInterval::minutes(10));
             $this->requeue();
         };
     }
@@ -58,6 +58,6 @@ class HotslogsUploadJob implements ShouldQueue
      */
     public function requeue()
     {
-        self::dispatch($this->upload)->delay(Carbon::now()->addHours(1));
+        self::dispatch($this->upload)->delay(Carbon::now()->addMinutes(10));
     }
 }
