@@ -21,13 +21,13 @@
             cursor: pointer;
         }
         #location_container {
-            margin-bottom: 0.5em;
+            margin-bottom: 1em;
         }
         #location_container ul {
             display:none;
         }
         #location_container ul li {
-            padding-bottom:1em;
+            padding-bottom:0.5em;
         }
         #location_container ul li .blanks {
             border:1px solid #CCC;
