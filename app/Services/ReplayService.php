@@ -27,11 +27,11 @@ class ReplayService
     /**
      * Store replay file
      *
-     * @param File $file
+     * @param \Illuminate\Http\File|\Illuminate\Http\UploadedFile $file
      * @param bool $uploadToHotslogs
      * @return \stdClass
      */
-    public function store(File $file, $uploadToHotslogs = false)
+    public function store($file, $uploadToHotslogs = false)
     {
         $parseResult = $this->parser->analyze($file->getRealPath());
 

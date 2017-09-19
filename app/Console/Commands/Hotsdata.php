@@ -6,7 +6,7 @@ use App\Services\ReplayService;
 use DB;
 use Exception;
 use Illuminate\Console\Command;
-use Symfony\Component\HttpFoundation\File\File;
+use Illuminate\Http\File;
 
 class Hotsdata extends Command
 {
