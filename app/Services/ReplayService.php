@@ -4,8 +4,8 @@ namespace App\Services;
 
 use App\Player;
 use App\Replay;
-use Illuminate\Http\UploadedFile;
 use Storage;
+use Symfony\Component\HttpFoundation\File\File;
 
 class ReplayService
 {
@@ -27,10 +27,11 @@ class ReplayService
     /**
      * Store replay file
      *
-     * @param UploadedFile $file
+     * @param File $file
+     * @param bool $uploadToHotslogs
      * @return \stdClass
      */
-    public function store(UploadedFile $file, $uploadToHotslogs)
+    public function store(File $file, $uploadToHotslogs = false)
     {
         $parseResult = $this->parser->analyze($file->getRealPath());
 
