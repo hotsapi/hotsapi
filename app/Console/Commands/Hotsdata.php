@@ -59,8 +59,8 @@ class Hotsdata extends Command
                         'region' => 'us-west-2',
                         'version' => '2006-03-01',
                         'credentials' => [
-                            'key' => 'AKIAJARRGHFKAW6JON6A',
-                            'secret' => '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'
+                            'key' => env('AWS_KEY'),
+                            'secret' => env('AWS_SECRET')
                         ]
                     ]);
 
