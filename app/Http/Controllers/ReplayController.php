@@ -9,9 +9,13 @@ use App\Services\HotslogsUploader;
 use App\Services\ParserService;
 use App\Services\ReplayService;
 use Illuminate\Http\Request;
+use Illuminate\Support;
 
 class ReplayController extends Controller
 {
+    // Number of replays per page
+    const PAGE_SIZE = 100; 
+
     /**
      * Upload replay
      *
@@ -46,45 +50,24 @@ class ReplayController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Replay::query();
+        $query = getQuery($request)
+        return $query->limit(ReplayController::PAGE_SIZE)->get();
+    }
 
-        if ($request->start_date) {
-            $query->where('game_date', '>=', $request->start_date);
-        }
+    /**
+     * Show replay list with page metadata
+     * 
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function paged(Request $request)
+    {
+        $total = $query->count();
+        $pageCount = $total / ReplayController::PAGE_SIZE;
+        $replays = $query->forPage($page, ReplayController::PAGE_SIZE)->get();
+        $response = ['per_page' => ReplayController::PAGE_SIZE, 'page' => $page, 'page_count' => $pageCount, 'total' => $total, 'Replays' => $replays];
 
-        if ($request->end_date) {
-            $query->where('game_date', '<=', $request->end_date);
-        }
-
-        if ($request->game_map) {
-            $query->where('game_map', $request->game_map);
-        }
-
-        if ($request->game_type) {
-            $query->where('game_type', $request->game_type);
-        }
-
-        if ($request->min_id) {
-            $query->where('id', '>=', $request->min_id);
-        }
-
-        if ($request->player) {
-            $query->whereHas('players', function ($query) use ($request) {
-                $query->where('battletag', $request->player);
-            });
-        }
-
-        if ($request->hero) {
-            $query->whereHas('players', function ($query) use ($request) {
-                $query->where('hero', $request->hero);
-            });
-        }
-
-        if ($request->with_players) {
-            $query->with('players');
-        }
-
-        return $query->orderBy('id')->limit(100)->get();
+        return $response()->json();
     }
 
     /**
@@ -187,5 +170,53 @@ class ReplayController extends Controller
     public function mapTranslations()
     {
         return Map::with('translations')->get();
+    }
+
+    /**
+     * Creates a query object for replays based on a request 
+     * 
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    private function getQuery(Request $request)
+    {
+        $query = Replay::query();
+
+        if ($request->start_date) {
+            $query->where('game_date', '>=', $request->start_date);
+        }
+
+        if ($request->end_date) {
+            $query->where('game_date', '<=', $request->end_date);
+        }
+
+        if ($request->game_map) {
+            $query->where('game_map', $request->game_map);
+        }
+
+        if ($request->game_type) {
+            $query->where('game_type', $request->game_type);
+        }
+
+        if ($request->min_id) {
+            $query->where('id', '>=', $request->min_id);
+        }
+
+        if ($request->player) {
+            $query->whereHas('players', function ($query) use ($request) {
+                $query->where('battletag', $request->player);
+            });
+        }
+
+        if ($request->hero) {
+            $query->whereHas('players', function ($query) use ($request) {
+                $query->where('hero', $request->hero);
+            });
+        }
+
+        if ($request->with_players) {
+            $query->with('players');
+        }
+
+        return $query->orderBy('id');
     }
 }
