@@ -148,7 +148,7 @@
         </ul>
     </div>
 
-    <p><input type='checkbox' id='check_hotslogs' name='uploadToHotslogs'> <label for='check_hotslogs'>Send a copy to hotslogs</label></p>
+    <p><input type='checkbox' id='check_hotslogs' name='uploadToHotslogs'> <label for='check_hotslogs'>Send a copy to hotslogs</label> <span class="glyphicon glyphicon-question-sign"  style='cursor:help' title="HotsApi can send a copy of your replays to hotslogs. You won't need to upload it twice!"></span></p>
     
     <div id='button_container'>
         <span class="btn btn-success fileinput-button">
