@@ -49,10 +49,7 @@ class Hotsdata extends Command
         $min_id = $this->argument('min_id');
         $max_id = $this->argument('max_id');
         $this->info("Reparsing replays, id from $min_id to $max_id");
-        DB::table('hotsdata')->where('id', '>=', $min_id)->where('id', '<=', $max_id)->where('result', null)->orderBy('id')->chunk(/**
-         * @param $rows
-         */
-            1000, function ($rows) {
+        DB::table('hotsdata')->where('id', '>=', $min_id)->where('id', '<=', $max_id)->where('result', null)->orderBy('id')->chunk(1000, function ($rows) {
             foreach ($rows as $row) {
                 $tmpFile = tempnam('', 'replay_');
                 try {
