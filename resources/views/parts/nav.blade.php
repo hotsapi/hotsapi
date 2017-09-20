@@ -8,7 +8,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}">HotsApi</a>
+            <a class="navbar-brand" href="{{ url('/') }}">
+                @if(Request::is('/'))
+                    <img src="{{asset('logos/vertical_light.png')}}" class="main">
+                @else
+                    <img src="{{asset('logos/logo_only_light.png')}}">
+                @endif
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

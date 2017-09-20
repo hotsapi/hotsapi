@@ -1,0 +1,261 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: 'HotS API'
+  description: 'HotsApi is an open Heroes of the Storm replay database where everyone can download replays and access it via this Api. Whether you want to continuously get new replays, download them all once, or just query their metadata, our service helps you to start development faster.'
+
+# Config for hotsapi.net
+host: hotsapi.net
+basePath: /api/v1
+schemes:
+- http
+- https
+
+paths:
+  /replays:
+    get:
+      summary: List all Replays
+      operationId: listReplays
+      tags:
+        - replays
+      produces:
+        - application/json
+      parameters:
+        - name: start_date
+          in: query
+          description: Minimum replay date
+          required: false
+          type: string
+          format: date
+        - name: end_date
+          in: query
+          description: Maximum replay date
+          required: false
+          type: string
+          format: date
+        - name: game_map
+          in: query
+          description: Game map
+          required: false
+          type: string
+        - name: game_type
+          in: query
+          description: Game type without spaces
+          required: false
+          type: string
+        - name: player
+          in: query
+          description: Battle tag of a player
+          required: false
+          type: string
+      responses:
+        '200':
+          description: An array with Replays
+          schema:
+            $ref: '#/definitions/Replays'
+    post:
+      summary: Create one or more Replay as File Uploads.
+      operationId: createReplay
+      tags:
+        - replays
+      parameters:
+        - name: file
+          in: formData
+          description: The uploaded replay file.
+          type: file
+      consumes:
+        - 'multipart/form-data'
+      responses:
+        '200':
+          description: Return an upload response
+          schema:
+            $ref: '#/definitions/UploadResponse'
+  /replays/paged:
+    get:
+      summary: List all Replays
+      operationId: listReplaysPaged
+      tags:
+        - replays
+      produces:
+        - application/json
+      parameters:
+        - name: page
+          in: query
+          description: Page to display, defaults to 1
+          required: false
+          type: int
+        - name: start_date
+          in: query
+          description: Minimum replay date
+          required: false
+          type: string
+          format: date
+        - name: end_date
+          in: query
+          description: Maximum replay date
+          required: false
+          type: string
+          format: date
+        - name: game_map
+          in: query
+          description: Game map
+          required: false
+          type: string
+        - name: game_type
+          in: query
+          description: Game type without spaces
+          required: false
+          type: string
+        - name: player
+          in: query
+          description: Battle tag of a player
+          required: false
+          type: string
+      responses:
+        '200':
+          description: An array with Replays
+          schema:
+            $ref: '#/definitions/PagedReplaysResponse'
+  '/replays/{id}':
+    get:
+      summary: Requests a specific replay
+      operationId: getReplayById
+      tags:
+        - replays
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: An array with Replays
+          schema:
+            $ref: '#/definitions/Replay'
+    parameters:
+      - name: id
+        in: path
+        description: The Id of the Replay
+        required: true
+        type: integer
+  /upload:
+    post:
+      deprecated: true
+      summary: Create one or more Replay as File Uploads.
+      description: 'This method is deprecated because the method style does not follow a
+        Ressource based approach. Please use the POST method of the Ressource
+        __Replays__ instead.'
+      operationId: uploadReplay
+      tags:
+        - deprecated
+      consumes:
+        - 'multipart/form-data'
+      responses:
+        '200':
+          description: Return an upload response
+          schema:
+            $ref: '#/definitions/UploadResponse'
+definitions:
+    Replay:
+      required:
+        - id
+        - filename
+        - size
+        - game_type
+        - game_date
+        - game_length
+        - game_map
+        - game_version
+        - region
+        - fingerprint
+        - url
+      properties:
+        id:
+          type: integer
+          format: int64
+        filename:
+          type: string
+        size:
+          type: integer
+          format: int64
+        game_type:
+          type: string
+        game_date:
+          type: string
+          format: date-time
+        game_length:
+          type: integer
+          format: int32
+        game_map:
+          type: string
+        game_version:
+          type: string
+        region:
+          type: integer
+          format: int32
+        fingerprint:
+          type: string
+        url:
+          type: string
+        players:
+          type: array
+          items:
+            $ref: '#/definitions/Player'
+    Replays:
+      type: array
+      items:
+        $ref: '#/definitions/Replay'
+    Player:
+      required:
+        - battletag
+        - hero
+        - hero_level
+        - team
+        - winner
+        - blizz_id
+      properties:
+        battletag:
+          type: string
+        hero:
+          type: string
+        hero_level:
+          type: integer
+          format: int32
+          minimum: 0
+        team:
+          type: integer
+          format: int32
+          minimum: 0
+          maximum: 1
+        winner:
+          type: boolean
+        blizz_id:
+          type: integer
+          format: int64
+    UploadResponse:
+      required:
+        - success
+      properties:
+        success:
+          type: string
+        Error:
+          type: string
+        status:
+          type: string
+        id:
+          type: integer
+          format: int64
+        file:
+          type: string
+        url:
+          type: string
+    PagedReplaysResponse:
+      properties:
+        page:
+          type: integer
+        page_count:
+          type: integer
+        total:
+          type: integer
+        per_page:
+          type: integer
+        replays:
+          $ref: '#/definitions/Replays'
+
