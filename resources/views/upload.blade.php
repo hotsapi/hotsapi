@@ -175,6 +175,7 @@
             <span id='upload_stat_skipped_toggle' class="glyphicon glyphicon-info-sign"></span>
         </div>
         <div id='upload_stat_skipped_hover'>
+            No skipped uploads
         </div>
     </div>
 
@@ -325,8 +326,11 @@
             $('#upload_stat_success > .upload_stat_num').text(filecount_status[STATUS_SUCCESS]);
             
             //number of skipped uploads
-            $('#upload_stat_skipped > .upload_stat_num').text(statusSum(filecount_status,[STATUS_SUCCESS]));
-            $('#upload_stat_skipped_hover').html(statusSummary(filecount_status,[STATUS_SUCCESS]));
+            let skipcount = statusSum(filecount_status,[STATUS_SUCCESS]);
+            $('#upload_stat_skipped > .upload_stat_num').text(skipcount);
+            if (skipcount > 0) {
+                $('#upload_stat_skipped_hover').html(statusSummary(filecount_status,[STATUS_SUCCESS]));
+            }
         }
         
         //add up all elements in the status array. optionally pass exclude to skip specified elements
