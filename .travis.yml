@@ -24,3 +24,11 @@ cache:
   directories:
     - node_modules
     - vendor
+
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/c482c7090006b3067e20
+    on_success: change
+    on_failure: always
+    on_start: never
