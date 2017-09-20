@@ -232,26 +232,20 @@
                     
                     let status = data.result.status ? data.result.status : "UploadError";
                     
-                    //update status text and add an appropriate class. querySelector stops after the first element is found and should therefore be a little faster than jquery as the table gets larger
-                    $(document.querySelector('.upload_status')).addClass('upload_status-'+status).text(status);
+                    statusUpdate(status);
                     
-                    //remove individual file progressbar (keep the empty row to avoid having the table contents jump around)
-                    $('.upload_table_progress').remove();
+                },
+                
+                fail: function (e, data) {
                     
-                    //keep track of upload results
-                    (status in filecount_status) ? filecount_status[status]++ : filecount_status[status] = 1;
-
-                    //update stats
+                    let statuscode = data.jqXHR.status;
+                    if (statuscode >= 500) {
+                        var status = 'ServerError';
+                    } else {
+                        var status = 'UploadError';
+                    }
                     
-                    //number of files processed from queue
-                    $('#count_complete').text(statusSum(filecount_status));
-                    
-                    //number of successful uploads
-                    $('#upload_stat_success > .upload_stat_num').text(filecount_status[STATUS_SUCCESS]);
-                    
-                    //number of skipped uploads
-                    $('#upload_stat_skipped > .upload_stat_num').text(statusSum(filecount_status,[STATUS_SUCCESS]));
-                    $('#upload_stat_skipped_hover').html(statusSummary(filecount_status,[STATUS_SUCCESS]));
+                    statusUpdate(status);
                     
                 },
                 
@@ -310,6 +304,30 @@
         if (isInputDirSupported()) {
             $("#container_fileupload_dir_text,#container_fileupload_dir").removeClass('hidden');
         } 
+        
+        function statusUpdate(status) {
+                                
+            //update status text and add an appropriate class. querySelector stops after the first element is found and should therefore be a little faster than jquery as the table gets larger
+            $(document.querySelector('.upload_status')).addClass('upload_status-'+status).text(status);
+            
+            //remove individual file progressbar (keep the empty row to avoid having the table contents jump around)
+            $('.upload_table_progress').remove();
+            
+            //keep track of upload results
+            (status in filecount_status) ? filecount_status[status]++ : filecount_status[status] = 1;
+
+            //update stats
+            
+            //number of files processed from queue
+            $('#count_complete').text(statusSum(filecount_status));
+            
+            //number of successful uploads
+            $('#upload_stat_success > .upload_stat_num').text(filecount_status[STATUS_SUCCESS]);
+            
+            //number of skipped uploads
+            $('#upload_stat_skipped > .upload_stat_num').text(statusSum(filecount_status,[STATUS_SUCCESS]));
+            $('#upload_stat_skipped_hover').html(statusSummary(filecount_status,[STATUS_SUCCESS]));
+        }
         
         //add up all elements in the status array. optionally pass exclude to skip specified elements
         function statusSum(array,exclude) {
