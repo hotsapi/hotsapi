@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url('/') }}">HotsApi</a>
+            <a class="navbar-brand" href="{{ url('/') }}" style='padding: 0px 20px !important'><img src="{{asset('logos/horizontal_light.png')}}" width="95px"></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
