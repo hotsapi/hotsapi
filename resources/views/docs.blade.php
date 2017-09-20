@@ -44,6 +44,11 @@
         </tr>
         <tr>
             <td>GET</td>
+            <td>/pagedreplays</td>
+            <td>Get a list of paginated replays</td>
+        </tr>
+        <tr>
+            <td>GET</td>
             <td>/replays/{id}</td>
             <td>Get replay details</td>
         </tr>
@@ -171,8 +176,36 @@
 ]
 </code></pre>
 
+    <h3><code>GET /replays/paged</code></h3>
+    <p>Get all replays, like <code>/replays</code>, but with metadata for pagination</p> 
+    <p>This method takes an addition page parameter, indicating the current page number, starting from 1. Empty is assumed to be 1</p>
+    <table class="table table-sm table-striped">
+        <tbody>
+            <tr>
+                <td>per_page</td>
+                <td>Items per page</td>
+            </tr>
+            <tr>
+                <td>page</td>
+                <td>Current page</td>
+            </tr>
+            <tr>
+                <td>page_count</td>
+                <td>Total pages available</td>
+            </tr>
+            <tr>
+                <td>total</td>
+                <td>Total items available</td>
+            </tr>
+            <tr>
+                <td>Replays</td>
+                <td>See /replays above for returned schema</td>
+            </tr>
+        </tbody>
+    </table>
+
     <h3><code>GET /replays/{id}</code></h3>
-    <p>Get replay data by database id. Returns same values as <code>GET /replays</code> with an additionas <code>players</code> array:</p>
+    <p>Get replay data by database id. Returns same values as <code>GET /replays</code> with an additional <code>players</code> array:</p>
     <table class="table table-sm table-striped">
         <tbody>
         <tr>
