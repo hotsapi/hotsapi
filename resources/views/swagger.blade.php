@@ -8,10 +8,12 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/swagger-ui.css" >
     <style>
-
-
         body {
-            margin:0;
+            margin: 0;
+        }
+
+        #swagger-ui {
+            padding-bottom: 120px;
         }
     </style>
 </head>
@@ -63,15 +65,10 @@
         const ui = SwaggerUIBundle({
             url: "spec/hotsapi-1.0.yaml",
             dom_id: '#swagger-ui',
-            //deepLinking: true,
             presets: [
                 SwaggerUIBundle.presets.apis,
                 SwaggerUIStandalonePreset
             ],
-//            plugins: [
-//                SwaggerUIBundle.plugins.DownloadUrl
-//            ],
-//            layout: "StandaloneLayout"
         });
 
         window.ui = ui
