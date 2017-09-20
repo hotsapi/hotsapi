@@ -196,7 +196,7 @@
         $(function () {
             $('#fileupload,#fileupload_dir').fileupload({
                 url: '/api/v1/replays',
-                sequentialUploads: true,
+                limitConcurrentUploads: 3,
                 dataType: 'json',
 
                 add: function(e, data) {
@@ -212,6 +212,7 @@
                     //additional actions go here:
                     filecount_total++;
                     $('#count_total').text(filecount_total);
+                    
                 },
                 
                 start: function(e) {
@@ -232,8 +233,7 @@
                 done: function (e, data) {
                     
                     let status = data.result.status ? data.result.status : "UploadError";
-                    
-                    statusUpdate(status);
+                    statusUpdate(status,uniqueID(data));
                     
                 },
                 
@@ -246,14 +246,15 @@
                         var status = 'UploadError';
                     }
                     
-                    statusUpdate(status);
+                    statusUpdate(status,uniqueID(data));
                     
                 },
                 
                 send: function(e, data) {
                     
                     //add the file to the table once the transfer begins and include a second row for its progress indicator
-                    $('#files > tbody').prepend('<tr><td class=upload_filename>'+data.files[0].name+'</td><td class=upload_status>&nbsp;</td></tr><tr class=upload_table_progress_row><td colspan=2 class=upload_table_progress_container><div class="progress-bar upload_table_progress">&nbsp;</div></td></tr>');
+                    let uid = uniqueID(data);
+                    $('#files > tbody').prepend('<tr id=info_'+uid+'><td class=upload_filename>'+data.files[0].name+'</td><td class=upload_status>&nbsp;</td></tr><tr class=upload_table_progress_row id=progress_'+uid+'><td colspan=2 class=upload_table_progress_container><div class="progress-bar upload_table_progress">&nbsp;</div></td></tr>');
                
                },
                
@@ -261,7 +262,7 @@
                     
                     //update the individual file progress indicator
                     let progress = parseInt(data.loaded / data.total * 100, 10);
-                    $('#files').find('.progress-bar').css('width', progress + '%');
+                    $('#progress_'+uniqueID(data)).find('.progress-bar').css('width', progress + '%');
                     
                 },
                 
@@ -306,13 +307,13 @@
             $("#container_fileupload_dir_text,#container_fileupload_dir").removeClass('hidden');
         } 
         
-        function statusUpdate(status) {
+        function statusUpdate(status,uid) {
                                 
-            //update status text and add an appropriate class. querySelector stops after the first element is found and should therefore be a little faster than jquery as the table gets larger
-            $(document.querySelector('.upload_status')).addClass('upload_status-'+status).text(status);
+            //update status text and add an appropriate class.
+            $("#info_"+uid).find('.upload_status').addClass('upload_status-'+status).text(status);
             
             //remove individual file progressbar (keep the empty row to avoid having the table contents jump around)
-            $('.upload_table_progress').remove();
+            $("#progress_"+uid).find('.upload_table_progress').remove();
             
             //keep track of upload results
             (status in filecount_status) ? filecount_status[status]++ : filecount_status[status] = 1;
@@ -364,6 +365,13 @@
             
             $("#"+divid).toggle();
             return false;
+        }
+        
+        //generate a unique ID using a fileupload data object.
+        //originally wanted to generate a fingerprint using lastmodified miliseconds + filesize but it turns out some browsers dont support lastmodified.
+        //using stripped down filename + filesize instead, with a prepended 'f_' to comply with html5 id specs in case people rename their replays to be just numbers or symbols for whatever reason.
+        function uniqueID(data) {
+            return 'f_'+data.files[0].name.split('.')[0].replace(/\W/g, '') + String(data.files[0].size);
         }
 
     </script>
