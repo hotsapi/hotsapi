@@ -22,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(ReplayService::class, function () {
             return new ReplayService(new ParserService());
         });
+
+        # migration fix for mysql < 5.7.7, needed for travis
+        \Schema::defaultStringLength(191);
     }
 
     /**

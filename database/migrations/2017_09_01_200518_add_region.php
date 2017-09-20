@@ -14,7 +14,7 @@ class AddRegion extends Migration
     public function up()
     {
         Schema::table('replays', function (Blueprint $table) {
-            $table->smallInteger('region')->nullable();
+            $table->tinyInteger('region')->nullable()->unsigned();
         });
     }
 

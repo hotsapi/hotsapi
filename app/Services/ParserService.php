@@ -150,6 +150,7 @@ class ParserService
             $result->status = self::STATUS_SUCCESS;
             if ($result->data['game_type'] == self::GAME_TYPE_UNKNOWN) {
                 Log::error("Error parsing replay: Unknown game type");
+                $result->data['game_type'] = null; // in case upload broken replays is enabled
                 $result->status = self::STATUS_UPLOAD_ERROR;
             }
             return $result;
@@ -272,7 +273,7 @@ class ParserService
      */
     public function bytesToGuid($bytes)
     {
-        $guid_byte_order = [3, 2, 1, 0, 5, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+        $guid_byte_order = [3, 2, 1, 0, 5, 4, 7, 6, 8, 9, 10, 11, 12, 13, 14, 15];
         $dash_positions = [3, 5, 7, 9];
         $result = "";
         for ($i = 0; $i < 16; $i++) {

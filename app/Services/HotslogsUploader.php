@@ -51,6 +51,7 @@ class HotslogsUploader
      * Proceed uploading a queued replay to hotslogs
      *
      * @return bool Whether the upload result is final or upload should be retried due to hotslogs maintenance
+     * @throws Exception
      */
     public function upload()
     {
@@ -81,11 +82,16 @@ class HotslogsUploader
                     break;
                 case "duplicate":
                     Log::warning("HotslogsUploader: got duplicate status during upload, job " . $this->upload->id);
-                    $this->setStatus(self::STATUS_SUCCESS, $resp);
+                    $this->setStatus(self::STATUS_SUCCESS, 'duplicate-upload');
                     break;
                 case "maintenance":
                     Log::info("HotslogsUploader: Hotslogs is currently under maintenance");
                     return false;
+                case "exception":
+                case "unexpectedresult":
+                    Log::error("HotslogsUploader: Could not upload file. Received status: $resp");
+                    $this->setStatus(self::STATUS_ERROR, $resp);
+                    break;
                 default:
                     Log::error("HotslogsUploader: Could not upload file. Unknown status received: $resp");
                     $this->setStatus(self::STATUS_ERROR);
@@ -93,6 +99,7 @@ class HotslogsUploader
         } catch (Exception $e) {
             Log::error("HotslogsUploader: Could not upload file: $e");
             $this->setStatus(self::STATUS_ERROR);
+            throw $e; // rethrow exception so that job could be retried
         }
         return true;
     }
