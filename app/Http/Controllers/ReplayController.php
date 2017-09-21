@@ -203,18 +203,19 @@ class ReplayController extends Controller
         if ($request->min_id) {
             $query->where('id', '>=', $request->min_id);
         }
-
-        if ($request->player) {
-            $query->whereHas('players', function ($query) use ($request) {
-                $query->where('battletag', $request->player);
-            });
-        }
-
-        if ($request->hero) {
-            $query->whereHas('players', function ($query) use ($request) {
-                $query->where('hero', $request->hero);
-            });
-        }
+// Temporarily disabled because of performance issues
+//        if ($request->player) {
+//            $query->whereHas('players', function ($query) use ($request) {
+//                $query->where('battletag', $request->player);
+//            });
+//        }
+//
+//
+//        if ($request->hero) {
+//            $query->whereHas('players', function ($query) use ($request) {
+//                $query->where('hero', $request->hero);
+//            });
+//        }
 
         if ($request->with_players) {
             $query->with('players');
