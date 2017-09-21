@@ -54,6 +54,23 @@ return [
             'engine' => null,
         ],
 
+        // We use read replica for all API operations except
+        // the ones required for uploads (upload and check fingerprint)
+        'mysql_slave' => [
+            'driver' => 'mysql',
+            'host' => env('DB_SLAVE_HOST', env('DB_HOST', 'db.hotsapi.net')),
+            'port' => env('DB_SLAVE_PORT', env('DB_PORT', '3306')),
+            'database' => env('DB_DATABASE', 'hotsapi'),
+            'username' => env('DB_USERNAME', 'hotsapi'),
+            'password' => env('DB_PASSWORD', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),

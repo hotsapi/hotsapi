@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Hero;
 use App\Map;
+use App\Player;
 use App\Replay;
 use App\Services\HotslogsUploader;
 use App\Services\ParserService;
@@ -74,12 +75,12 @@ class ReplayController extends Controller
     /**
      * Show replay details
      *
-     * @param Replay $replay
+     * @param $replay
      * @return string
      */
-    public function show(Replay $replay)
+    public function show($replay)
     {
-        return $replay->load('players');
+        return Replay::on('mysql_slave')->with('players')->findOrFail($replay);
     }
 
     /**
@@ -160,7 +161,7 @@ class ReplayController extends Controller
      */
     public function heroTranslations()
     {
-        return Hero::with('translations')->get();
+        return Hero::on('mysql_slave')->with('translations')->get();
     }
 
     /**
@@ -170,17 +171,18 @@ class ReplayController extends Controller
      */
     public function mapTranslations()
     {
-        return Map::with('translations')->get();
+        return Map::on('mysql_slave')->with('translations')->get();
     }
 
     /**
-     * Creates a query object for replays based on a request 
-     * 
+     * Creates a query object for replays based on a request
+     *
+     * @param Request $request
      * @return \Illuminate\Database\Eloquent\Builder
      */
     private function getQuery(Request $request)
     {
-        $query = Replay::query();
+        $query = Replay::on('mysql_slave');
 
         if ($request->start_date) {
             $query->where('game_date', '>=', $request->start_date);
