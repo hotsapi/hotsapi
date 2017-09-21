@@ -64,10 +64,11 @@ class ReplayController extends Controller
     {
         $page = (int)($request->page ?? 1);
         $query = $this->getQuery($request);
-        $total = $query->count();
-        $pageCount = ceil($total / self::PAGE_SIZE);
+        // disabled due to performance issues
+        //$total = $query->count();
+        //$pageCount = ceil($total / self::PAGE_SIZE);
         $replays = $query->forPage($page, self::PAGE_SIZE)->get();
-        $result = ['per_page' => self::PAGE_SIZE, 'page' => $page, 'page_count' => $pageCount, 'total' => $total, 'replays' => $replays];
+        $result = ['per_page' => self::PAGE_SIZE, 'page' => $page, /*'page_count' => $pageCount, 'total' => $total, */'replays' => $replays];
 
         return response()->json($result);
     }
