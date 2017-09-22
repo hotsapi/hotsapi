@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
+    "/js/app.js": "/js/app.js?id=1bfefbf515d39aca8c3a",
+=======
     "/js/app.js": "/js/app.js?id=9609173587318b906890",
+>>>>>>> ea984dceb5b5d05178aef75db9330d84e1bfa7b9
     "/css/app.css": "/css/app.css?id=11a1de9ae233ac928a8a",
     "/js/swagger-ui.js": "/js/swagger-ui.js?id=cf4df1a2b948c64a7bc2",
     "/js/swagger-ui.js.map": "/js/swagger-ui.js.map?id=552434419bb58e5b843d",
