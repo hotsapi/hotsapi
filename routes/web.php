@@ -15,4 +15,3 @@ Route::get('/', 'WebController@home');
 Route::get('/upload', 'WebController@upload');
 Route::get('/docs', 'WebController@docs');
 Route::get('/faq', 'WebController@faq');
-Route::view('/swagger', 'swagger');
