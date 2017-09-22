@@ -1,4 +1,12 @@
 {
-    "/js/app.js": "/js/app.js?id=337ccdbb07787a987bef",
-    "/css/app.css": "/css/app.css?id=bb6a1ac97ec7a273a83c"
+    "/js/app.js": "/js/app.js?id=1bfefbf515d39aca8c3a",
+    "/css/app.css": "/css/app.css?id=11a1de9ae233ac928a8a",
+    "/js/swagger-ui.js": "/js/swagger-ui.js?id=cf4df1a2b948c64a7bc2",
+    "/js/swagger-ui.js.map": "/js/swagger-ui.js.map?id=552434419bb58e5b843d",
+    "/js/swagger-ui-bundle.js": "/js/swagger-ui-bundle.js?id=4c6dae6fa8fac12efbd2",
+    "/js/swagger-ui-bundle.js.map": "/js/swagger-ui-bundle.js.map?id=12760d0b18743294e886",
+    "/js/swagger-ui-standalone-preset.js": "/js/swagger-ui-standalone-preset.js?id=2562f63cab1f9cad4aaa",
+    "/js/swagger-ui-standalone-preset.js.map": "/js/swagger-ui-standalone-preset.js.map?id=fbb383979cbb21f5ab63",
+    "/css/swagger-ui.css": "/css/swagger-ui.css?id=867b48c65641b61b3336",
+    "/css/swagger-ui.css.map": "/css/swagger-ui.css.map?id=1a97bc91b0e8c66df14f"
 }
