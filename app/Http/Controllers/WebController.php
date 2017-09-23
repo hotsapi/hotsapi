@@ -28,17 +28,20 @@ class WebController extends Controller
 
     public function upload()
     {
-        $link = Cache::remember('setupLink', 60, function () {
+        $data = Cache::remember('setupLink', 60, function () {
             try {
                 $release = json_decode((new Client())->get('https://api.github.com/repos/poma/Hotsapi.Uploader/releases/latest')->getBody());
-                return collect($release->assets)->where('name', 'HotsApiUploaderSetup.exe')->first()->browser_download_url;
+                return [
+                    'url' => collect($release->assets)->where('name', 'HotsApiUploaderSetup.exe')->first()->browser_download_url,
+                    'version' => preg_replace('/^v/', '', $release->tag_name)
+                ];
             } catch (Exception $e) {
                 Log::warning("Error getting setup link: $e");
-                return 'https://github.com/poma/Hotsapi.Uploader/releases/latest';
+                return ['url' => 'https://github.com/poma/Hotsapi.Uploader/releases/latest', 'version' => null];
             }
         });
 
-        return view("upload", ['setupLink' => $link]);
+        return view("upload", ['setupLink' => $data['url'], 'setupVersion' => $data['version']]);
     }
 
     public function docs()

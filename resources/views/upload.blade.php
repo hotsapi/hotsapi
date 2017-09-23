@@ -119,6 +119,11 @@
             text-align:center;
             color:#222;
         }
+
+        .download-wrapper {
+            text-align: center;
+            display: inline-block;
+        }
     </style>
 @endsection
 
@@ -128,7 +133,16 @@
     <img class="pull-right screenshot" src="{{asset('img/uploader.png')}}" width="261px">
     <h1>Replay uploader app</h1>
     <p>The easiest way to upload your replays it to get our uploader app</p>
-    <a class="btn btn-primary btn-lg" href="{{ $setupLink }}">Download</a>
+    <div class="download-wrapper">
+        <a class="btn btn-primary btn-lg" href="{{ $setupLink }}">
+            <i class="glyphicon glyphicon-download-alt"></i>
+            <span>Download</span>
+        </a>
+        <br>
+        @if($setupVersion)
+            <small>version: {{ $setupVersion }}</small>
+        @endif
+    </div>
 
     <div class="clearfix"></div>
     <hr>
