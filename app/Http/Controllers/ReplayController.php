@@ -162,7 +162,7 @@ class ReplayController extends Controller
      */
     public function heroTranslations()
     {
-        return Hero::on('mysql_slave')->with('translations')->get();
+        return Hero::on('mysql_slave')->with('translations')->get()->map->flattenTranslations();
     }
 
     /**
@@ -172,7 +172,7 @@ class ReplayController extends Controller
      */
     public function mapTranslations()
     {
-        return Map::on('mysql_slave')->with('translations')->get();
+        return Map::on('mysql_slave')->with('translations')->get()->map->flattenTranslations();
     }
 
     /**

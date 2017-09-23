@@ -18,17 +18,27 @@ use Illuminate\Database\Eloquent\Model;
 class Hero extends Model
 {
     protected $guarded = ['id'];
-    protected $hidden = ['id', 'translations'];
-    protected $appends = ['versions'];
+    protected $hidden = ['id'];
     public $timestamps = false;
+    protected $flattenTranslations = false;
 
     public function translations()
     {
         return $this->hasMany(HeroTranslation::class);
     }
 
-    public function getVersionsAttribute()
+    public function flattenTranslations()
     {
-        return $this->translations->pluck('name');
+        $this->flattenTranslations = true;
+        return $this;
+    }
+
+    public function toArray()
+    {
+        $result = parent::toArray();
+        if ($this->flattenTranslations) {
+            $result['translations'] =  array_column($result['translations'], 'name');
+        }
+        return $result;
     }
 }
