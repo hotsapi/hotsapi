@@ -2,6 +2,7 @@
 @section('title', 'HotsApi')
 
 @section('head')
+    <link rel="stylesheet" href="{{ asset('/css/zoom.css') }}">
     <style>
         .fileinput-button {
             position: relative;
@@ -130,7 +131,7 @@
 @section('content')
 
 
-    <img class="pull-right screenshot" src="{{asset('img/uploader.png')}}" width="261px">
+    <img class="pull-right screenshot" src="{{asset('img/uploader.png')}}" width="261px" data-action="zoom">
     <h1>Replay uploader app</h1>
     <p>The easiest way to upload your replays it to get our uploader app</p>
     <div class="download-wrapper">
@@ -202,6 +203,8 @@
 @endsection
 
 @section('body')
+    <script src="{{ asset('/js/transitions.js') }}"></script>
+    <script src="{{ asset('/js/zoom.min.js') }}"></script>
     <script>
         var filecount_total = 0;
         var filecount_status = [];
