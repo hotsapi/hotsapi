@@ -206,7 +206,7 @@ class ParserService
     public function FiletimeToDatetime($time)
     {
         // Filetime: Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
-        return Carbon::createFromDate(1601, 1, 1)->addSeconds($time / 10000000);
+        return Carbon::createFromDate(1601, 1, 1)->startOfDay()->addSeconds($time / 10000000);
     }
 
     /**
