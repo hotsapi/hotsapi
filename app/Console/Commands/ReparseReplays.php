@@ -5,7 +5,9 @@ namespace App\Console\Commands;
 use App\Player;
 use App\Replay;
 use App\Services\ParserService;
+use DB;
 use Illuminate\Console\Command;
+use Illuminate\Support\Collection;
 
 class ReparseReplays extends Command
 {
@@ -49,7 +51,19 @@ class ReparseReplays extends Command
         $min_id = $this->argument('min_id');
         $max_id = $this->argument('max_id');
         $this->info("Reparsing replays, id from $min_id to $max_id");
-        Replay::where('id', '>=', $min_id)->where('id', '<=', $max_id)->with('players')->chunk(100, function ($x) { return $this->reparse($x); });
+        //Replay::where('id', '>=', $min_id)->where('id', '<=', $max_id)->with('players')->chunk(100, function ($x) { return $this->reparse($x); });
+        $this->getBrokenReplays()->each(function ($x) { return $this->reparse($x); });
+    }
+
+    public function getBrokenReplays()
+    {
+        $noMap = DB::select('SELECT id FROM replays WHERE game_map IS NULL');
+        $noHero = DB::select('SELECT DISTINCT(replay_id) AS id FROM players WHERE hero IS NULL');
+        $noPlayers = DB::select('SELECT replay_id AS id, count(*) AS cnt FROM players GROUP BY replay_id HAVING cnt != 10');
+
+        $ids = collect($noMap)->merge($noHero)->merge($noPlayers)->pluck('id')->unique();
+        $this->info("Broken replay summary:\nNo map: " . count($noMap) . "\nNo hero: " . count($noHero) . "\nNo players: " . count($noPlayers) . "\nUnique: " . count($ids));
+        return Replay::whereIn('id', $ids)->get();
     }
 
     /**
