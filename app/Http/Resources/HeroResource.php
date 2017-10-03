@@ -26,6 +26,7 @@ class HeroResource extends Resource
             'role' => $this->role,
             'type' => $this->type,
             'release_date' => $this->release_date,
+            'icon_url' => $this->icon_url,
             'abilities' => AbilityResource::collection($this->abilities),
             'talents' => TalentResource::collection($this->talents),
         ];

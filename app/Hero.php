@@ -47,4 +47,9 @@ class Hero extends Model
     {
         return $this->hasMany(Ability::class);
     }
+
+    public function getIconUrlAttribute()
+    {
+        return ["92x93" => "https://s3-eu-west-1.amazonaws.com/hotsapi-public/img/heroes/92x93/$this->short_name.png"];
+    }
 }

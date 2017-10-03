@@ -25,6 +25,7 @@ class TalentResource extends Resource
             'title' => $this->title,
             'description' => $this->description,
             'icon' => $this->icon,
+            'icon_url' => $this->icon_url,
             'ability' => $this->ability_id,
             'sort' => $this->sort,
             'cooldown' => $this->cooldown,

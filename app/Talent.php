@@ -43,4 +43,9 @@ class Talent extends Model
     {
         return $this->belongsToMany(Hero::class)->using(HeroTalent::class);
     }
+
+    public function getIconUrlAttribute()
+    {
+        return ["64x64" => "https://s3-eu-west-1.amazonaws.com/hotsapi-public/img/talents/64x64/$this->icon"];
+    }
 }
