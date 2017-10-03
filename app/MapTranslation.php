@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\MapTranslation
  *
- * @property-read \App\Map $map
- * @mixin \Eloquent
  * @property int $id
  * @property int $map_id
  * @property string $name
+ * @property-read \App\Map $map
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MapTranslation whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MapTranslation whereMapId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\MapTranslation whereName($value)
+ * @mixin \Eloquent
  */
 class MapTranslation extends Model
 {

@@ -71,8 +71,13 @@ class FetchTranslations extends Command
         $json = json_decode(\Guzzle::get('https://api.hotslogs.com/Public/Data/Heroes')->getBody());
         foreach ($json as $hero) {
             $dbHero = $heroes->where('name', $hero->PrimaryName)->first();
+            $shortName = preg_replace('/thebutcher/', 'butcher', strtolower(preg_replace('/[^\w]/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $hero->PrimaryName))));
             if (!$dbHero) {
-                $dbHero = Hero::create(['name' => $hero->PrimaryName]);
+                $dbHero = Hero::create(['name' => $hero->PrimaryName, 'short_name' => $shortName]);
+            }
+            if (!$dbHero->shortName) {
+                $dbHero->short_name = $shortName;
+                $dbHero->save();
             }
             $translations = explode(',', $hero->Translations);
             $translations []= $hero->PrimaryName;

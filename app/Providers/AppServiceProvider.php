@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Services\ParserService;
 use App\Services\ReplayService;
+use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\ServiceProvider;
+use Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,7 +26,9 @@ class AppServiceProvider extends ServiceProvider
         });
 
         # migration fix for mysql < 5.7.7, needed for travis
-        \Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
+
+        Resource::withoutWrapping();
     }
 
     /**

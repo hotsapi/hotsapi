@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Hero;
+use App\Http\Resources\HeroResource;
+use App\Http\Resources\MapResource;
+use App\Http\Resources\ReplayResource;
 use App\Map;
 use App\Player;
 use App\Replay;
@@ -17,7 +20,7 @@ class ReplayController extends Controller
     const PAGE_SIZE = 100; 
 
     /**
-     * Upload replay
+     * Upload a replay
      *
      * @param Request $request
      * @param ReplayService $replayService
@@ -51,7 +54,8 @@ class ReplayController extends Controller
     public function index(Request $request)
     {
         $query = $this->getQuery($request);
-        return $query->limit(ReplayController::PAGE_SIZE)->get();
+        $replays = $query->limit(ReplayController::PAGE_SIZE)->get();
+        return ReplayResource::collection($replays);
     }
 
     /**
@@ -81,7 +85,8 @@ class ReplayController extends Controller
      */
     public function show($replay)
     {
-        return Replay::on('mysql_slave')->with('players')->findOrFail($replay);
+        $replay = Replay::on('mysql_slave')->with('game_map', 'players', 'players.talents', 'players.score')->findOrFail($replay);
+        return new ReplayResource($replay);
     }
 
     /**
@@ -154,27 +159,6 @@ class ReplayController extends Controller
         return ParserService::MIN_SUPPORTED_BUILD;
     }
 
-    // todo move these methods to another controller
-    /**
-     * Fetch hero list with translations
-     *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public function heroTranslations()
-    {
-        return Hero::on('mysql_slave')->with('translations')->get()->map->flattenTranslations();
-    }
-
-    /**
-     * Fetch map list with translations
-     *
-     * @return \Illuminate\Database\Eloquent\Collection|static[]
-     */
-    public function mapTranslations()
-    {
-        return Map::on('mysql_slave')->with('translations')->get()->map->flattenTranslations();
-    }
-
     /**
      * Creates a query object for replays based on a request
      *
@@ -183,7 +167,7 @@ class ReplayController extends Controller
      */
     private function getQuery(Request $request)
     {
-        $query = Replay::on('mysql_slave');
+        $query = Replay::on('mysql_slave')->with('game_map');
 
         if ($request->start_date) {
             $query->where('game_date', '>=', $request->start_date);
@@ -194,6 +178,7 @@ class ReplayController extends Controller
         }
 
         if ($request->game_map) {
+            // todo fix selecting by map name
             $query->where('game_map', $request->game_map);
         }
 
@@ -219,7 +204,7 @@ class ReplayController extends Controller
 //        }
 
         if ($request->with_players) {
-            $query->with('players');
+            $query->with('players', 'players.talents', 'players.score');
         }
 
         return $query->orderBy('id');

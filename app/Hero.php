@@ -3,42 +3,48 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * App\Hero
  *
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\HeroTranslation[] $translations
- * @mixin \Eloquent
  * @property int $id
  * @property string $name
- * @property-read mixed $versions
+ * @property string|null $short_name
+ * @property string|null $role
+ * @property string|null $type
+ * @property string|null $release_date
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Ability[] $abilities
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Talent[] $talents
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\HeroTranslation[] $translations
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereReleaseDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereRole($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereShortName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereType($value)
+ * @mixin \Eloquent
  */
 class Hero extends Model
 {
+    use InsertOnDuplicateKey;
+
     protected $guarded = ['id'];
     protected $hidden = ['id'];
     public $timestamps = false;
-    protected $flattenTranslations = false;
 
     public function translations()
     {
         return $this->hasMany(HeroTranslation::class);
     }
 
-    public function flattenTranslations()
+    public function talents()
     {
-        $this->flattenTranslations = true;
-        return $this;
+        return $this->belongsToMany(Talent::class)->using(HeroTalent::class);
     }
 
-    public function toArray()
+    public function abilities()
     {
-        $result = parent::toArray();
-        if ($this->flattenTranslations) {
-            $result['translations'] =  array_column($result['translations'], 'name');
-        }
-        return $result;
+        return $this->hasMany(Ability::class);
     }
 }

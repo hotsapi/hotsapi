@@ -22,6 +22,15 @@ Route::post('replays/fingerprints', 'ReplayController@massCheck');
 Route::get ('replays/min-build', 'ReplayController@minimumBuild');
 Route::get ('replays/{replay}', 'ReplayController@show');
 
-// todo move to a separate controllers
-Route::get ('heroes/translations', 'ReplayController@heroTranslations');
-Route::get ('maps/translations', 'ReplayController@mapTranslations');
+
+Route::get ('heroes', 'HeroController@index');
+Route::get ('heroes/translations', 'HeroController@index'); // left for compatibility
+Route::get ('heroes/{id}', 'HeroController@show');
+Route::get ('heroes/{id}/abilities/{ability}', 'HeroController@showAbility');
+
+Route::get ('maps', 'MapController@index');
+Route::get ('maps/translations', 'MapController@index'); // left for compatibility
+Route::get ('maps/{id}', 'MapController@show');
+
+Route::get ('talents', 'TalentController@index');
+Route::get ('talents/{id}', 'TalentController@show');

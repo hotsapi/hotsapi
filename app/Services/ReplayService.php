@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Ban;
 use App\Player;
+use App\PlayerTalent;
 use App\Replay;
+use App\Score;
 use Storage;
-use Symfony\Component\HttpFoundation\File\File;
 
 class ReplayService
 {
@@ -43,7 +45,6 @@ class ReplayService
             $replay = new Replay($parseResult->data);
             $replay->filename = $filename;
             $replay->size = $file->getSize();
-            $replay->region = $parseResult->region;
             // todo fix replay encodings
             $replay->save();
 
@@ -52,8 +53,8 @@ class ReplayService
             foreach ($parseResult->data['players'] as $playerData) {
                 $toInsert [] = [
                     'replay_id' => $replay->id,
-                    'battletag' => $playerData['battletag'],
-                    'hero' => $playerData['hero'],
+                    'battletag_name' => $playerData['battletag_name'],
+                    'hero_id' => $playerData['hero_id'],
                     'hero_level' => $playerData['hero_level'],
                     'team' => $playerData['team'],
                     'winner' => $playerData['winner'],
@@ -70,6 +71,29 @@ class ReplayService
         }
 
         return $parseResult;
+    }
+
+    /**
+     * @param $filename
+     * @param $replay
+     */
+    public function parseReplayExtended($filename, Replay $replay)
+    {
+        $data = $this->parser->analyzeExtended($filename, $replay);
+        if ($data['talents']) {
+            PlayerTalent::insertOnDuplicateKey($data['talents']);
+        }
+        if ($data['scores']) {
+            Score::insertOnDuplicateKey($data['scores']);
+        }
+        if ($data['bans']) {
+            Ban::insertOnDuplicateKey($data['bans']);
+        }
+        if ($data['players']) {
+            Player::insertOnDuplicateKey($data['players']);
+        }
+        $replay->processed = 1;
+        $replay->save();
     }
 
     /**

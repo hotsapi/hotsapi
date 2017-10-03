@@ -1,8 +1,10 @@
 <?php namespace App\Services;
 
+use App\HeroTalent;
 use App\HeroTranslation;
 use App\MapTranslation;
 use App\Replay;
+use App\Talent;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
 use Exception;
@@ -34,6 +36,14 @@ class ParserService
     const GAME_TYPE_BRAWL = "Brawl";
     const GAME_TYPE_AI = "AI";
     const GAME_TYPE_UNKNOWN = "Unknown";
+
+    /**
+     * Talent cache
+     *
+     * @var \Illuminate\Database\Eloquent\Collection|\App\Talent[]
+     */
+    private $talents;
+    const TALENT_LEVELS = [1, 4, 7, 10, 13, 16, 20];
 
 
     /**
@@ -89,7 +99,7 @@ class ParserService
                 'game_type' => $this->DetectGameMode($replay->initdata->m_syncLobbyState->m_gameDescription->m_gameOptions->m_ammId),
                 'game_date' => $this->FiletimeToDatetime($replay->details->m_timeUTC),
                 'game_length' => (int)($replay->header->m_elapsedGameLoops / 16),
-                'game_map' => $this->translateMapName(utf8_decode($replay->details->m_title)),
+                'game_map_id' => $this->translateMapName(utf8_decode($replay->details->m_title))->id,
                 'game_version' => "$version->m_major.$version->m_minor.$version->m_revision.$version->m_build",
             ];
 
@@ -99,15 +109,15 @@ class ParserService
             }
 
             $winnerCheck = false;
-            $result->region = null;
+            $result->data['region'] = null;
             foreach ($replay->details->m_playerList as $i => $player) {
-                if ($result->region === null) {
-                    $result->region = $player->m_toon->m_region;
+                if ($result->data['region'] === null) {
+                    $result->data['region'] = $player->m_toon->m_region;
                 }
 
                 $playerData = [
                     // todo extract full battletag from battlelobby
-                    'battletag' => utf8_decode($player->m_name),
+                    'battletag_name' => utf8_decode($player->m_name),
                     'hero' => mb_strtolower(utf8_decode($player->m_hero)), // to lower for translation
                     'team' => $player->m_teamId,
                     'winner' => $player->m_result == 1,
@@ -120,17 +130,17 @@ class ParserService
                     $winnerCheck = true;
                 }
 
-                if ($attr->{self::ATTR_PLAYER_TYPE}[0]->value != "Humn" || $playerData["hero"] == "Random Hero" || strpos($playerData["battletag"], ' ') !== false || $player->m_observe == 2) {
+                if ($attr->{self::ATTR_PLAYER_TYPE}[0]->value != "Humn" || $playerData["hero"] == "Random Hero" || strpos($playerData["battletag_name"], ' ') !== false || $player->m_observe == 2) {
                     $result->status = self::STATUS_AI_DETECTED;
                     return $result;
                 }
 
-                if ($result->region > 90) {
+                if ($result->data['region'] > 90) {
                     $result->status = self::STATUS_PTR_REGION;
                     return $result;
                 }
 
-                if ($playerData['battletag']) {
+                if ($playerData['battletag_name']) {
                     $result->data['players'] [] = $playerData;
                 }
             }
@@ -172,9 +182,9 @@ class ParserService
             $heroTranslation = $heroTranslations->where('name', $player['hero'])->first();
             if (!$heroTranslation) {
                 Log::error("Error translating hero: " . $player['hero']);
-                $player['hero'] = null;
+                $player['hero_id'] = null;
             } else {
-                $player['hero'] = $heroTranslation->hero->name;
+                $player['hero_id'] = $heroTranslation->hero->id;
             }
         }
     }
@@ -183,7 +193,7 @@ class ParserService
      * Translates map to canonical english name
      *
      * @param $name
-     * @return string|null
+     * @return \App\Map|null
      */
     private function translateMapName($name)
     {
@@ -193,7 +203,7 @@ class ParserService
             Log::error("Error translating map: " . $name);
             return null;
         } else {
-            return $mapTranslation->map->name;
+            return $mapTranslation->map;
         }
     }
 
@@ -313,5 +323,120 @@ class ParserService
             throw new Exception("Error parsing parser output:\n$output\n");
         }
         return $result;
+    }
+
+    public function extractExtendedData($filename)
+    {
+        $process = new Process("hotsapi-parser '$filename'");
+        if (0 !== $process->run()) {
+            throw new ProcessFailedException($process);
+        }
+        $output = $process->getOutput();
+        $result = json_decode($output);
+        if (!$result) {
+            throw new Exception("Error parsing parser output:\n$output\n");
+        }
+        return $result;
+    }
+
+    public function analyzeExtended($filename, Replay $replay)
+    {
+        $data = $this->extractExtendedData($filename);
+
+        if (!$this->talents) {
+            $this->talents = Talent::with('heroes')->get();
+        }
+
+        $scores = [];
+        $talents = [];
+        $bans = [];
+        $players = [];
+        foreach($data->players as $player) {
+            $srcPlayer = $replay->players->where('blizz_id', $player->blizz_id)->first();
+            if (!$srcPlayer) {
+                Log::warning("Can't find player with blizz_id $player->blizz_id in replay $replay->id");
+                continue;
+            }
+
+            $players []= [
+                'replay_id' => $srcPlayer->replay_id,
+                'blizz_id' => $srcPlayer->blizz_id,
+                'silenced' => $player->silenced,
+                'battletag_name' => $player->battletag_name,
+                'battletag_id' => $player->battletag_id,
+                'party' => $player->party
+            ];
+
+            if ($player->score != null) {
+                $scores[] = [
+                    'id' => $srcPlayer->id,
+                    'level' => $player->score->Level,
+                    'kills' => $player->score->SoloKills,
+                    'assists' => $player->score->Assists,
+                    'takedowns' => $player->score->Takedowns,
+                    'deaths' => $player->score->Deaths,
+                    'highest_kill_streak' => $player->score->HighestKillStreak,
+                    'hero_damage' => $player->score->HeroDamage,
+                    'siege_damage' => $player->score->SiegeDamage,
+                    'structure_damage' => $player->score->StructureDamage,
+                    'minion_damage' => $player->score->MinionDamage,
+                    'creep_damage' => $player->score->CreepDamage,
+                    'summon_damage' => $player->score->SummonDamage,
+                    'time_cc_enemy_heroes' => $this->toSeconds($player->score->TimeCCdEnemyHeroes),
+                    'healing' => $player->score->Healing,
+                    'self_healing' => $player->score->SelfHealing,
+                    'damage_taken' => $player->score->DamageTaken,
+                    'experience_contribution' => $player->score->ExperienceContribution,
+                    'town_kills' => $player->score->TownKills,
+                    'time_spent_dead' => $this->toSeconds($player->score->TimeSpentDead),
+                    'merc_camp_captures' => $player->score->MercCampCaptures,
+                    'watch_tower_captures' => $player->score->WatchTowerCaptures,
+                    'meta_experience' => $player->score->MetaExperience,
+                ];
+            }
+
+            foreach ($player->talents as $i => $talent) {
+                $srcTalent = $this->talents->where('name', $talent)->first();
+                if (!$srcTalent) {
+                    $srcTalent = Talent::firstOrCreate(['name' => $talent]);
+                    $this->talents->add($srcTalent);
+                }
+                // Don't connect talents from previous patches to heroes
+                //if ($srcTalent->heroes->where('hero_id', $player->hero_id)->isEmpty()) {
+                //    HeroTalent::insertIgnore(['talent_id' => $srcTalent->id, 'hero_id' => $player->hero_id]);
+                //}
+                $talents []= [
+                    'player_id' => $srcPlayer->id,
+                    'talent_id' => $srcTalent->id,
+                    'level' => self::TALENT_LEVELS[$i]
+                ];
+            }
+        }
+
+        foreach ($data->bans as $team => $replayBans) {
+            foreach ($replayBans as $index => $ban) {
+                $bans[] = [
+                    'replay_id' => $replay->id,
+                    'hero_name' => $ban,
+                    'team' => $team,
+                    'index' => $index
+                ];
+            }
+        }
+
+        return compact('bans', 'players', 'talents', 'scores');
+    }
+
+
+    /**
+     * Convert time string to seconds
+     *
+     * @param $interval
+     * @return int
+     */
+    public function toSeconds($interval)
+    {
+        // maybe someone knows a better way to do it?
+        return (new Carbon($interval))->diffInSeconds((new Carbon())->startOfDay());
     }
 }

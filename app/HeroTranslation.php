@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * App\HeroTranslation
  *
- * @property-read \App\Hero $hero
- * @mixin \Eloquent
  * @property int $id
  * @property int $hero_id
  * @property string $name
+ * @property-read \App\Hero $hero
  * @method static \Illuminate\Database\Eloquent\Builder|\App\HeroTranslation whereHeroId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\HeroTranslation whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\HeroTranslation whereName($value)
+ * @mixin \Eloquent
  */
 class HeroTranslation extends Model
 {
