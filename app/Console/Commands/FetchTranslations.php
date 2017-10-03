@@ -75,10 +75,6 @@ class FetchTranslations extends Command
             if (!$dbHero) {
                 $dbHero = Hero::create(['name' => $hero->PrimaryName, 'short_name' => $shortName]);
             }
-            if (!$dbHero->shortName) {
-                $dbHero->short_name = $shortName;
-                $dbHero->save();
-            }
             $translations = explode(',', $hero->Translations);
             $translations []= $hero->PrimaryName;
             $translations = array_map(function ($x) { return mb_strtolower($x); }, $translations);

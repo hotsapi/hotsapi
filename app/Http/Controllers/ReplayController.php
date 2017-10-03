@@ -2,12 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Hero;
-use App\Http\Resources\HeroResource;
-use App\Http\Resources\MapResource;
 use App\Http\Resources\ReplayResource;
-use App\Map;
-use App\Player;
 use App\Replay;
 use App\Services\HotslogsUploader;
 use App\Services\ParserService;

@@ -15,7 +15,7 @@ class Heroes extends Migration
     {
         Schema::create('heroes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('name')->index();
         });
     }
 

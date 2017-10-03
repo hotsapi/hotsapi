@@ -14,7 +14,7 @@ class AddHeroFields extends Migration
     public function up()
     {
         Schema::table('heroes', function (Blueprint $table) {
-            $table->string('short_name', 32)->nullable();
+            $table->string('short_name', 32);
             $table->string('role', 32)->nullable();
             $table->string('type', 32)->nullable();
             $table->date('release_date')->nullable();

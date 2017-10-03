@@ -69,7 +69,6 @@ class Parse extends Command
             try {
                 $content = Storage::cloud()->get("$replay->filename.StormReplay");
                 file_put_contents($tmpFile, $content);
-
                 $this->replayService->parseReplayExtended($tmpFile, $replay);
             } catch (\Exception $e) {
                 $this->error("Error parsing file id=$replay->id, file=$replay->filename: $e");
