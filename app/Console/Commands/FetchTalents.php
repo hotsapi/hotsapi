@@ -58,6 +58,7 @@ class FetchTalents extends Command
             $heroes[] = [
                 'id' => $hero->id,
                 'name' => $hero->name,
+                'short_name' => $hero->short_name,
                 'role' => $data->role,
                 'type' => $data->type,
                 'release_date' => $data->releaseDate,
