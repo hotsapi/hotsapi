@@ -83,7 +83,7 @@ class FetchTalents extends Command
                 foreach ($talentArray as $talent) {
                     // We can't use bulk upsert for talents because we need to obtain `id` field
                     $srcTalent = Talent::updateOrCreate([
-                            'name' => $talent->tooltipId
+                            'name' => $talent->talentTreeId
                         ], [
                             'title' => $talent->name,
                             'description' => $talent->description,
