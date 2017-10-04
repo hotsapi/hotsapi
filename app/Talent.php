@@ -46,6 +46,6 @@ class Talent extends Model
 
     public function getIconUrlAttribute()
     {
-        return ["64x64" => "https://s3-eu-west-1.amazonaws.com/hotsapi-public/img/talents/64x64/$this->icon"];
+        return $this->icon ? ["64x64" => "http://s3.hotsapi.net/img/talents/64x64/$this->icon"] : [];
     }
 }
