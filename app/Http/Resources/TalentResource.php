@@ -20,7 +20,7 @@ class TalentResource extends Resource
      */
     public function toArray($request)
     {
-        return [
+        $result = [
             'name' => $this->name,
             'title' => $this->title,
             'description' => $this->description,
@@ -32,5 +32,9 @@ class TalentResource extends Resource
             'mana_cost' => $this->mana_cost,
             'level' => $this->level,
         ];
+        if ($this->relationLoaded('heroes')) {
+            $result['heroes'] = $this->heroes->pluck('name');
+        }
+        return $result;
     }
 }

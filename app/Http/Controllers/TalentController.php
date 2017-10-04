@@ -15,7 +15,7 @@ class TalentController extends Controller
      */
     public function index()
     {
-        $talents = Talent::on('mysql_slave')->get();
+        $talents = Talent::on('mysql_slave')->with('heroes')->get();
         return TalentResource::collection($talents);
     }
 
@@ -27,7 +27,7 @@ class TalentController extends Controller
      */
     public function show($id)
     {
-        $talent = Talent::on('mysql_slave')->where('id', $id)->orWhere('name', $id)->firstOrFail();
+        $talent = Talent::on('mysql_slave')->with('heroes')->where('id', $id)->orWhere('name', $id)->firstOrFail();
         return new TalentResource($talent);
     }
 
