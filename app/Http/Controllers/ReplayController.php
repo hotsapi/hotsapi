@@ -187,7 +187,12 @@ class ReplayController extends Controller
 // Temporarily disabled because of performance issues
 //        if ($request->player) {
 //            $query->whereHas('players', function ($query) use ($request) {
-//                $query->where('battletag', $request->player);
+//                if (strpos($request->player, '#') === false) {
+//                    $query->where('battletag_name', $request->player);
+//                } else {
+//                    $parts = explode('#', $request->player);
+//                    $query->where('battletag_name', $parts[0])->where('battletag_id', $parts[1]);
+//                }
 //            });
 //        }
 //
