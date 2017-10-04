@@ -25,7 +25,7 @@ class ReplayResource extends Resource
             'filename' => $this->filename,
             'size' => $this->size,
             'game_type' => $this->game_type,
-            'game_date' => $this->game_date->toDateTimeString(),
+            'game_date' => optional($this->game_date)->toDateTimeString(),
             'game_map' => optional($this->game_map)->name,
             'game_length' => $this->game_length,
             'game_version' => $this->game_version,
@@ -33,8 +33,8 @@ class ReplayResource extends Resource
             'region' => $this->region,
             'processed' => (bool)$this->processed,
             'url' => $this->url,
-            'created_at' => $this->created_at->toDateTimeString(),
-            'updated_at' => $this->updated_at->toDateTimeString(),
+            'created_at' => optional($this->created_at)->toDateTimeString(),
+            'updated_at' => optional($this->updated_at)->toDateTimeString(),
         ];
         if ($this->relationLoaded('bans')) {
             $result['bans'] = BanResource::collection($this->bans);
