@@ -37,6 +37,8 @@ class ParserService
     const GAME_TYPE_AI = "AI";
     const GAME_TYPE_UNKNOWN = "Unknown";
 
+    const GAMES_WITH_BANS = [self::GAME_TYPE_UNRANKED_DRAFT, self::GAME_TYPE_HERO_LEAGUE, self::GAME_TYPE_TEAM_LEAGUE];
+
     /**
      * Talent cache
      *
@@ -416,14 +418,16 @@ class ParserService
             }
         }
 
-        foreach ($data->bans as $team => $replayBans) {
-            foreach ($replayBans as $index => $ban) {
-                $bans[] = [
-                    'replay_id' => $replay->id,
-                    'hero_name' => $ban,
-                    'team' => $team,
-                    'index' => $index
-                ];
+        if (in_array($replay->game_type, self::GAMES_WITH_BANS)) {
+            foreach ($data->bans as $team => $replayBans) {
+                foreach ($replayBans as $index => $ban) {
+                    $bans[] = [
+                        'replay_id' => $replay->id,
+                        'hero_name' => $ban,
+                        'team' => $team,
+                        'index' => $index
+                    ];
+                }
             }
         }
 
