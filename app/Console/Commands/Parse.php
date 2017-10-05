@@ -55,26 +55,32 @@ class Parse extends Command
      */
     public function handle()
     {
-        $this->parse([Replay::with('players')->orderBy('id', 'desc')->first()]);
+        while(true) {
+            DB::statement("SET @update_id := 0;");
+            DB::update("UPDATE replays SET processed = -1, id = (SELECT @update_id := id) WHERE processed = 0 LIMIT 1;");
+            $id = DB::select("SELECT @update_id as id;")[0]->id;
+            if (!$id) {
+                break;
+            }
+            $this->parse(Replay::with('players')->find($id));
+        }
     }
 
     /**
-     * @param Replay[] $replays
+     * @param Replay $replay
      */
-    public function parse($replays)
+    public function parse(Replay $replay)
     {
-        foreach ($replays as $replay) {
-            $this->info("Parsing replay id=$replay->id, file=$replay->filename");
-            $tmpFile = tempnam('', 'replay_');
-            try {
-                $content = Storage::cloud()->get("$replay->filename.StormReplay");
-                file_put_contents($tmpFile, $content);
-                $this->replayService->parseReplayExtended($tmpFile, $replay);
-            } catch (\Exception $e) {
-                $this->error("Error parsing file id=$replay->id, file=$replay->filename: $e");
-            } finally {
-                unlink($tmpFile);
-            }
+        $this->info("Parsing replay id=$replay->id, file=$replay->filename");
+        $tmpFile = tempnam('', 'replay_');
+        try {
+            $content = Storage::cloud()->get("$replay->filename.StormReplay");
+            file_put_contents($tmpFile, $content);
+            $this->replayService->parseReplayExtended($tmpFile, $replay);
+        } catch (\Exception $e) {
+            $this->error("Error parsing file id=$replay->id, file=$replay->filename: $e");
+        } finally {
+            unlink($tmpFile);
         }
     }
 
