@@ -396,6 +396,9 @@ class ParserService
             }
 
             foreach ($player->talents as $i => $talent) {
+                if (!$talent) {
+                    continue;
+                }
                 $srcTalent = $this->talents->where('name', $talent)->first();
                 if (!$srcTalent) {
                     $srcTalent = Talent::firstOrCreate(['name' => $talent]);
