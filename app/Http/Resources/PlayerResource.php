@@ -31,7 +31,7 @@ class PlayerResource extends Resource
             'battletag' => $this->battletag,
         ];
         if ($this->relationLoaded('talents')) {
-            $result['talents'] = optional($this->talents)->mapWithKeys(function($x) { return [$x->pivot->level => $x->name]; });
+            $result['talents'] = count($this->talents) ? $this->talents->mapWithKeys(function($x) { return [$x->pivot->level => $x->name]; }) : null;
         }
         if ($this->relationLoaded('score')) {
             $result['score'] = $this->score;
