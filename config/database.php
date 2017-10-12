@@ -52,6 +52,9 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'options'   => [
+                PDO::MYSQL_ATTR_COMPRESS => env('DB_COMPRESSION', false),
+            ],
         ],
 
         // We use read replica for all API operations except
@@ -69,6 +72,9 @@ return [
             'prefix' => '',
             'strict' => true,
             'engine' => null,
+            'options'   => [
+                PDO::MYSQL_ATTR_COMPRESS => env('DB_COMPRESSION', false),
+            ],
         ],
 
         'pgsql' => [
