@@ -72,7 +72,7 @@ class Parse extends Command
                 continue;
             }
             if (!$id) {
-                break;
+                continue;
             }
             $this->parse(Replay::with('players')->find($id));
         }
