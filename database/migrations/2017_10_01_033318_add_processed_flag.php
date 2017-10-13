@@ -14,7 +14,7 @@ class AddProcessedFlag extends Migration
     public function up()
     {
         Schema::table('replays', function (Blueprint $table) {
-            $table->tinyInteger('processed')->default(0);
+            $table->tinyInteger('processed')->default(0)->index();
         });
     }
 
