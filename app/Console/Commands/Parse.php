@@ -56,22 +56,16 @@ class Parse extends Command
     public function handle()
     {
         while(true) {
-            $id = 0;
             try {
-                DB::transaction(function () use (&$id) {
-                    $result = DB::select("SELECT id FROM replays WHERE processed = 0 LIMIT 1 FOR UPDATE;");
-                    if (count($result) == 0) {
-                        $this->info("retrying get id");
-                        return;
-                    }
-                    $id = $result[0]->id;
-                    DB::statement("UPDATE replays SET processed = -1 WHERE id = ?", [$id]);
-                });
+                DB::statement("SET @update_id := 0;");
+                $rows = DB::update("UPDATE replays SET processed = -1, id = (SELECT @update_id := id) WHERE id = (SELECT id FROM replays WHERE processed = 0 LIMIT 1) AND processed = 0 LIMIT 1;");
+                if (!$rows) {
+                    $this->info("retrying get id");
+                    continue;
+                }
+                $id = DB::select("SELECT @update_id as id;")[0]->id;
             } catch (\Exception $e) {
                 $this->warn("Error getting id, retrying: $e");
-                continue;
-            }
-            if (!$id) {
                 continue;
             }
             $this->parse(Replay::with('players')->find($id));
