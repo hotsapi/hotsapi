@@ -323,37 +323,6 @@ definitions:
           type: array
           items:
             $ref: '#/definitions/Score'
-    UploadResponse:
-      required:
-        - success
-      properties:
-        success:
-          type: string
-        Error:
-          type: string
-        status:
-          type: string
-        id:
-          type: integer
-          format: int64
-        file:
-          type: string
-        url:
-          type: string
-    PagedReplaysResponse:
-      properties:
-        page:
-          type: integer
-        page_count:
-          type: integer
-        total:
-          type: integer
-        per_page:
-          type: integer
-        replays:
-          type: array
-          items:
-            $ref: '#/definitions/Replay'
     Talent:
       properties:
         name:
@@ -483,3 +452,34 @@ definitions:
           type: integer
         meta_experience:
           type: integer
+    UploadResponse:
+      required:
+        - success
+      properties:
+        success:
+          type: string
+        Error:
+          type: string
+        status:
+          type: string
+        id:
+          type: integer
+          format: int64
+        file:
+          type: string
+        url:
+          type: string
+    PagedReplaysResponse:
+      properties:
+        page:
+          type: integer
+        page_count:
+          type: integer
+        total:
+          type: integer
+        per_page:
+          type: integer
+        replays:
+          type: array
+          items:
+            $ref: '#/definitions/Replay'
