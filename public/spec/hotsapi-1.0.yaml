@@ -52,7 +52,9 @@ paths:
         '200':
           description: An array with Replays
           schema:
-            $ref: '#/definitions/Replays'
+            type: array
+            items:
+              $ref: '#/definitions/Replay'
     post:
       summary: Create one or more Replay as File Uploads.
       operationId: createReplay
@@ -83,7 +85,7 @@ paths:
           in: query
           description: Page to display, defaults to 1
           required: false
-          type: int
+          type: integer
         - name: start_date
           in: query
           description: Minimum replay date
@@ -144,7 +146,7 @@ paths:
         __Replays__ instead.'
       operationId: uploadReplay
       tags:
-        - deprecated
+        - replays
       consumes:
         - 'multipart/form-data'
       responses:
@@ -152,18 +154,106 @@ paths:
           description: Return an upload response
           schema:
             $ref: '#/definitions/UploadResponse'
+  /heroes:
+    get:
+      summary: Get list of all heroes
+      tags:
+        - heroes
+      responses:
+        '200':
+          description: An array of heroes
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Hero'
+  /heroes/{hero}:
+    get:
+      summary: Get hero details
+      tags:
+        - heroes
+      responses:
+        '200':
+          description: Hero object
+          schema:
+            $ref: '#/definitions/Hero'
+    parameters:
+      - name: hero
+        in: path
+        description: Hero name, or short name, or id
+        required: true
+        type: string
+  /heroes/{hero}/abilities/{ability}:
+    get:
+      summary: Get hero ability by hotkey
+      tags:
+        - heroes
+      responses:
+        '200':
+          description: Hero object
+          schema:
+            $ref: '#/definitions/Ability'
+    parameters:
+      - name: hero
+        in: path
+        description: Hero name, or short name, or id
+        required: true
+        type: string
+      - name: ability
+        in: path
+        description: Ability hotkey
+        required: true
+        type: string
+  /talents/{talent}:
+    get:
+      summary: Get talent
+      tags:
+        - talents
+      responses:
+        '200':
+          description: Talent object
+          schema:
+            $ref: '#/definitions/Talent'
+    parameters:
+      - name: talent
+        in: path
+        description: Talent name or id
+        required: true
+        type: string
+  /maps:
+    get:
+      summary: Get map list
+      tags:
+        - maps
+      responses:
+        '200':
+          description: Map list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Map'
+  /maps/{map}:
+    get:
+      summary: Get map
+      tags:
+        - maps
+      responses:
+        '200':
+          description: Map object
+          schema:
+            $ref: '#/definitions/Map'
+    parameters:
+      - name: map
+        in: path
+        description: Map name or id
+        required: true
+        type: string
+
 definitions:
     Replay:
       required:
         - id
         - filename
         - size
-        - game_type
-        - game_date
-        - game_length
-        - game_map
-        - game_version
-        - region
         - fingerprint
         - url
       properties:
@@ -198,17 +288,8 @@ definitions:
           type: array
           items:
             $ref: '#/definitions/Player'
-    Replays:
-      type: array
-      items:
-        $ref: '#/definitions/Replay'
     Player:
       required:
-        - battletag
-        - hero
-        - hero_level
-        - team
-        - winner
         - blizz_id
       properties:
         battletag:
@@ -229,6 +310,19 @@ definitions:
         blizz_id:
           type: integer
           format: int64
+        silenced:
+          type: boolean
+        party:
+          type: integer
+          description: Party number identifier
+        talents:
+          type: array
+          items:
+            $ref: '#/definitions/Talent'
+        scores:
+          type: array
+          items:
+            $ref: '#/definitions/Score'
     UploadResponse:
       required:
         - success
@@ -257,5 +351,135 @@ definitions:
         per_page:
           type: integer
         replays:
-          $ref: '#/definitions/Replays'
-
+          type: array
+          items:
+            $ref: '#/definitions/Replay'
+    Talent:
+      properties:
+        name:
+         type: string
+        title:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+        icon_url:
+          type: array
+          items:
+            type: string
+        ability:
+          type: string
+        sort:
+          type: integer
+        cooldown:
+          type: integer
+        mana_cost:
+          type: integer
+        level:
+          type: integer
+    Ability:
+      properties:
+        owner:
+         type: string
+         description: Ability source, one hero (like Abathur) can have several sources
+        name:
+         type: string
+        title:
+          type: string
+        description:
+          type: string
+        icon:
+          type: string
+          description: Internal icon file name
+        hotkey:
+          type: string
+        cooldown:
+          type: integer
+        mana_cost:
+          type: integer
+        trait:
+          type: boolean
+    Hero:
+      properties:
+        name:
+         type: string
+        short_name:
+          type: string
+        translations:
+          type: array
+          items:
+            type: string
+        icon_url:
+          type: array
+          items:
+            type: string
+        role:
+          type: string
+        type:
+          type: string
+        release_date:
+          type: string
+          format: date-time
+        abilities:
+          type: array
+          items:
+            $ref: '#/definitions/Ability'
+        talents:
+          type: array
+          items:
+            $ref: '#/definitions/Talent'
+    Map:
+      properties:
+        name:
+          type: string
+        translations:
+          type: array
+          items:
+            type: string
+    Score:
+      properties:
+        level:
+          type: integer
+        kills:
+          type: integer
+        assists:
+          type: integer
+        takedowns:
+          type: integer
+        deaths:
+          type: integer
+        highest_kill_streak:
+          type: integer
+        hero_damage:
+          type: integer
+        siege_damage:
+          type: integer
+        structure_damage:
+          type: integer
+        minion_damage:
+          type: integer
+        creep_damage:
+          type: integer
+        summon_damage:
+          type: integer
+        time_cc_enemy_heroes:
+          type: integer
+        healing:
+          type: integer
+        self_healing:
+          type: integer
+        damage_taken:
+          type: integer
+        experience_contribution:
+          type: integer
+        town_kills:
+          type: integer
+        time_spent_dead:
+          type: integer
+        merc_camp_captures:
+          type: integer
+        watch_tower_captures:
+          type: integer
+        meta_experience:
+          type: integer
