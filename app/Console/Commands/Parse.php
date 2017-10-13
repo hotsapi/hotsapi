@@ -59,7 +59,12 @@ class Parse extends Command
             $id = 0;
             try {
                 DB::transaction(function () use (&$id) {
-                    $id = DB::select("SELECT id FROM replays WHERE processed = 0 LIMIT 1 FOR UPDATE;")[0]->id;
+                    $result = DB::select("SELECT id FROM replays WHERE processed = 0 LIMIT 1 FOR UPDATE;");
+                    if (count($result) == 0) {
+                        $this->info("retrying get id");
+                        return;
+                    }
+                    $id = $result[0]->id;
                     DB::statement("UPDATE replays SET processed = -1 WHERE id = ?", [$id]);
                 });
             } catch (\Exception $e) {
