@@ -21,33 +21,44 @@ paths:
       produces:
         - application/json
       parameters:
+        - name: min_id
+          in: query
+          description: Minimum replay id in database. Useful for paging and pulling incremental data.
+          required: false
+          type: integer
+          example: 1337
         - name: start_date
           in: query
           description: Minimum replay date
           required: false
           type: string
           format: date
+          example: '2017-09-18'
         - name: end_date
           in: query
           description: Maximum replay date
           required: false
           type: string
           format: date
+          example: '2017-09-30'
         - name: game_map
           in: query
-          description: Game map
+          description: Game map (currently disabled)
           required: false
           type: string
+          example: Towers of Doom
         - name: game_type
           in: query
           description: Game type without spaces
           required: false
           type: string
+          example: HeroLeague
         - name: player
           in: query
-          description: Battle tag of a player
+          description: Battle tag of a player (currently disabled)
           required: false
           type: string
+          example: Grubby
       responses:
         '200':
           description: An array with Replays
@@ -137,6 +148,7 @@ paths:
         description: The Id of the Replay
         required: true
         type: integer
+        example: 1337
   /upload:
     post:
       deprecated: true
@@ -182,6 +194,7 @@ paths:
         description: Hero name, or short name, or id
         required: true
         type: string
+        example: abathur
   /heroes/{hero}/abilities/{ability}:
     get:
       summary: Get hero ability by hotkey
@@ -198,11 +211,13 @@ paths:
         description: Hero name, or short name, or id
         required: true
         type: string
+        example: abathur
       - name: ability
         in: path
         description: Ability hotkey
         required: true
         type: string
+        example: Q2
   /talents/{talent}:
     get:
       summary: Get talent
@@ -219,6 +234,7 @@ paths:
         description: Talent name or id
         required: true
         type: string
+        example: AbathurHeroicAbilityUltimateEvolution
   /maps:
     get:
       summary: Get map list
@@ -247,6 +263,7 @@ paths:
         description: Map name or id
         required: true
         type: string
+        example: Towers of Doom
 
 definitions:
     Replay:

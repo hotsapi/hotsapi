@@ -172,10 +172,10 @@ class ReplayController extends Controller
             $query->where('game_date', '<=', $request->end_date);
         }
 
-        if ($request->game_map) {
-            // todo fix selecting by map name
-            $query->where('game_map', $request->game_map);
-        }
+//        if ($request->game_map) {
+//            // todo fix selecting by map name
+//            $query->where('game_map', $request->game_map);
+//        }
 
         if ($request->game_type) {
             $query->where('game_type', $request->game_type);
