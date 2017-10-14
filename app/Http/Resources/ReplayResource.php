@@ -37,7 +37,7 @@ class ReplayResource extends Resource
             'updated_at' => optional($this->updated_at)->toDateTimeString(),
         ];
         if ($this->relationLoaded('bans')) {
-            $result['bans'] = new BanResourceCollection($this->bans);
+            $result['bans'] = count($this->bans) ? new BanResourceCollection($this->bans) : null;
         }
         if ($this->relationLoaded('players')) {
             $result['players'] = PlayerResource::collection($this->players);
