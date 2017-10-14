@@ -351,9 +351,11 @@ definitions:
         icon:
           type: string
         icon_url:
-          type: array
-          items:
+          type: object
+          additionalProperties:
             type: string
+          example:
+            66x66: 'http://s3.hotsapi.net/image.png'
         ability:
           type: string
         sort:
@@ -397,9 +399,11 @@ definitions:
           items:
             type: string
         icon_url:
-          type: array
-          items:
+          type: object
+          additionalProperties:
             type: string
+          example:
+            66x66: 'http://s3.hotsapi.net/image.png'
         role:
           type: string
         type:
