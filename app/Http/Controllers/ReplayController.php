@@ -80,7 +80,7 @@ class ReplayController extends Controller
      */
     public function show($replay)
     {
-        $replay = Replay::on('mysql_slave')->with('game_map', 'players', 'players.talents', 'players.score')->findOrFail($replay);
+        $replay = Replay::on('mysql_slave')->with('game_map', 'bans', 'players', 'players.talents', 'players.score')->findOrFail($replay);
         return new ReplayResource($replay);
     }
 
@@ -204,7 +204,7 @@ class ReplayController extends Controller
 //        }
 
         if ($request->with_players) {
-            $query->with('players', 'players.talents', 'players.score');
+            $query->with('bans', 'players', 'players.talents', 'players.score');
         }
 
         return $query->orderBy('id');
