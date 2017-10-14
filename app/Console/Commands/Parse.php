@@ -65,7 +65,7 @@ class Parse extends Command
                 continue;
             }
             if (!$id) {
-                sleep(60);
+                sleep(3);
                 continue;
             }
             $this->parse(Replay::with('players')->find($id));
