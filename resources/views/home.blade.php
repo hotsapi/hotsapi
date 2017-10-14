@@ -31,6 +31,7 @@
             <br><br>
             <h1>Services that use our API</h1>
             <a href="http://stormspy.net"><img src="https://stormspy.net/img/stormspy-logo.png"></a>
+            <a href="http://hots.guide"><img src="{{asset('/img/logo-hotsguide.png')}}"></a>
         </div>
     </div>
 
