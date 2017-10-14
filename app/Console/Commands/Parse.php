@@ -64,6 +64,10 @@ class Parse extends Command
                 $this->warn("Error getting id, retrying: $e");
                 continue;
             }
+            if (!$id) {
+                sleep(60);
+                continue;
+            }
             $this->parse(Replay::with('players')->find($id));
         }
     }
