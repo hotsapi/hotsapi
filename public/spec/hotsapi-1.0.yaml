@@ -305,6 +305,12 @@ definitions:
           type: array
           items:
             $ref: '#/definitions/Player'
+        bans:
+          type: array
+          items:
+            type: array
+            items:
+             type: string
     Player:
       required:
         - blizz_id
