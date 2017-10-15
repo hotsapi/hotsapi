@@ -23,6 +23,7 @@ class HeroResource extends Resource
         return [
             'name' => $this->name,
             'short_name' => $this->short_name,
+            'shortcut' => $this->shortcut,
             'translations' => $this->translations->pluck('name'),
             'role' => $this->role,
             'type' => $this->type,

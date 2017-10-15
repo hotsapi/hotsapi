@@ -73,7 +73,7 @@ class FetchTranslations extends Command
             $dbHero = $heroes->where('name', $hero->PrimaryName)->first();
             $shortName = strtolower(preg_replace('/[^\w]/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $hero->PrimaryName)));
             if (!$dbHero) {
-                $dbHero = Hero::create(['name' => $hero->PrimaryName, 'short_name' => $shortName]);
+                $dbHero = Hero::create(['name' => $hero->PrimaryName, 'short_name' => $shortName, 'shortcut' => $hero->AttributeName]);
             }
             $translations = explode(',', $hero->Translations);
             $translations []= $hero->PrimaryName;
