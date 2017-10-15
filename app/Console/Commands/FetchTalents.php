@@ -48,9 +48,9 @@ class FetchTalents extends Command
         $talents_pivot = [];
         foreach (Hero::all() as $hero) {
             $this->info("Getting talents for $hero->name");
-            $response = Guzzle::get("https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/hero/$hero->short_name.json");
+            $response = Guzzle::get("https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/hero/$hero->short_name.json", ['http_errors' => false]);
             if ($response->getStatusCode() != 200) {
-                $this->error("Error getting data for hero $hero, code " . $response->getStatusCode());
+                $this->error("Error getting data for hero $hero->short_name, code " . $response->getStatusCode());
                 continue;
             }
             $data = json_decode($response->getBody());
