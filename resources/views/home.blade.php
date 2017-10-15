@@ -33,7 +33,7 @@
 
             <br><br>
             <h1>Services that use our API</h1>
-            <a href="http://stormspy.net" class="partner-link"><img src="https://stormspy.net/img/stormspy-logo.png"></a>
+            <a href="http://stormspy.net" class="partner-link"><img src="{{asset('/img/logo-stormspy.png')}}"></a>
             <a href="http://hots.guide" class="partner-link"><img src="{{asset('/img/logo-hotsguide.png')}}"></a>
             <a href="http://heroes.report" class="partner-link"><img src="{{asset('/img/logo-heroesreport.png')}}"></a>
         </div>
