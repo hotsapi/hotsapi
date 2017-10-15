@@ -31,7 +31,7 @@ class ReplayResource extends Resource
             'game_version' => $this->game_version,
             'fingerprint' => $this->fingerprint,
             'region' => $this->region,
-            'processed' => (bool)$this->processed,
+            'processed' => $this->processed == 1,
             'url' => $this->url,
             'created_at' => optional($this->created_at)->toDateTimeString(),
             'updated_at' => optional($this->updated_at)->toDateTimeString(),
