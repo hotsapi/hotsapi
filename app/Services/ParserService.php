@@ -1,5 +1,6 @@
 <?php namespace App\Services;
 
+use App\Hero;
 use App\HeroTalent;
 use App\HeroTranslation;
 use App\MapTranslation;
@@ -46,6 +47,13 @@ class ParserService
      */
     private $talents;
     const TALENT_LEVELS = [1, 4, 7, 10, 13, 16, 20];
+
+    /**
+     * Hero cache
+     *
+     * @var \Illuminate\Database\Eloquent\Collection|\App\Hero[]
+     */
+    private $heroes;
 
 
     /**
@@ -348,6 +356,9 @@ class ParserService
         if (!$this->talents) {
             $this->talents = Talent::with('heroes')->get();
         }
+        if (!$this->heroes) {
+            $this->heroes = Hero::all();
+        }
 
         $scores = [];
         $talents = [];
@@ -421,9 +432,15 @@ class ParserService
         if (in_array($replay->game_type, self::GAMES_WITH_BANS)) {
             foreach ($data->bans as $team => $replayBans) {
                 foreach ($replayBans as $index => $ban) {
+                    if ($ban) {
+                        $hero = $this->heroes->where('shortcut', $ban)->first();
+                        if (!$hero) {
+                            throw new Exception("Can't find hero for ban $ban");
+                        }
+                    }
                     $bans[] = [
                         'replay_id' => $replay->id,
-                        'hero_name' => $ban,
+                        'hero_id' => $ban,
                         'team' => $team,
                         'index' => $index
                     ];

@@ -16,8 +16,8 @@ class BanResourceCollection extends ResourceCollection
     {
         $teams = $this->collection->groupBy('team');
         return [
-            $teams[0]->sortBy('index')->pluck('hero_name'),
-            $teams[1]->sortBy('index')->pluck('hero_name')
+            $teams[0]->sortBy('index')->pluck('hero')->pluck('name'),
+            $teams[1]->sortBy('index')->pluck('hero')->pluck('name')
         ];
     }
 }
