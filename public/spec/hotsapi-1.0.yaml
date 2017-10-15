@@ -404,6 +404,9 @@ definitions:
          type: string
         short_name:
           type: string
+        shortcut:
+          type: string
+          description: 4 letter shortcut corresponding to attribute value in replay file
         translations:
           type: array
           items:
