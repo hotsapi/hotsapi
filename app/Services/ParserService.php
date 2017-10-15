@@ -440,7 +440,7 @@ class ParserService
                     }
                     $bans[] = [
                         'replay_id' => $replay->id,
-                        'hero_id' => $ban,
+                        'hero_id' => $hero,
                         'team' => $team,
                         'index' => $index
                     ];
