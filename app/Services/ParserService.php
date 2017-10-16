@@ -433,7 +433,7 @@ class ParserService
             foreach ($data->bans as $team => $replayBans) {
                 foreach ($replayBans as $index => $ban) {
                     if ($ban) {
-                        $hero = $this->heroes->where('shortcut', $ban)->first();
+                        $hero = $this->heroes->where('attribute_id', $ban)->first();
                         if (!$hero) {
                             throw new Exception("Can't find hero for ban $ban");
                         }
