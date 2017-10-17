@@ -184,22 +184,23 @@ class ReplayController extends Controller
         if ($request->min_id) {
             $query->where('id', '>=', $request->min_id);
         }
-// Temporarily disabled because of performance issues
-//        if ($request->player) {
-//            $query->whereHas('players', function ($query) use ($request) {
-//                if (strpos($request->player, '#') === false) {
-//                    $query->where('battletag_name', $request->player);
-//                } else {
-//                    $parts = explode('#', $request->player);
-//                    $query->where('battletag_name', $parts[0])->where('battletag_id', $parts[1]);
-//                }
-//            });
-//        }
-//
-//
+
+        if ($request->player) {
+            $query->whereIn('id', function ($query) use ($request) {
+                $query->select('replay_id')->from('players');
+                if (strpos($request->player, '#') === false) {
+                    $query->where('battletag_name', $request->player);
+                } else {
+                    $parts = explode('#', $request->player);
+                    $query->where('battletag_name', $parts[0])->where('battletag_id', $parts[1]);
+                }
+            });
+        }
+
+//        todo fix selecting by hero name
 //        if ($request->hero) {
-//            $query->whereHas('players', function ($query) use ($request) {
-//                $query->where('hero', $request->hero);
+//            $query->whereIn('id', function ($query) use ($request) {
+//                $query->select('replay_id')->from('players')->where('hero_id', $request->hero);
 //            });
 //        }
 
