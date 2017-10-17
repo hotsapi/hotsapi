@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\FetchTalents;
 use App\Console\Commands\FetchTranslations;
 use App\Console\Commands\ReparseReplays;
 use Illuminate\Console\Scheduling\Schedule;
@@ -27,6 +28,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(FetchTranslations::class)->daily();
+        $schedule->command(FetchTalents::class)->daily();
     }
 
     /**
