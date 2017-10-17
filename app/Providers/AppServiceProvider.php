@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Services\ParserService;
 use App\Services\ReplayService;
+use DB;
 use Illuminate\Http\Resources\Json\Resource;
 use Illuminate\Support\ServiceProvider;
+use Log;
 use Schema;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,6 +31,12 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
 
         Resource::withoutWrapping();
+
+        if (env('DB_LOG_QUERIES', false)) {
+            DB::listen(function ($query) {
+                Log::info('Query', [$query->sql, $query->time, $query->connectionName]);
+            });
+        }
     }
 
     /**
