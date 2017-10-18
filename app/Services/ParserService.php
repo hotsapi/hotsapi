@@ -461,6 +461,11 @@ class ParserService
     public function toSeconds($interval)
     {
         // maybe someone knows a better way to do it?
-        return (new Carbon($interval))->diffInSeconds((new Carbon())->startOfDay());
+        if (preg_match('/^\d+\./', $interval)) {
+            // more than 1 day, return max dey seconds
+            return 86400;
+        } else {
+            return (new Carbon($interval))->diffInSeconds((new Carbon())->startOfDay());
+        }
     }
 }
