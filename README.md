@@ -2,6 +2,8 @@
 
 [HotsApi.net](http://hotsapi.net/) is an open Heroes of the Storm replay database where everyone can download replays. It stores replays in a public AWS S3 bucket (currently in "Requester pays" mode) and provides and API to query replay metadata. Use  [Hotsapi.Uploader](http://hotsapi.net/upload) ([repo link](https://github.com/poma/Hotsapi.Uploader)) to upload your replay files.
 
+There are API libraries for [Ruby](https://github.com/tbuehlmann/hots_api) and [Python](https://github.com/MakiseKurisu/hotsapi)
+
 Currently API is still in alpha and may change
 
 # Installation
