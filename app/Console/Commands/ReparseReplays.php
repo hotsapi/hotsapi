@@ -66,8 +66,8 @@ class ReparseReplays extends Command
         ]);
 
         $ids = $replays->flatten(1)->pluck('id')->unique();
-
-        $this->info("Broken replay summary:\n" . $replays->map(function($item, $key) { return "$key: " . count($item) . "\n";}) . "\nUnique: " . count($ids));
+        $stats = $replays->map(function($item, $key) { return "$key: " . count($item);})->implode("\n");
+        $this->info("Broken replay summary:\n$stats\nUnique: " . count($ids));
         return Replay::whereIn('id', $ids)->get();
     }
 
