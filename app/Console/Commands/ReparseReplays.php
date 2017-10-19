@@ -58,13 +58,16 @@ class ReparseReplays extends Command
 
     public function getBrokenReplays()
     {
-        $noMap = DB::select('SELECT id FROM replays WHERE game_map_id IS NULL');
-        $noHero = DB::select('SELECT DISTINCT(replay_id) AS id FROM players WHERE hero_id IS NULL');
-        $noPlayers = DB::select('SELECT r.id AS id FROM replays r LEFT JOIN players p ON p.replay_id = r.id WHERE p.id IS NULL');
-        $wrongPlayers = DB::select('SELECT replay_id AS id, count(*) AS cnt FROM players GROUP BY replay_id HAVING cnt != 10');
+        $replays = collect([
+            "No map" => DB::select('SELECT id FROM replays WHERE game_map_id IS NULL'),
+            "No hero" => DB::select('SELECT DISTINCT(replay_id) AS id FROM players WHERE hero_id IS NULL'),
+            "No players" => DB::select('SELECT r.id AS id FROM replays r LEFT JOIN players p ON p.replay_id = r.id WHERE p.id IS NULL'),
+            "Wrong player count" => DB::select('SELECT replay_id AS id, count(*) AS cnt FROM players GROUP BY replay_id HAVING cnt != 10'),
+        ]);
 
-        $ids = collect($noMap)->merge($noHero)->merge($noPlayers)->merge($wrongPlayers)->pluck('id')->unique();
-        $this->info("Broken replay summary:\nNo map: " . count($noMap) . "\nNo hero: " . count($noHero) . "\nNo players: " . count($noPlayers) . "\nWrong players: " . count($wrongPlayers) . "\nUnique: " . count($ids));
+        $ids = $replays->flatten(1)->pluck('id')->unique();
+
+        $this->info("Broken replay summary:\n" . $replays->map(function($item, $key) { return "$key: " . count($item) . "\n";}) . "\nUnique: " . count($ids));
         return Replay::whereIn('id', $ids)->get();
     }
 
