@@ -21,7 +21,7 @@ class PlayerResource extends Resource
     public function toArray($request)
     {
         $result = [
-            'hero' => $this->hero->name,
+            'hero' => optional($this->hero)->name,
             'hero_level' => $this->hero_level,
             'team' => $this->team,
             'winner' => isset($this->winner) ? (bool)$this->winner : null,
