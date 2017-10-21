@@ -162,7 +162,7 @@ class ReplayController extends Controller
      */
     private function getQuery(Request $request)
     {
-        $query = Replay::on('mysql_slave')->with('game_map');
+        $query = Replay::on('mysql_slave')->select(\DB::raw('/*+ MAX_EXECUTION_TIME(10000) */ *'))->with('game_map');
 
         if ($request->start_date) {
             $query->where('game_date', '>=', $request->start_date);
