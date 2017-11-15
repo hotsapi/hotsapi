@@ -145,7 +145,7 @@ class ReplayController extends Controller
     }
 
     /**
-     * Get minimum supported buils
+     * Get minimum supported build
      *
      * @return int
      */
