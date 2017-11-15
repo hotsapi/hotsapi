@@ -36,6 +36,7 @@
             <a href="http://stormspy.net" class="partner-link"><img src="{{asset('/img/logo-stormspy.png')}}"></a>
             <a href="http://hots.guide" class="partner-link"><img src="{{asset('/img/logo-hotsguide.png')}}"></a>
             <a href="http://heroes.report" class="partner-link"><img src="{{asset('/img/logo-heroesreport.png')}}"></a>
+            <a href="https://hots.dog" class="partner-link"><img src="{{asset('/img/logo-hotsdog.svg')}}"></a>
         </div>
     </div>
 
