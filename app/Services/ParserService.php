@@ -317,7 +317,15 @@ class ParserService
         $process = new Process("heroprotocol --json --header --details --initdata --attributeevents '$filename'");
         if (0 !== $process->run()) {
             if (strpos($process->getErrorOutput(), "Unsupported base build") !== false) {
-                return false;
+                // check whether version is too new or too old
+                $process = new Process("heroprotocol --json --header '$filename'");
+                $process->mustRun();
+                $result = json_decode($process->getOutput());
+                if ($result->m_version->m_build < self::MIN_SUPPORTED_BUILD) {
+                    return false;
+                } else {
+                    throw new Exception("Unsupported build but version is greater than minimum: " . $result->m_version->m_build);
+                }
             }
             throw new ProcessFailedException($process);
         }
