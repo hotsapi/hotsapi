@@ -1,6 +1,6 @@
 # HotsApi [![Build Status](https://travis-ci.org/poma/hotsapi.svg?branch=master)](https://travis-ci.org/poma/hotsapi) [![Join the chat at https://gitter.im/hotsapi/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hotsapi/Lobby)
 
-[HotsApi.net](http://hotsapi.net/) is an open Heroes of the Storm replay database where everyone can download replays. It stores replays in a public AWS S3 bucket (currently in "Requester pays" mode) and provides and API to query replay metadata. Use  [Hotsapi.Uploader](http://hotsapi.net/upload) ([repo link](https://github.com/poma/Hotsapi.Uploader)) to upload your replay files.
+[HotsApi.net](http://hotsapi.net/) is an open Heroes of the Storm replay database where everyone can download replays. It stores replays in a public AWS S3 bucket (currently in "Requester pays" mode) and provides an API to query replay metadata. Use  [Hotsapi.Uploader](http://hotsapi.net/upload) ([repo link](https://github.com/poma/Hotsapi.Uploader)) to upload your replay files.
 
 There are API libraries for [Ruby](https://github.com/tbuehlmann/hots_api) and [Python](https://github.com/MakiseKurisu/hotsapi)
 
@@ -12,10 +12,10 @@ HotsApi is a PHP/Laravel app so the easiest way to run it locally is using [Home
 
 ## Homestead
 
-In addition to defaul homestead config you will need:
+In addition to default homestead config you will need:
 
 * Install [heroprotocol](https://github.com/Blizzard/heroprotocol) parser: `cd /opt && sudo git clone https://github.com/Blizzard/heroprotocol.git`
-* Make a globally availabe heroprotocol executable: `sudo ln -s /opt/heroprotocol/heroprotocol.py /usr/bin/heroprotocol`
+* Make a globally available heroprotocol executable: `sudo ln -s /opt/heroprotocol/heroprotocol.py /usr/bin/heroprotocol`
 * Make sure heroprotocol has executable permission `chmod +x /opt/heroprotocol/heroprotocol.py`
 * Configure `.env` file `cp .env.example .env`
 * Run `composer install`
@@ -33,4 +33,4 @@ In addition to defaul homestead config you will need:
 
 # Contributing
 
-Pull requests are very much appreciated, with community involvement we could get much more features in much shorter time. You can see the list of current tasks in [project](https://github.com/poma/hotsapi/projects/1) page, you can freely pick one from "backlog" or "high priority" columns and start working on it.
+Pull requests are very much appreciated. With community involvement we could get much more features in much shorter time. You can see the list of current tasks in [project](https://github.com/poma/hotsapi/projects/1) page. You can freely pick one from "backlog" or "high priority" columns and start working on it.
