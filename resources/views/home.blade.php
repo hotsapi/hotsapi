@@ -38,6 +38,7 @@
             <a href="http://heroes.report" class="partner-link"><img src="{{asset('/img/logo-heroesreport.png')}}"></a>
             <a href="https://hots.dog" class="partner-link"><img src="{{asset('/img/logo-hotsdog.svg')}}"></a>
             <a href="https://hotstat.us" class="partner-link"><img src="{{asset('/img/logo-hotstatus.png')}}"></a>
+            <a href="https://play.google.com/store/apps/details?id=com.heroescompanion.app" class="partner-link"><img src="{{asset('/img/logo-heroescompanion.png')}}"></a>
         </div>
     </div>
 
