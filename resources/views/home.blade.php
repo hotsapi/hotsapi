@@ -12,9 +12,23 @@
             max-width: 600px;
             margin:auto;
         }
+        .partner-link-wrapper{
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
         .partner-link {
             line-height: 75px;
+            margin: .5em;
+            width: 42%;
+            
         }
+        .partner-link img{
+          max-height: 64px;
+          max-width: 100%;
+        }
+
+
     </style>
 @endsection
 
@@ -33,13 +47,16 @@
 
             <br><br>
             <h1>Services that use our API</h1>
-            <a href="http://stormspy.net" class="partner-link"><img src="{{asset('/img/logo-stormspy.png')}}"></a>
-            <a href="http://hots.guide" class="partner-link"><img src="{{asset('/img/logo-hotsguide.png')}}"></a>
-            <a href="http://heroes.report" class="partner-link"><img src="{{asset('/img/logo-heroesreport.png')}}"></a>
-            <a href="https://hots.dog" class="partner-link"><img src="{{asset('/img/logo-hotsdog.svg')}}"></a>
-            <a href="https://play.google.com/store/apps/details?id=com.heroescompanion.app" class="partner-link"><img src="{{asset('/img/logo-heroescompanion.png')}}"></a>
-			<a href="https://hots.academy" class="partner-link"><img src="{{asset('/img/logo-hotsacademy.png')}}"></a>
-			<a href="https://heroesshare.net" class="partner-link"><img src="{{asset('/img/logo-heroesshare.png')}}"></a>
+            <div class="partner-link-wrapper">
+                <a target="_blank" href="http://stormspy.net" class="partner-link"><img src="{{asset('/img/logo-stormspy.png')}}"></a>
+                <a target="_blank" href="http://hots.guide" class="partner-link"><img src="{{asset('/img/logo-hotsguide.png')}}"></a>
+                <a target="_blank" href="http://heroes.report" class="partner-link"><img src="{{asset('/img/logo-heroesreport.png')}}"></a>
+                <a target="_blank" href="https://hots.dog" class="partner-link"><img src="{{asset('/img/logo-hotsdog.svg')}}"></a>
+                <a target="_blank" href="https://play.google.com/store/apps/details?id=com.heroescompanion.app" class="partner-link"><img src="{{asset('/img/logo-heroescompanion.png')}}"></a>
+    			      <a target="_blank" href="https://hots.academy" class="partner-link"><img src="{{asset('/img/logo-hotsacademy.png')}}"></a>
+    			      <a target="_blank" href="https://heroesshare.net" class="partner-link"><img src="{{asset('/img/logo-heroesshare.png')}}"></a>
+          	    <a target="_blank" href="https://heroesprofile.com" class="partner-link"><img src="{{asset('/img/logo-heroesprofile.png')}}"></a>
+            </div>
         </div>
     </div>
 
