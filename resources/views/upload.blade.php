@@ -163,7 +163,11 @@
         </ul>
     </div>
 
-    <p><input type='checkbox' id='check_hotslogs' name='uploadToHotslogs'> <label for='check_hotslogs'>Send a copy to hotslogs</label> <span class="glyphicon glyphicon-question-sign"  style='cursor:help' title="HotsApi can send a copy of your replays to hotslogs. You won't need to upload it twice!"></span></p>
+    <p>
+        <input type='checkbox' id='check_hotslogs' name='uploadToHotslogs'> 
+        <label for='check_hotslogs'>Send a copy to hotslogs</label> 
+        <span class="glyphicon glyphicon-question-sign" style='cursor:help' title="HotsApi can send a copy of your replays to hotslogs. You won't need to upload it twice!"></span>
+    </p>
     
     <div id='button_container'>
         <span class="btn btn-success fileinput-button">
@@ -234,7 +238,7 @@
                 
                 start: function(e) {
                     $('#progress,#stats_container').removeClass('hidden');
-                    $("#check_hotslogs").attr('disabled','disabled');
+                    $('#check_hotslogs').attr('disabled','disabled');
                 },
              
                 drop: function (e, data) {
@@ -249,7 +253,7 @@
                 
                 done: function (e, data) {
                     
-                    let status = data.result.status ? data.result.status : "UploadError";
+                    let status = data.result.status ? data.result.status : 'UploadError';
                     statusUpdate(status,uniqueID(data));
                     
                 },
@@ -293,11 +297,17 @@
                 
                 submit: function(e, data) {
                     
-                    //include the uploadToHotslogs parameter if the checkbox is checked
                     if (document.getElementById('check_hotslogs').checked) {
+                        //include the uploadToHotslogs parameter if the checkbox is checked
                         data.formData = { uploadToHotslogs : 'true' };
+                        //save a cookie so that the checkbox state is remembered for this user's subsequent visits
+                        setCookie('checked_hotslogs','true',30);
+                    } else {
+                        //erase the cookie if the checkbox is unchecked.
+                        if (getCookie('checked_hotslogs')) {
+                            eraseCookie('checked_hotslogs')
+                        }
                     }
-                    
                 }
             });
             
@@ -307,8 +317,16 @@
             );
             
             $('#location_toggle').click(function(e) {
-                $("#location_container > ul").toggle('fast');
+                $('#location_container > ul').toggle('fast');
             });
+            
+            //if there's a cookie set to check the hotslogs box, act accordingly.
+            if (getCookie('checked_hotslogs')) {
+                document.getElementById('check_hotslogs').checked = true;
+            } else {
+                document.getElementById('check_hotslogs').checked = false;
+            }
+                
         });
         
         //check for directory-selection compatibility. same test used in Modernizr.
@@ -321,16 +339,16 @@
         }
         
         if (isInputDirSupported()) {
-            $("#container_fileupload_dir_text,#container_fileupload_dir").removeClass('hidden');
+            $('#container_fileupload_dir_text,#container_fileupload_dir').removeClass('hidden');
         } 
         
         function statusUpdate(status,uid) {
                                 
             //update status text and add an appropriate class.
-            $("#info_"+uid).find('.upload_status').addClass('upload_status-'+status).text(status);
+            $('#info_'+uid).find('.upload_status').addClass('upload_status-'+status).text(status);
             
             //remove individual file progressbar (keep the empty row to avoid having the table contents jump around)
-            $("#progress_"+uid).find('.upload_table_progress').remove();
+            $('#progress_'+uid).find('.upload_table_progress').remove();
             
             //keep track of upload results
             (status in filecount_status) ? filecount_status[status]++ : filecount_status[status] = 1;
@@ -380,7 +398,7 @@
             div.style.right = ($(window).width() - e.clientX)  + "px";    
             div.style.top = e.clientY  + "px";
             
-            $("#"+divid).toggle();
+            $('#'+divid).toggle();
             return false;
         }
         
@@ -389,6 +407,30 @@
         //using stripped down filename + filesize instead, with a prepended 'f_' to comply with html5 id specs in case people rename their replays to be just numbers or symbols for whatever reason.
         function uniqueID(data) {
             return 'f_'+data.files[0].name.split('.')[0].replace(/\W/g, '') + String(data.files[0].size);
+        }
+        
+        //next 3 functions shamelessly copied from https://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript
+        function setCookie(name,value,days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days*24*60*60*1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        }
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') c = c.substring(1,c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+        }
+        function eraseCookie(name) {   
+            document.cookie = name+"=; Max-Age=-99999999;";  
         }
 
     </script>
