@@ -133,7 +133,7 @@
 
     <img class="pull-right screenshot" src="{{asset('img/uploader.png')}}" width="261px" data-action="zoom">
     <h1>Replay uploader app</h1>
-    <p>The easiest way to upload your replays it to get our uploader app</p>
+    <p>The easiest way to upload your replays is to get our uploader app</p>
     <div class="download-wrapper">
         <a class="btn btn-primary btn-lg" href="{{ $setupLink }}">
             <i class="glyphicon glyphicon-download-alt"></i>
