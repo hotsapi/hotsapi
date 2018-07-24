@@ -28,19 +28,11 @@ class Prune extends Command
     protected $description = 'Delete old replays';
 
     /**
-     * @var ParserService
-     */
-    private $parser;
-
-    /**
      * Create a new command instance.
-     *
-     * @param ParserService $replay
      */
-    public function __construct(ParserService $replay)
+    public function __construct()
     {
         parent::__construct();
-        $this->parser = $replay;
     }
 
     /**
@@ -52,13 +44,17 @@ class Prune extends Command
     {
         $size = 0;
         $this->info("Pruning replays");
-        DB::table('replays')->where('processed', true)->where('deleted', false)->where('game_type', '!=', 'HeroLeague')->where('created_at', '<', Carbon::createFromDate(2018, 1, 1))->orderBy('id')->chunk(1000, function ($rows, $size) {
+        $bar = $this->output->createProgressBar(100); // don't know chunk count
+        // possible bug -- if chunk uses offsets, it will miss replays because updated files no longer fit where clause
+        $this->info("Query: " . DB::table('replays')->select('id, size, filename')->where('processed', true)->where('deleted', false)->where('game_type', '!=', 'HeroLeague')->where('created_at', '<', Carbon::createFromDate(2018, 1, 1))->orderBy('id')->toSql());        DB::table('replays')->select('id, size, filename')->where('processed', true)->where('deleted', false)->where('game_type', '!=', 'HeroLeague')->where('created_at', '<', Carbon::createFromDate(2018, 1, 1))->orderBy('id')->chunk(100000, function ($rows) use ($size, $bar) {
             foreach ($rows as $replay) {
                 //Storage::cloud()->delete("$replay->filename.StormReplay");
                 //DB::table('replays')->where('id', $replay->id)->update(['deleted' => false]);
                 $size += $replay->size;
             }
+            $bar->advance();
         });
+        $bar->finish();
         $this->info("Total size: " . ($size / 1024 / 1024 / 1024 / 1024));
     }
 }
