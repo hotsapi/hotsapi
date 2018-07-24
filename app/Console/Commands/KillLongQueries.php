@@ -47,5 +47,15 @@ class KillLongQueries extends Command
             }
         }
         $this->info("Killed " . count($processes) . " queries");
+
+        $processes = \DB::select("SELECT id FROM INFORMATION_SCHEMA.PROCESSLIST WHERE user = ? AND command = 'execute' AND time > 60", [env('DB_USERNAME')]);
+        foreach (collect($processes)->pluck('id') as $process) {
+            try {
+                \DB::statement("KILL ?", [$process]);
+            } catch (QueryException $e) {
+                // thread don't exist, do nothing
+            }
+        }
+        $this->info("Killed " . count($processes) . " queries");
     }
 }
