@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Replay;
 use Cache;
+use DB;
 use Exception;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class WebController extends Controller
     {
         $totalReplayCount = Cache::remember('totalReplayCount', 1, function () {
             try {
-                return Replay::count();
+                // return Replay::count(); // too slow, let's use an approximation instead
+                return DB::select("SELECT TABLE_ROWS FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'replays'")[0]->TABLE_ROWS;
             } catch (Exception $e) {
                 Log::error("Error getting replay count: $e");
                 return '???';
