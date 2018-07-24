@@ -16,7 +16,12 @@ class WebController extends Controller
     public function __construct()
     {
         $totalReplayCount = Cache::remember('totalReplayCount', 1, function () {
-            return Replay::count();
+            try {
+                return Replay::count();
+            } catch (Exception $e) {
+                Log::error("Error getting replay count: $e");
+                return '???';
+            }
         });
         View::share('totalReplayCount', $totalReplayCount);
     }
