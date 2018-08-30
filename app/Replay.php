@@ -23,6 +23,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property string $fingerprint_old
  * @property int|null $region
  * @property int $processed
+ * @property int $deleted
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Ban[] $bans
  * @property-read \App\Map|null $game_map
  * @property-read bool $url
@@ -39,6 +40,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameVersion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereProcessed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereDeleted($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereUpdatedAt($value)

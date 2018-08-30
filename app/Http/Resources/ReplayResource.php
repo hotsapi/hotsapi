@@ -32,6 +32,7 @@ class ReplayResource extends Resource
             'fingerprint' => $this->fingerprint,
             'region' => $this->region,
             'processed' => $this->processed == 1,
+            'deleted' => $this->deleted == 1,
             'url' => $this->url,
             'created_at' => optional($this->created_at)->toDateTimeString(),
             'updated_at' => optional($this->updated_at)->toDateTimeString(),
