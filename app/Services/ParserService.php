@@ -109,7 +109,7 @@ class ParserService
                 'game_type' => $this->DetectGameMode($replay->initdata->m_syncLobbyState->m_gameDescription->m_gameOptions->m_ammId),
                 'game_date' => $this->FiletimeToDatetime($replay->details->m_timeUTC),
                 'game_length' => (int)($replay->header->m_elapsedGameLoops / 16),
-                'game_map_id' => $this->translateMapName(utf8_decode($replay->details->m_title))->id,
+                'game_map_id' => $this->translateMapName(utf8_decode($replay->details->m_title))->id ?? null,
                 'game_version' => "$version->m_major.$version->m_minor.$version->m_revision.$version->m_build",
             ];
 
