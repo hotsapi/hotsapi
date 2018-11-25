@@ -343,12 +343,12 @@ definitions:
           type: integer
           description: Party number identifier
         talents:
-          type: array
-          items:
-            $ref: '#/definitions/Talent'
-        scores:
-          type: array
-          items:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+             10: MoshPit
+        score:
             $ref: '#/definitions/Score'
     Talent:
       properties:
