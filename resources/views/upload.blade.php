@@ -36,14 +36,26 @@
             color:#888;
         }
         #location_toggle:hover{
-            cursor:pointer;
             color:#AAA;
+            text-decoration-line: underline;
+            text-decoration-style: dotted;
+            cursor:pointer;
         }
         .location_platform {
             font-weight: bold;
         }
         .location_path {
             margin-left:1em;
+        }
+        #virus_toggle:hover{
+            text-decoration-line: underline;
+            text-decoration-style: dotted;
+            cursor:pointer;
+            color:#AAA;
+        }
+        #virus_text{
+            display: none;
+            width: 500px;
         }
         .upload_filecount {
             text-align: center;
@@ -143,6 +155,12 @@
         @if($setupVersion)
             <small>version: {{ $setupVersion }}</small>
         @endif
+        <br>
+        <span id='virus_toggle'>Detected as a virus?</span>
+    </div>
+
+    <div id='virus_text'>
+        Sometimes the installer is mistakenly flagged as a virus by some AV vendors' heuristics because they don't like things that install something on your PC and didn't buy a certificate. If you don't trust the installer you can download a portable <a href="{{ $zipLink }}">HotsApi.zip</a> and use it instead. In that case you are losing auto updates, start with windows option, and shortcuts. Also you'll need to manually make sure that <a href="https://www.microsoft.com/en-us/download/details.aspx?id=53344" target="_blank">.NET 4.6.2</a> or later is installed on your machine.
     </div>
 
     <div class="clearfix"></div>
@@ -318,6 +336,10 @@
             
             $('#location_toggle').click(function(e) {
                 $('#location_container > ul').toggle('fast');
+            });
+
+            $('#virus_toggle').click(function(e) {
+                $('#virus_text').toggle('fast');
             });
             
             //if there's a cookie set to check the hotslogs box, act accordingly.
