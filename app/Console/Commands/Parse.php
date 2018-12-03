@@ -58,7 +58,7 @@ class Parse extends Command
         while(true) {
             try {
                 DB::statement("SET @update_id := 0;");
-                DB::update("UPDATE replays SET processed = -1, id = (SELECT @update_id := id) WHERE processed = 0 ORDER BY id DESC LIMIT 1;");
+                DB::update("UPDATE replays SET processed = -1, id = (SELECT @update_id := id) WHERE processed = 0 LIMIT 1;");
                 $id = DB::select("SELECT @update_id as id;")[0]->id;
             } catch (\Exception $e) {
                 $this->warn("Error getting id, retrying: $e");
