@@ -14,7 +14,7 @@ class AddDeletedFlag extends Migration
     public function up()
     {
         Schema::table('replays', function (Blueprint $table) {
-            $table->boolean('deleted');
+            $table->timestamp('parsed_at')->after('updated_at')->nullable()->index();
         });
     }
 
@@ -26,7 +26,7 @@ class AddDeletedFlag extends Migration
     public function down()
     {
         Schema::table('replays', function (Blueprint $table) {
-            $table->dropColumn('deleted');
+            $table->dropColumn('parsed_at');
         });
     }
 }

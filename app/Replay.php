@@ -12,6 +12,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property int $id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $parsed_at
  * @property string $filename
  * @property int $size
  * @property string|null $game_type
@@ -30,6 +31,8 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\HotslogsUpload[] $hotslogsUploads
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Player[] $players
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereParsed`At($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFilename($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprint($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprintOld($value)
@@ -43,7 +46,6 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereDeleted($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereSize($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Replay extends Model
@@ -55,12 +57,13 @@ class Replay extends Model
      *
      * @var array
      */
-    protected $fillable = ['game_type', 'game_date', 'game_length', 'game_version', 'game_map_id', 'region', 'fingerprint', 'fingerprint_old', 'created_at', 'updated_at'];
+    protected $fillable = ['game_type', 'game_date', 'game_length', 'game_version', 'game_map_id', 'region', 'fingerprint', 'fingerprint_old', 'created_at', 'updated_at', 'parsed_at'];
     protected $hidden = ['created_at', 'updated_at', 'fingerprint_old'];
     protected $appends = ['url'];
     protected $dates = [
         'created_at',
         'updated_at',
+        'parsed_at',
         'game_date'
     ];
 

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use App\Ban;
 use App\Player;
 use App\PlayerTalent;
@@ -93,6 +94,7 @@ class ReplayService
             Player::insertOnDuplicateKey($data['players']);
         }
         $replay->processed = 1;
+        $replay->parsed_at = \Carbon::now();
         $replay->save();
     }
 
