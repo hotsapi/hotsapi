@@ -94,7 +94,7 @@ class ReplayService
             Player::insertOnDuplicateKey($data['players']);
         }
         $replay->processed = 1;
-        $replay->parsed_at = \Carbon::now();
+        $replay->parsed_at = Carbon::now();
         $replay->save();
     }
 
