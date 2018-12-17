@@ -53,7 +53,7 @@ class ReparseReplays extends Command
         $max_id = $this->argument('max_id');
         $this->info("Reparsing replays, id from $min_id to $max_id");
         //Replay::where('id', '>=', $min_id)->where('id', '<=', $max_id)->with('players')->chunk(100, function ($x) { return $this->reparse($x); });
-        $this->getBrokenReplays()->each(function ($x) { return $this->reparse([$x]); });
+        $this->getBrokenReplays()->reverse()->each(function ($x) { return $this->reparse([$x]); });
     }
 
     public function getBrokenReplays()
