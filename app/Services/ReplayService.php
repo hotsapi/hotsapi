@@ -2,12 +2,12 @@
 
 namespace App\Services;
 
-use Carbon\Carbon;
 use App\Ban;
 use App\Player;
 use App\PlayerTalent;
 use App\Replay;
 use App\Score;
+use DB;
 use Storage;
 
 class ReplayService
@@ -93,9 +93,12 @@ class ReplayService
         if ($data['players']) {
             Player::insertOnDuplicateKey($data['players']);
         }
-        $replay->processed = 1;
-        $replay->parsed_at = Carbon::now();
-        $replay->save();
+        DB::transaction(function () use ($replay) {
+            $parsedId = DB::selectOne('SELECT MAX(parsed_id) AS max FROM replays')->max;
+            $replay->parsed_id = $parsedId + 1;
+            $replay->processed = 1;
+            $replay->save();
+        });
     }
 
     /**
