@@ -82,17 +82,15 @@ class ParserService
                 return $result;
             }
 
-            $fingerprint_v2 = $this->getFingerprint($replay);
-            $fingerprint_v1 = $replay->initdata->m_syncLobbyState->m_gameDescription->m_randomValue;
-            if (!$skipDuplicateCheck && $duplicate = Replay::where('fingerprint', $fingerprint_v2)->first()) {
+            $fingerprint = $this->getFingerprint($replay);
+            if (!$skipDuplicateCheck && $duplicate = Replay::where('fingerprint', $fingerprint)->first()) {
                 $result->status = self::STATUS_DUPLICATE;
                 $result->replay = $duplicate;
                 return $result;
             }
 
             $result->data = [
-                'fingerprint' => $fingerprint_v2,
-                'fingerprint_old' => $fingerprint_v1,
+                'fingerprint' => $fingerprint,
                 'players' => []
             ];
 

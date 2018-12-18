@@ -21,7 +21,6 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property int|null $game_map_id
  * @property string|null $game_version
  * @property string $fingerprint
- * @property string $fingerprint_old
  * @property int|null $region
  * @property int $processed
  * @property int $deleted
@@ -35,7 +34,6 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereParsedId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFilename($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprint($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprintOld($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameLength($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameMapId($value)
@@ -57,8 +55,8 @@ class Replay extends Model
      *
      * @var array
      */
-    protected $fillable = ['game_type', 'game_date', 'game_length', 'game_version', 'game_map_id', 'region', 'fingerprint', 'fingerprint_old', 'created_at', 'updated_at'];
-    protected $hidden = ['created_at', 'updated_at', 'fingerprint_old'];
+    protected $fillable = ['game_type', 'game_date', 'game_length', 'game_version', 'game_map_id', 'region', 'fingerprint', 'created_at', 'updated_at'];
+    protected $hidden = ['created_at', 'updated_at'];
     protected $appends = ['url'];
     protected $dates = [
         'created_at',
