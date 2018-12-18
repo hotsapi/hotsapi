@@ -15,7 +15,7 @@ class AddParsedId extends Migration
     {
         Schema::table('replays', function (Blueprint $table) {
             $table->dropColumn('parsed_at');
-            $table->integer('parsed_id')->after('id')->unsigned()->nullable()->index();
+            $table->integer('parsed_id')->after('id')->unsigned()->nullable()->unique();
         });
     }
 
