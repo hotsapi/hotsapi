@@ -94,7 +94,7 @@ class ReplayService
             Player::insertOnDuplicateKey($data['players']);
         }
         DB::transaction(function () use ($replay) {
-            $parsedId = DB::selectOne('SELECT MAX(parsed_id) AS max FROM replays')->max;
+            $parsedId = DB::selectOne('SELECT MAX(parsed_id) AS max FROM replays FOR UPDATE')->max;
             $replay->parsed_id = $parsedId + 1;
             $replay->processed = 1;
             $replay->save();
