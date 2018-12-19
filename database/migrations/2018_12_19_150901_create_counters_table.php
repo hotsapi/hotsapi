@@ -1,6 +1,5 @@
 <?php
 
-use DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -19,8 +18,8 @@ class CreateCountersTable extends Migration
             $table->integer('value');
         });
 
-        $max = DB::selectOne("SELECT MAX(parsed_id) AS max FROM replays")->max;
-        DB::insert("INSERT INTO counters VALUES ('parsed_id', ?)", [$max]);
+        #$max = DB::selectOne("SELECT MAX(parsed_id) AS max FROM replays")->max;
+        #DB::insert("INSERT INTO counters VALUES ('parsed_id', ?)", [$max]);
     }
 
     /**
