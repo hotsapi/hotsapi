@@ -7,6 +7,7 @@ use App\Player;
 use App\PlayerTalent;
 use App\Replay;
 use App\Score;
+use App\Services\Counters;
 use DB;
 use Storage;
 
@@ -93,12 +94,10 @@ class ReplayService
         if ($data['players']) {
             Player::insertOnDuplicateKey($data['players']);
         }
-        DB::transaction(function () use ($replay) {
-            $parsedId = DB::selectOne('SELECT MAX(parsed_id) AS max FROM replays FOR UPDATE')->max;
-            $replay->parsed_id = $parsedId + 1;
-            $replay->processed = 1;
-            $replay->save();
-        });
+
+        $replay->parsed_id = Counters::increment('parsed_id');
+        $replay->processed = 1;
+        $replay->save();
     }
 
     /**
