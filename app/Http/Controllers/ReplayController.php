@@ -12,8 +12,8 @@ use Illuminate\Http\Request;
 class ReplayController extends Controller
 {
     // Number of replays per page
-    const PAGE_SIZE = 100;
-    const PAGE_SIZE_WITH_PLAYERS = 10;
+    const PAGE_SIZE = 1000;
+    const PAGE_SIZE_WITH_PLAYERS = 100;
 
     /**
      * Upload a replay
