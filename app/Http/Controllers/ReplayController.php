@@ -13,6 +13,7 @@ class ReplayController extends Controller
 {
     // Number of replays per page
     const PAGE_SIZE = 100;
+    const PAGE_SIZE_WITH_PLAYERS = 10;
 
     /**
      * Upload a replay
@@ -43,6 +44,7 @@ class ReplayController extends Controller
     /**
      * Show replay list
      *
+     * @deprecated
      * @param Request $request
      * @return string
      */
@@ -54,8 +56,57 @@ class ReplayController extends Controller
     }
 
     /**
+     * Show replay list, new version with less filters
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function indexV2(Request $request)
+    {
+        $query = Replay::on('mysql_slave')->select(\DB::raw('/*+ MAX_EXECUTION_TIME(30000) */ *'))->with('game_map');
+
+        if ($request->min_id) {
+            $query->where('id', '>=', $request->min_id);
+        }
+
+        if ($request->with_players) {
+            $query->with('bans', 'bans.hero', 'players', 'players.hero', 'players.talents', 'players.score');
+        }
+
+        $query->orderBy('id');
+        $query->limit($request->with_players ? ReplayController::PAGE_SIZE_WITH_PLAYERS : ReplayController::PAGE_SIZE);
+        $replays = $query->get();
+        return ReplayResource::collection($replays);
+    }
+
+    /**
+     * Show parsed replay list
+     *
+     * @param Request $request
+     * @return string
+     */
+    public function parsed(Request $request)
+    {
+        $query = Replay::on('mysql_slave')->select(\DB::raw('/*+ MAX_EXECUTION_TIME(30000) */ *'))->with('game_map');
+
+        if ($request->min_parsed_id) {
+            $query->where('parsed_id', '>=', $request->min_parsed_id);
+        }
+
+        if ($request->with_players) {
+            $query->with('bans', 'bans.hero', 'players', 'players.hero', 'players.talents', 'players.score');
+        }
+
+        $query->orderBy('parsed_id');
+        $query->limit($request->with_players ? ReplayController::PAGE_SIZE_WITH_PLAYERS : ReplayController::PAGE_SIZE);
+        $replays = $query->get();
+        return ReplayResource::collection($replays);
+    }
+
+    /**
      * Show replay list with page metadata
-     * 
+     *
+     * @deprecated
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
@@ -129,6 +180,28 @@ class ReplayController extends Controller
         $absent = array_values(array_diff($all, $exists));
 
         return response()->json(['exists' => $exists, 'absent' => $absent]);
+    }
+
+    /**
+     * Get the earliest replay id for a given date
+     *
+     * @param Request $request
+     * @return int
+     */
+    public function minId(Request $request)
+    {
+        return Replay::where('game_date', '>=', $request->date)->min('id');
+    }
+
+    /**
+     * Get the earliest replay id for a given date
+     *
+     * @param Request $request
+     * @return int
+     */
+    public function minParsedId(Request $request)
+    {
+        return Replay::where('game_date', '>=', $request->date)->min('parsed_id');
     }
 
     /**

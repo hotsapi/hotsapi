@@ -11,8 +11,12 @@
 |
 */
 
-Route::get ('replays', 'ReplayController@index')->middleware('throttle:30,1'); //start_date end_date map game_type player min_id
-Route::get ('replays/paged', 'ReplayController@paged')->middleware('throttle:30,1'); //start_date end_date map game_type player min_id page
+Route::get ('replays', 'ReplayController@index')->middleware('throttle:30,1'); // start_date end_date map game_type player min_id
+Route::get ('replays/paged', 'ReplayController@paged')->middleware('throttle:30,1'); // deprecated
+Route::get ('replays/parsed', 'ReplayController@parsed')->middleware('throttle:30,1');
+// Disabled because their SQL queries are too slow
+//Route::get ('replays/min_id/{date}', 'ReplayController@minId')->middleware('throttle:30,1');
+//Route::get ('replays/parsed/min_id/{date}', 'ReplayController@minParsedId')->middleware('throttle:30,1');
 Route::post('upload', 'ReplayController@store');
 Route::post('replays', 'ReplayController@store');
 Route::get ('replays/fingerprints/v3/{fingerprint}', 'ReplayController@checkV3');
@@ -20,7 +24,6 @@ Route::get ('replays/fingerprints/v2/{fingerprint}', 'ReplayController@checkV2')
 Route::post('replays/fingerprints', 'ReplayController@massCheck');
 Route::get ('replays/min-build', 'ReplayController@minimumBuild');
 Route::get ('replays/{replay}', 'ReplayController@show')->middleware('throttle:60,1');
-
 
 Route::get ('heroes', 'HeroController@index');
 Route::get ('heroes/translations', 'HeroController@index'); // left for compatibility
