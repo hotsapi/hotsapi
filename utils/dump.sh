@@ -6,7 +6,7 @@ set -x
 
 # Generated files:
 # https://storage.googleapis.com/hotsapi/db/schema/heroes.sql.gz
-# https://storage.googleapis.com/hotsapi/db/schema/schema.sql
+# https://storage.googleapis.com/hotsapi/db/schema/schema.sql.gz
 # https://storage.googleapis.com/hotsapi/db/data/replays.csv.gz
 # https://storage.googleapis.com/hotsapi/db/data/bans.csv.gz
 # https://storage.googleapis.com/hotsapi/db/data/players.csv.gz
