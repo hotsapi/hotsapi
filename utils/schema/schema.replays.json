@@ -1,0 +1,236 @@
+[
+  {
+    "name": "id",
+    "type": "INTEGER"
+  },
+  {
+    "name": "parsed_id",
+    "type": "INTEGER"
+  },
+  {
+    "name": "created_at",
+    "type": "TIMESTAMP"
+  },
+  {
+    "name": "filename",
+    "type": "STRING"
+  },
+  {
+    "name": "size",
+    "type": "INTEGER"
+  },
+  {
+    "name": "fingerprint",
+    "type": "STRING"
+  },
+  {
+    "name": "game_type",
+    "type": "STRING"
+  },
+  {
+    "name": "game_date",
+    "type": "TIMESTAMP"
+  },
+  {
+    "name": "game_length",
+    "type": "INTEGER"
+  },
+  {
+    "name": "game_map",
+    "type": "STRING"
+  },
+  {
+    "name": "game_version",
+    "type": "STRING"
+  },
+  {
+    "name": "region",
+    "type": "INTEGER"
+  },
+  {
+    "name": "bans",
+    "mode": "REPEATED",
+    "type": "RECORD",
+    "fields": [
+      {
+        "name": "hero",
+        "type": "STRING"
+      },
+      {
+        "name": "team",
+        "type": "STRING"
+      },
+      {
+        "name": "index",
+        "type": "INTEGER"
+      }
+    ]
+  },
+  {
+    "name": "players",
+    "mode": "REPEATED",
+    "type": "RECORD",
+    "fields": [
+      {
+        "name": "hero",
+        "type": "STRING"
+      },
+      {
+        "name": "battletag",
+        "type": "STRING"
+      },
+      {
+        "name": "hero_level",
+        "type": "INTEGER"
+      },
+      {
+        "name": "team",
+        "type": "INTEGER"
+      },
+      {
+        "name": "winner",
+        "type": "BOOLEAN"
+      },
+      {
+        "name": "blizz_id",
+        "type": "INTEGER"
+      },
+      {
+        "name": "party",
+        "type": "INTEGER"
+      },
+      {
+        "name": "silenced",
+        "type": "BOOLEAN"
+      },
+      {
+        "name": "talents",
+        "type": "RECORD",
+        "fields": [
+          {
+            "name": "_1",
+            "type": "STRING"
+          },
+          {
+            "name": "_4",
+            "type": "STRING"
+          },
+          {
+            "name": "_7",
+            "type": "STRING"
+          },
+          {
+            "name": "_10",
+            "type": "STRING"
+          },
+          {
+            "name": "_13",
+            "type": "STRING"
+          },
+          {
+            "name": "_16",
+            "type": "STRING"
+          },
+          {
+            "name": "_20",
+            "type": "STRING"
+          }
+        ]
+      },
+      {
+        "name": "score",
+        "type": "RECORD",
+        "fields": [
+          {
+            "name": "level",
+            "type": "INTEGER"
+          },
+          {
+            "name": "kills",
+            "type": "INTEGER"
+          },
+          {
+            "name": "assists",
+            "type": "INTEGER"
+          },
+          {
+            "name": "takedowns",
+            "type": "INTEGER"
+          },
+          {
+            "name": "deaths",
+            "type": "INTEGER"
+          },
+          {
+            "name": "highest_kill_streak",
+            "type": "INTEGER"
+          },
+          {
+            "name": "hero_damage",
+            "type": "INTEGER"
+          },
+          {
+            "name": "siege_damage",
+            "type": "INTEGER"
+          },
+          {
+            "name": "structure_damage",
+            "type": "INTEGER"
+          },
+          {
+            "name": "minion_damage",
+            "type": "INTEGER"
+          },
+          {
+            "name": "creep_damage",
+            "type": "INTEGER"
+          },
+          {
+            "name": "summon_damage",
+            "type": "INTEGER"
+          },
+          {
+            "name": "time_cc_enemy_heroes",
+            "type": "INTEGER"
+          },
+          {
+            "name": "healing",
+            "type": "INTEGER"
+          },
+          {
+            "name": "self_healing",
+            "type": "INTEGER"
+          },
+          {
+            "name": "damage_taken",
+            "type": "INTEGER"
+          },
+          {
+            "name": "experience_contribution",
+            "type": "INTEGER"
+          },
+          {
+            "name": "town_kills",
+            "type": "INTEGER"
+          },
+          {
+            "name": "time_spent_dead",
+            "type": "INTEGER"
+          },
+          {
+            "name": "merc_camp_captures",
+            "type": "INTEGER"
+          },
+          {
+            "name": "watch_tower_captures",
+            "type": "INTEGER"
+          },
+          {
+            "name": "meta_experience",
+            "type": "INTEGER"
+          }
+        ]
+      }
+    ]
+  }
+]
