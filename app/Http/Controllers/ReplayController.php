@@ -69,6 +69,10 @@ class ReplayController extends Controller
             $query->where('id', '>=', $request->min_id);
         }
 
+        if ($request->existing) {
+            $query->where('deleted', 0);
+        }
+
         if ($request->with_players) {
             $query->with('bans', 'bans.hero', 'players', 'players.hero', 'players.talents', 'players.score');
         }
