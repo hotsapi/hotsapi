@@ -67,7 +67,7 @@
 
             // Build a system
             const ui = SwaggerUIBundle({
-                url: "spec/hotsapi-1.0.yaml",
+                url: "spec/hotsapi-1.0.yaml?1",
                 dom_id: '#swagger-ui',
                 presets: [
                     SwaggerUIBundle.presets.apis,
