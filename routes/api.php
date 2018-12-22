@@ -11,8 +11,7 @@
 |
 */
 
-Route::get ('replays', 'ReplayController@index')->middleware('throttle:30,1'); // start_date end_date map game_type player min_id
-Route::get ('replays/paged', 'ReplayController@paged')->middleware('throttle:30,1'); // deprecated
+Route::get ('replays', 'ReplayController@index')->middleware('throttle:30,1');
 Route::get ('replays/parsed', 'ReplayController@parsed')->middleware('throttle:30,1');
 // Disabled because their SQL queries are too slow
 //Route::get ('replays/min_id/{date}', 'ReplayController@minId')->middleware('throttle:30,1');
