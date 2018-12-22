@@ -27,7 +27,13 @@
                     <a href="{{ url('upload') }}">Upload replays</a>
                 </li>
                 <li {{ setActive('docs') }}>
-                    <a href="{{ url('docs') }}">API Documentation</a>
+                    <a href="{{ url('docs') }}">Documentation</a>
+                </li>
+                <li {{ setActive('swagger') }}>
+                    <a href="{{ url('swagger') }}">API</a>
+                </li>
+                <li>
+                    <a href="https://bigquery.cloud.google.com/dataset/cloud-project-179020:hotsapi" target="_blank">BigQuery <span class="glyphicon glyphicon-new-window"></span></a>
                 </li>
                 <li {{ setActive('faq') }}>
                     <a href="{{ url('faq') }}">FAQ</a>

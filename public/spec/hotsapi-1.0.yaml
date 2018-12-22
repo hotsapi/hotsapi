@@ -2,7 +2,6 @@ swagger: '2.0'
 info:
   version: '1.0'
   title: 'HotS API'
-  description: 'HotsApi is an open Heroes of the Storm replay database where everyone can download replays and access it via this Api. Whether you want to continuously get new replays, download them all once, or just query their metadata, our service helps you to start development faster.'
 
 # Config for hotsapi.net
 host: hotsapi.net
@@ -14,7 +13,8 @@ schemes:
 paths:
   /replays:
     get:
-      summary: List all Replays
+      summary: List all replays
+      description: Returns up to 1000 replays sorted by id. For paging and incremental updates use `min_id` parameter.
       operationId: listReplays
       tags:
         - replays
@@ -23,49 +23,23 @@ paths:
       parameters:
         - name: min_id
           in: query
-          description: Minimum replay id in database. Useful for paging and pulling incremental data.
+          description: Minimum replay id
           required: false
           type: integer
           example: 1337
-        - name: start_date
+        - name: existing
           in: query
-          description: Minimum replay date
           required: false
-          type: string
-          format: date
-          example: '2017-09-18'
-        - name: end_date
-          in: query
-          description: Maximum replay date
-          required: false
-          type: string
-          format: date
-          example: '2017-09-30'
-        - name: game_map
-          in: query
-          description: Game map (currently disabled)
-          required: false
-          type: string
-          example: Towers of Doom
-        - name: game_type
-          in: query
-          description: Game type without spaces
-          required: false
-          type: string
-          example: HeroLeague
-        - name: player
-          in: query
-          description: Battle tag of a player
-          required: false
-          type: string
-          example: Grubby
+          type: boolean
+          description: Whether to include only replays that still have corresponding files on hotsapi S3 storage
         - name: with_players
           in: query
+          required: false
           type: boolean
-          description: Whether to include player and ban data in response
+          description: Whether to include player and ban data in response. When used reduces max returned objects to 100.
       responses:
         '200':
-          description: An array with Replays
+          description: An array with replays
           schema:
             type: array
             items:
@@ -87,52 +61,36 @@ paths:
           description: Return an upload response
           schema:
             $ref: '#/definitions/UploadResponse'
-  /replays/paged:
+  /replays/parsed:
     get:
-      summary: List all Replays
-      operationId: listReplaysPaged
+      summary: List all parsed replays
+      description: >-
+        Returns up to 1000 replays sorted by parsed id. Parsed id unique and is incrementally assigned
+        as replays are parsed. For paging and incremental updates use `min_parsed_id` parameter.
+      operationId: listReplays
       tags:
         - replays
       produces:
         - application/json
       parameters:
-        - name: page
+        - name: min_parsed_id
           in: query
-          description: Page to display, defaults to 1
+          description: Minimum parsed id
           required: false
           type: integer
-        - name: start_date
+          example: 1337
+        - name: with_players
           in: query
-          description: Minimum replay date
           required: false
-          type: string
-          format: date
-        - name: end_date
-          in: query
-          description: Maximum replay date
-          required: false
-          type: string
-          format: date
-        - name: game_map
-          in: query
-          description: Game map
-          required: false
-          type: string
-        - name: game_type
-          in: query
-          description: Game type without spaces
-          required: false
-          type: string
-        - name: player
-          in: query
-          description: Battle tag of a player
-          required: false
-          type: string
+          type: boolean
+          description: Whether to include player and ban data in response. When used reduces max returned objects to 100.
       responses:
         '200':
           description: An array with Replays
           schema:
-            $ref: '#/definitions/PagedReplaysResponse'
+            type: array
+            items:
+              $ref: '#/definitions/Replay'
   '/replays/{id}':
     get:
       summary: Requests a specific replay
@@ -158,7 +116,7 @@ paths:
       deprecated: true
       summary: Create one or more Replay as File Uploads.
       description: 'This method is deprecated because the method style does not follow a
-        Ressource based approach. Please use the POST method of the Ressource
+        Ressource based approach. Please use the POST method of the Resource
         __Replays__ instead.'
       operationId: uploadReplay
       tags:
@@ -305,6 +263,12 @@ definitions:
           type: string
         url:
           type: string
+        processed:
+          description: Whether the replay was processed by extended parser
+          type: boolean
+        deleted:
+          description: Whether the corresponding replay file was deleted from S3 storage
+          type: boolean
         players:
           type: array
           items:
