@@ -22,6 +22,7 @@ class ReplayResource extends Resource
     {
         $result = [
             'id' => $this->id,
+            'parsed_id' => $this->parsed_id,
             'filename' => $this->filename,
             'size' => $this->size,
             'game_type' => $this->game_type,
