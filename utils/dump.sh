@@ -14,18 +14,19 @@ set -x
 # https://storage.googleapis.com/hotsapi/db/data/player_talent.csv.gz
 # https://storage.googleapis.com/hotsapi/db/data/max_parsed_id
 
-DB_HOST=slave.gc.db.hotsapi.net
+DB_HOST=gc.db.hotsapi.net
 DB_USER=root
+INSTANCE=hotsapi-master-3
 
 FROM=$(gsutil cp gs://hotsapi/db/data/max_parsed_id -)
 TO=$(mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWORD -sse "select max(parsed_id) from hotsapi.replays")
 
 # TODO handle timeout on tasks
-gcloud sql export csv hotsapi-master-3-replica --database=hotsapi gs://hotsapi/db/export/replays.csv       --query="select * from replays where parsed_id > $FROM and parsed_id <= $TO"
-gcloud sql export csv hotsapi-master-3-replica --database=hotsapi gs://hotsapi/db/export/bans.csv          --query="select * from bans where replay_id in (select id from replays where parsed_id > $FROM and parsed_id <= $TO)"
-gcloud sql export csv hotsapi-master-3-replica --database=hotsapi gs://hotsapi/db/export/players.csv       --query="select * from players where replay_id in (select id from replays where parsed_id > $FROM and parsed_id <= $TO)"
-gcloud sql export csv hotsapi-master-3-replica --database=hotsapi gs://hotsapi/db/export/scores.csv        --query="select * from scores where id in (select id from players where replay_id in (select id from replays where parsed_id > $FROM and parsed_id <= $TO))"
-gcloud sql export csv hotsapi-master-3-replica --database=hotsapi gs://hotsapi/db/export/player_talent.csv --query="select * from player_talent where player_id in (select id from players where replay_id in (select id from replays where parsed_id > $FROM and parsed_id <= $TO))"
+gcloud sql export csv $INSTANCE --database=hotsapi gs://hotsapi/db/export/replays.csv       --query="select * from replays where parsed_id > $FROM and parsed_id <= $TO"
+gcloud sql export csv $INSTANCE --database=hotsapi gs://hotsapi/db/export/bans.csv          --query="select * from bans where replay_id in (select id from replays where parsed_id > $FROM and parsed_id <= $TO)"
+gcloud sql export csv $INSTANCE --database=hotsapi gs://hotsapi/db/export/players.csv       --query="select * from players where replay_id in (select id from replays where parsed_id > $FROM and parsed_id <= $TO)"
+gcloud sql export csv $INSTANCE --database=hotsapi gs://hotsapi/db/export/scores.csv        --query="select * from scores where id in (select id from players where replay_id in (select id from replays where parsed_id > $FROM and parsed_id <= $TO))"
+gcloud sql export csv $INSTANCE --database=hotsapi gs://hotsapi/db/export/player_talent.csv --query="select * from player_talent where player_id in (select id from players where replay_id in (select id from replays where parsed_id > $FROM and parsed_id <= $TO))"
 
 for file in replays bans players scores player_talent; do
 
@@ -52,3 +53,8 @@ gsutil acl ch -r -u AllUsers:R gs://hotsapi/db/data
 # Update schema files
 mysqldump -h $DB_HOST -u $DB_USER -p$DB_PASSWORD --add-drop-table hotsapi maps map_translations heroes abilities talents hero_talent hero_translations | gzip | gsutil cp -a public-read - gs://hotsapi/db/schema/heroes.sql.gz
 mysqldump -h $DB_HOST -u $DB_USER -p$DB_PASSWORD --no-data hotsapi replays bans players scores player_talent | gzip | gsutil cp -a public-read - gs://hotsapi/db/schema/schema.sql.gz
+
+
+for table in replays bans players scores player_talent; do
+	bq --location=EU load --replace --null_marker "\\N" --autodetect --source_format=CSV update.$table gs://hotsapi/db/processed/$table.csv.gz
+done
