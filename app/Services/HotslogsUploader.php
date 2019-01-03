@@ -145,6 +145,7 @@ class HotslogsUploader
      * @param $sourceName
      * @param $targetBucket
      * @param $targetName
+     * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
      */
     public function s3copy($sourceBucket, $sourceName, $targetBucket, $targetName)
     {

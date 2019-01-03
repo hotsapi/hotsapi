@@ -78,6 +78,7 @@ class ReplayService
     /**
      * @param $filename
      * @param $replay
+     * @throws \Throwable
      */
     public function parseReplayExtended($filename, Replay $replay)
     {
@@ -104,6 +105,7 @@ class ReplayService
      * Remove replay and all associated entities from DB and cloud storage
      *
      * @param Replay $replay
+     * @throws \Exception
      */
     public function delete(Replay $replay)
     {
