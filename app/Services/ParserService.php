@@ -411,6 +411,22 @@ class ParserService
                     'merc_camp_captures' => $player->score->MercCampCaptures,
                     'watch_tower_captures' => $player->score->WatchTowerCaptures,
                     'meta_experience' => $player->score->MetaExperience,
+                    'damage_soaked' => $player->score->DamageSoaked,
+                    'physical_damage' => $player->score->PhysicalDamage,
+                    'spell_damage' => $player->score->SpellDamage,
+                    'protection_given_to_allies' => $player->score->ProtectionGivenToAllies,
+                    'teamfight_damage_taken' => $player->score->TeamfightDamageTaken,
+                    'teamfight_escapes_performed' => $player->score->TeamfightEscapesPerformed,
+                    'teamfight_healing_done' => $player->score->TeamfightHealingDone,
+                    'teamfight_hero_damage' => $player->score->TeamfightHeroDamage,
+                    'time_rooting_enemy_heroes' => $player->score->TimeRootingEnemyHeroes,
+                    'time_silencing_enemy_heroes' => $player->score->TimeSilencingEnemyHeroes,
+                    'time_stunning_enemy_heroes' => $player->score->TimeStunningEnemyHeroes,
+                    'multikill' => $player->score->Multikill,
+                    'outnumbered_deaths' => $player->score->OutnumberedDeaths,
+                    'vengeances_performed' => $player->score->VengeancesPerformed,
+                    'escapes_performed' => $player->score->EscapesPerformed,
+                    'clutch_heals_performed' => $player->score->ClutchHealsPerformed,
                 ];
             }
 
