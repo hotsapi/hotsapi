@@ -109,6 +109,15 @@ class WebController extends Controller
 
                 echo "Battletag is: " . $data->battletag . "\n";
                 echo "Account id is: " . $data->id . "\n"; //$data->sub
+
+                $battletag = $data->battletag;
+
+                // check if we know blizz_id for btag
+                $parts = explode('#', $battletag);
+                $player = \App\Player::where('battletag_name', $parts[0])->where('battletag_id', $parts[1])->first();
+                if ($player) {
+                    $blizz_id = $player->blizz_id;
+                }
             } catch (IdentityProviderException $e) {
 
                 // Failed to get the access token or user details.
