@@ -59,6 +59,8 @@ class FetchTalents extends Command
                 'id' => $hero->id,
                 'name' => $hero->name,
                 'short_name' => $hero->short_name,
+                'c_hero_id' => $hero->cHeroId,
+                'c_unit_id' => $hero->cUnitId,
                 'role' => $data->role,
                 'type' => $data->type,
                 'release_date' => $data->releaseDate,
