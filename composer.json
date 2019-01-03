@@ -14,9 +14,11 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "league/oauth2-client": "^2.4",
         "predis/predis": "^1.1",
         "swagger-api/swagger-ui": "^3.2",
-        "yadakhov/insert-on-duplicate-key": "^1.2"
+        "yadakhov/insert-on-duplicate-key": "^1.2",
+        "ext-json": "*"
     },
     "require-dev": {
         "filp/whoops": "~2.0",

@@ -16,3 +16,4 @@ Route::get('/upload', 'WebController@upload');
 Route::get('/docs', 'WebController@docs');
 Route::get('/swagger', 'WebController@swagger');
 Route::get('/faq', 'WebController@faq');
+Route::get('/bnet-auth', 'WebController@bnetAuth');
