@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Ban;
+use App\Jobs\SendToBigQueryJob;
 use App\Player;
 use App\PlayerTalent;
 use App\Replay;
@@ -99,6 +100,8 @@ class ReplayService
         $replay->parsed_id = Counters::increment('parsed_id');
         $replay->processed = 1;
         $replay->save();
+
+        SendToBigQueryJob::dispatch($replay->id);
     }
 
     /**

@@ -8,6 +8,11 @@ use Log;
 
 class BigQuery
 {
+    /**
+     * @param Replay $replay replay object to upload
+     * @return void
+     * @throws \Exception
+     */
     public function insertRow(Replay $replay)
     {
         $bigQuery = new BigQueryClient(['keyFilePath' => './../.gcloud.json', 'projectId' => 'cloud-project-179020']);
@@ -25,11 +30,9 @@ class BigQuery
                     $error .=  $err['reason'] . ': ' . $err['message'] . PHP_EOL;
                 }
 
-                Log::error($error);
+                throw new \Exception($error);
             }
         }
-
-        return $result->isSuccessful();
     }
 }
 
