@@ -76,8 +76,12 @@
         "type": "STRING"
       },
       {
-        "name": "battletag",
+        "name": "battletag_name",
         "type": "STRING"
+      },
+      {
+        "name": "battletag_id",
+        "type": "INTEGER"
       },
       {
         "name": "hero_level",

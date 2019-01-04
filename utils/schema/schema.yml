@@ -17,7 +17,8 @@ replays:
       index: integer
   players:
     - hero: string
-      battletag: string
+      battletag_name: string
+      battletag_id: integer
       hero_level: integer
       team: integer
       winner: boolean
