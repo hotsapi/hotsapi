@@ -18,6 +18,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property int|null $sort
  * @property int|null $cooldown
  * @property int|null $mana_cost
+ * @property-read mixed $icon_url
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Hero[] $heroes
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Talent whereAbilityId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Talent whereCooldown($value)

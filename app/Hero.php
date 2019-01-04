@@ -14,6 +14,10 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property string|null $role
  * @property string|null $type
  * @property string|null $release_date
+ * @property string|null $attribute_id
+ * @property string|null $c_hero_id
+ * @property string|null $c_unit_id
+ * @property-read mixed $icon_url
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Ability[] $abilities
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Talent[] $talents
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\HeroTranslation[] $translations
@@ -23,6 +27,9 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereRole($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereShortName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereAttributeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereCHeroId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Hero whereCUnitId($value)
  * @mixin \Eloquent
  */
 class Hero extends Model
