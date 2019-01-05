@@ -370,6 +370,7 @@ class ParserService
         $talents = [];
         $bans = [];
         $players = [];
+        $teams = [];
         foreach($data->players as $player) {
             $srcPlayer = $replay->players->where('blizz_id', $player->blizz_id)->first();
             if (!$srcPlayer) {
@@ -470,7 +471,22 @@ class ParserService
             }
         }
 
-        return compact('bans', 'players', 'talents', 'scores');
+        foreach ($data->teams as $teamIndex => $team) {
+            $teams[] = [
+                'replay_id' => $replay->id,
+                'index' => $teamIndex,
+                'winner' => $team->winner,
+                'team_level' => $team->team_level,
+                'structure_xp' => $team->structure_xp,
+                'creep_xp' => $team->creep_xp,
+                'hero_xp' => $team->hero_xp,
+                'minion_xp' => $team->minion_xp,
+                'trickle_xp' => $team->trickle_xp,
+                'total_xp' => $team->total_xp,
+            ];
+        }
+
+        return compact('bans', 'players', 'talents', 'scores', 'teams');
     }
 
 

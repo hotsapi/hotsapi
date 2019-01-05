@@ -9,6 +9,7 @@ use App\PlayerTalent;
 use App\Replay;
 use App\Score;
 use App\Services\Counters;
+use App\Team;
 use DB;
 use Storage;
 
@@ -95,6 +96,9 @@ class ReplayService
         }
         if ($data['players']) {
             Player::insertOnDuplicateKey($data['players']);
+        }
+        if ($data['teams']) {
+            Team::insertOnDuplicateKey($data['teams']);
         }
 
         $replay->parsed_id = Counters::increment('parsed_id');

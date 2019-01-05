@@ -29,6 +29,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property-read bool $url
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\HotslogsUpload[] $hotslogsUploads
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Player[] $players
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Team[] $teams
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereParsedId($value)
@@ -77,6 +78,11 @@ class Replay extends Model
     public function bans()
     {
         return $this->hasMany(Ban::class);
+    }
+
+    public function teams()
+    {
+        return $this->hasMany(Team::class);
     }
 
     /**
