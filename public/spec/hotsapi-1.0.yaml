@@ -273,6 +273,10 @@ definitions:
           type: array
           items:
             $ref: '#/definitions/Player'
+        teams:
+          type: array
+          items:
+            $ref: '#/definitions/Team'
         bans:
           type: array
           items:
@@ -449,6 +453,24 @@ definitions:
         watch_tower_captures:
           type: integer
         meta_experience:
+          type: integer
+    Team:
+      properties:
+        winner:
+          type: boolean
+        team_level:
+          type: integer
+        structure_xp:
+          type: integer
+        creep_xp:
+          type: integer
+        hero_xp:
+          type: integer
+        minion_xp:
+          type: integer
+        trickle_xp:
+          type: integer
+        total_xp:
           type: integer
     UploadResponse:
       required:

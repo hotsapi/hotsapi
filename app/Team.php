@@ -15,6 +15,9 @@ class Team extends Model
 {
     use InsertOnDuplicateKey;
 
+    protected $guarded = ['id', 'replay_id', 'index'];
+    protected $hidden = ['id', 'replay_id', 'index'];
+
     public function replay()
     {
         return $this->belongsTo(Replay::class);

@@ -27,6 +27,7 @@ class AddTeams extends Migration
             $table->integer('total_xp')->unsigned()->default(0);
 
             $table->foreign('replay_id')->references('id')->on('replays')->onDelete('cascade');
+            $table->unique(['replay_id', 'index']);
         });
     }
 

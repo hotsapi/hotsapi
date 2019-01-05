@@ -61,6 +61,7 @@ class Score extends Model
 {
     use InsertOnDuplicateKey;
 
+    protected $guarded = ['id', 'player_id'];
     protected $hidden = ['id', 'player_id'];
 
     public function player()

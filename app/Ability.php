@@ -37,7 +37,7 @@ class Ability extends Model
 {
     use InsertOnDuplicateKey;
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'hero_id'];
     protected $hidden = ['id', 'hero_id'];
     public $timestamps = false;
 
