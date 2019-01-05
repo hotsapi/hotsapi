@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 class ReplayController extends Controller
 {
     // Number of replays per page
-    const PAGE_SIZE = 100;
+    const PAGE_SIZE = 1000;
+    const PAGE_SIZE_WITH_PLAYERS = 100;
 
     /**
      * Upload a replay
@@ -48,28 +49,48 @@ class ReplayController extends Controller
      */
     public function index(Request $request)
     {
-        $query = $this->getQuery($request);
-        $replays = $query->limit(ReplayController::PAGE_SIZE)->get();
+        $query = Replay::on('mysql_slave')->select(\DB::raw('/*+ MAX_EXECUTION_TIME(30000) */ *'))->with('game_map');
+
+        if ($request->min_id) {
+            $query->where('id', '>=', $request->min_id);
+        }
+
+        if ($request->existing) {
+            $query->where('deleted', 0);
+        }
+
+        if ($request->with_players) {
+            $query->with('bans', 'bans.hero', 'players', 'players.hero', 'players.talents', 'players.score');
+        }
+
+        $query->orderBy('id');
+        $query->limit($request->with_players ? ReplayController::PAGE_SIZE_WITH_PLAYERS : ReplayController::PAGE_SIZE);
+        $replays = $query->get();
         return ReplayResource::collection($replays);
     }
 
     /**
-     * Show replay list with page metadata
-     * 
+     * Show parsed replay list
+     *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return string
      */
-    public function paged(Request $request)
+    public function parsed(Request $request)
     {
-        $page = (int)($request->page ?? 1);
-        $query = $this->getQuery($request);
-        // disabled due to performance issues
-        //$total = $query->count();
-        //$pageCount = ceil($total / self::PAGE_SIZE);
-        $replays = $query->forPage($page, self::PAGE_SIZE)->get();
-        $result = ['per_page' => self::PAGE_SIZE, 'page' => $page, /*'page_count' => $pageCount, 'total' => $total, */'replays' => $replays];
+        $query = Replay::on('mysql_slave')->select(\DB::raw('/*+ MAX_EXECUTION_TIME(30000) */ *'))->with('game_map');
 
-        return response()->json($result);
+        if ($request->min_parsed_id) {
+            $query->where('parsed_id', '>=', $request->min_parsed_id);
+        }
+
+        if ($request->with_players) {
+            $query->with('bans', 'bans.hero', 'players', 'players.hero', 'players.talents', 'players.score');
+        }
+
+        $query->orderBy('parsed_id');
+        $query->limit($request->with_players ? ReplayController::PAGE_SIZE_WITH_PLAYERS : ReplayController::PAGE_SIZE);
+        $replays = $query->get();
+        return ReplayResource::collection($replays);
     }
 
     /**
@@ -117,19 +138,6 @@ class ReplayController extends Controller
     }
 
     /**
-     * Check whether a replay with given fingerprint is already uploaded
-     * This if old fingerprint version, retained for compatibility
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function checkV1(Request $request)
-    {
-        $exists = Replay::where('fingerprint_old', $request->fingerprint)->exists();
-        return response()->json(['exists' => $exists]);
-    }
-
-    /**
      * Check whether replays with given fingerprints are already uploaded
      *
      * @param Request $request
@@ -145,6 +153,28 @@ class ReplayController extends Controller
     }
 
     /**
+     * Get the earliest replay id for a given date
+     *
+     * @param Request $request
+     * @return int
+     */
+    public function minId(Request $request)
+    {
+        return Replay::where('game_date', '>=', $request->date)->min('id');
+    }
+
+    /**
+     * Get the earliest replay id for a given date
+     *
+     * @param Request $request
+     * @return int
+     */
+    public function minParsedId(Request $request)
+    {
+        return Replay::where('game_date', '>=', $request->date)->min('parsed_id');
+    }
+
+    /**
      * Get minimum supported build
      *
      * @return int
@@ -152,62 +182,5 @@ class ReplayController extends Controller
     public function minimumBuild()
     {
         return ParserService::MIN_SUPPORTED_BUILD;
-    }
-
-    /**
-     * Creates a query object for replays based on a request
-     *
-     * @param Request $request
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    private function getQuery(Request $request)
-    {
-        $query = Replay::on('mysql_slave')->select(\DB::raw('/*+ MAX_EXECUTION_TIME(30000) */ *'))->with('game_map');
-
-        if ($request->start_date) {
-            $query->where('game_date', '>=', $request->start_date);
-        }
-
-        if ($request->end_date) {
-            $query->where('game_date', '<=', $request->end_date);
-        }
-
-//        if ($request->game_map) {
-//            // todo fix selecting by map name
-//            $query->where('game_map', $request->game_map);
-//        }
-
-        if ($request->game_type) {
-            $query->where('game_type', $request->game_type);
-        }
-
-        if ($request->min_id) {
-            $query->where('id', '>=', $request->min_id);
-        }
-
-        if ($request->player) {
-            $query->whereIn('id', function ($query) use ($request) {
-                $query->select('replay_id')->from('players');
-                if (strpos($request->player, '#') === false) {
-                    $query->where('battletag_name', $request->player);
-                } else {
-                    $parts = explode('#', $request->player);
-                    $query->where('battletag_name', $parts[0])->where('battletag_id', $parts[1]);
-                }
-            });
-        }
-
-//        todo fix selecting by hero name
-//        if ($request->hero) {
-//            $query->whereIn('id', function ($query) use ($request) {
-//                $query->select('replay_id')->from('players')->where('hero_id', $request->hero);
-//            });
-//        }
-
-        if ($request->with_players) {
-            $query->with('bans', 'bans.hero', 'players', 'players.hero', 'players.talents', 'players.score');
-        }
-
-        return $query->orderBy('id');
     }
 }

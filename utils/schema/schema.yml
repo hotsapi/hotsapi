@@ -1,0 +1,91 @@
+replays:
+  id: integer
+  parsed_id: integer
+  created_at: timestamp
+  filename: string
+  size: integer
+  fingerprint: string
+  game_type: string
+  game_date: timestamp
+  game_length: integer
+  game_map: string
+  game_version: string
+  region: integer
+  bans:
+    - hero: string
+      team: string
+      index: integer
+  players:
+    - hero: string
+      battletag_name: string
+      battletag_id: integer
+      hero_level: integer
+      team: integer
+      winner: boolean
+      blizz_id: integer
+      party: integer
+      silenced: boolean
+      talents:
+        _1: string
+        _4: string
+        _7: string
+        _10: string
+        _13: string
+        _16: string
+        _20: string
+      score:
+        level: integer
+        kills: integer
+        assists: integer
+        takedowns: integer
+        deaths: integer
+        highest_kill_streak: integer
+        hero_damage: integer
+        siege_damage: integer
+        structure_damage: integer
+        minion_damage: integer
+        creep_damage: integer
+        summon_damage: integer
+        time_cc_enemy_heroes: integer
+        healing: integer
+        self_healing: integer
+        damage_taken: integer
+        experience_contribution: integer
+        town_kills: integer
+        time_spent_dead: integer
+        merc_camp_captures: integer
+        watch_tower_captures: integer
+        meta_experience: integer
+
+heroes:
+  name: string
+  short_name: string
+  role: string
+  type: string
+  release_date: date
+  attribute_id: string
+  transations: [string]
+  abilities:
+    - owner: string
+      name: string
+      title: string
+      description: string
+      icon: string
+      hotkey: string
+      cooldown: integer
+      mana_cost: integer
+      trait: boolean
+  talents:
+    - name: string
+      title: string
+      description: string
+      icon: string
+      level: integer
+      ability: string
+      sort: integer
+      cooldown: integer
+      mana_cost: integer
+
+maps:
+  name: string
+  translations: [string]

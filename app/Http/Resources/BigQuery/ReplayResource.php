@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\BigQuery;
 
 use Illuminate\Http\Resources\Json\Resource;
 
@@ -23,23 +23,19 @@ class ReplayResource extends Resource
         $result = [
             'id' => $this->id,
             'parsed_id' => $this->parsed_id,
+            'created_at' => optional($this->created_at)->toDateTimeString(),
             'filename' => $this->filename,
             'size' => $this->size,
+            'fingerprint' => $this->fingerprint,
             'game_type' => $this->game_type,
             'game_date' => optional($this->game_date)->toDateTimeString(),
             'game_map' => optional($this->game_map)->name,
             'game_length' => $this->game_length,
             'game_version' => $this->game_version,
-            'fingerprint' => $this->fingerprint,
             'region' => $this->region,
-            'processed' => $this->processed == 1,
-            'deleted' => $this->deleted == 1,
-            'url' => $this->url,
-            'created_at' => optional($this->created_at)->toDateTimeString(),
-            'updated_at' => optional($this->updated_at)->toDateTimeString(),
         ];
         if ($this->relationLoaded('bans')) {
-            $result['bans'] = count($this->bans) ? new BanResourceCollection($this->bans) : null;
+            $result['bans'] = BanResource::collection($this->bans);
         }
         if ($this->relationLoaded('players')) {
             $result['players'] = PlayerResource::collection($this->players);

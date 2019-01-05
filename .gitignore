@@ -13,3 +13,5 @@ yarn-error.log
 /_ide_helper.php
 /.phpstorm.meta.php
 *.iml
+misc
+.gcloud.json

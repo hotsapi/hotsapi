@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\BigQuery;
 use App\Services\ParserService;
 use App\Services\ReplayService;
 use DB;
@@ -25,6 +26,10 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app->singleton(ReplayService::class, function () {
             return new ReplayService(new ParserService());
+        });
+
+        $this->app->singleton(BigQuery::class, function () {
+            return new BigQuery();
         });
 
         # migration fix for mysql < 5.7.7, needed for travis

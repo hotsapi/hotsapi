@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDeletedFlag extends Migration
+class RemoveOldFingerprints extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddDeletedFlag extends Migration
     public function up()
     {
         Schema::table('replays', function (Blueprint $table) {
-            $table->boolean('deleted');
+            $table->dropColumn('fingerprint_old');
         });
     }
 
@@ -26,7 +26,7 @@ class AddDeletedFlag extends Migration
     public function down()
     {
         Schema::table('replays', function (Blueprint $table) {
-            $table->dropColumn('deleted');
+
         });
     }
 }

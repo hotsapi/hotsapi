@@ -14,8 +14,8 @@ class AddHeroIdentifiers extends Migration
     public function up()
     {
         Schema::table('heroes', function (Blueprint $table) {
-           $table->string('c_hero_id', 32)->index();
-           $table->string('c_unit_id', 32);
+           $table->string('c_hero_id', 32)->index()->nullable();
+           $table->string('c_unit_id', 32)->nullable();
         });
     }
 

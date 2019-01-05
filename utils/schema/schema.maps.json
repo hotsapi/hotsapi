@@ -1,0 +1,11 @@
+[
+  {
+    "name": "name",
+    "type": "STRING"
+  },
+  {
+    "name": "translations",
+    "mode": "REPEATED",
+    "type": "STRING"
+  }
+]

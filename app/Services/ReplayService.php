@@ -3,10 +3,13 @@
 namespace App\Services;
 
 use App\Ban;
+use App\Jobs\SendToBigQueryJob;
 use App\Player;
 use App\PlayerTalent;
 use App\Replay;
 use App\Score;
+use App\Services\Counters;
+use DB;
 use Storage;
 
 class ReplayService
@@ -76,6 +79,7 @@ class ReplayService
     /**
      * @param $filename
      * @param $replay
+     * @throws \Throwable
      */
     public function parseReplayExtended($filename, Replay $replay)
     {
@@ -92,14 +96,19 @@ class ReplayService
         if ($data['players']) {
             Player::insertOnDuplicateKey($data['players']);
         }
+
+        $replay->parsed_id = Counters::increment('parsed_id');
         $replay->processed = 1;
         $replay->save();
+
+        SendToBigQueryJob::dispatch($replay->id);
     }
 
     /**
      * Remove replay and all associated entities from DB and cloud storage
      *
      * @param Replay $replay
+     * @throws \Exception
      */
     public function delete(Replay $replay)
     {

@@ -1,0 +1,117 @@
+[
+  {
+    "name": "name",
+    "type": "STRING"
+  },
+  {
+    "name": "short_name",
+    "type": "STRING"
+  },
+  {
+    "name": "role",
+    "type": "STRING"
+  },
+  {
+    "name": "type",
+    "type": "STRING"
+  },
+  {
+    "name": "release_date",
+    "type": "DATE"
+  },
+  {
+    "name": "attribute_id",
+    "type": "STRING"
+  },
+  {
+    "name": "transations",
+    "mode": "REPEATED",
+    "type": "STRING"
+  },
+  {
+    "name": "abilities",
+    "mode": "REPEATED",
+    "type": "RECORD",
+    "fields": [
+      {
+        "name": "owner",
+        "type": "STRING"
+      },
+      {
+        "name": "name",
+        "type": "STRING"
+      },
+      {
+        "name": "title",
+        "type": "STRING"
+      },
+      {
+        "name": "description",
+        "type": "STRING"
+      },
+      {
+        "name": "icon",
+        "type": "STRING"
+      },
+      {
+        "name": "hotkey",
+        "type": "STRING"
+      },
+      {
+        "name": "cooldown",
+        "type": "INTEGER"
+      },
+      {
+        "name": "mana_cost",
+        "type": "INTEGER"
+      },
+      {
+        "name": "trait",
+        "type": "BOOLEAN"
+      }
+    ]
+  },
+  {
+    "name": "talents",
+    "mode": "REPEATED",
+    "type": "RECORD",
+    "fields": [
+      {
+        "name": "name",
+        "type": "STRING"
+      },
+      {
+        "name": "title",
+        "type": "STRING"
+      },
+      {
+        "name": "description",
+        "type": "STRING"
+      },
+      {
+        "name": "icon",
+        "type": "STRING"
+      },
+      {
+        "name": "level",
+        "type": "INTEGER"
+      },
+      {
+        "name": "ability",
+        "type": "STRING"
+      },
+      {
+        "name": "sort",
+        "type": "INTEGER"
+      },
+      {
+        "name": "cooldown",
+        "type": "INTEGER"
+      },
+      {
+        "name": "mana_cost",
+        "type": "INTEGER"
+      }
+    ]
+  }
+]

@@ -10,6 +10,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * App\Replay
  *
  * @property int $id
+ * @property int $parsed_id
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
  * @property string $filename
@@ -20,7 +21,6 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property int|null $game_map_id
  * @property string|null $game_version
  * @property string $fingerprint
- * @property string $fingerprint_old
  * @property int|null $region
  * @property int $processed
  * @property int $deleted
@@ -30,9 +30,10 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\HotslogsUpload[] $hotslogsUploads
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Player[] $players
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereParsedId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFilename($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprint($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereFingerprintOld($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameLength($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereGameMapId($value)
@@ -43,7 +44,6 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereDeleted($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereSize($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Replay whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class Replay extends Model
@@ -55,8 +55,8 @@ class Replay extends Model
      *
      * @var array
      */
-    protected $fillable = ['game_type', 'game_date', 'game_length', 'game_version', 'game_map_id', 'region', 'fingerprint', 'fingerprint_old', 'created_at', 'updated_at'];
-    protected $hidden = ['created_at', 'updated_at', 'fingerprint_old'];
+    protected $fillable = ['game_type', 'game_date', 'game_length', 'game_version', 'game_map_id', 'region', 'fingerprint', 'created_at', 'updated_at'];
+    protected $hidden = ['created_at', 'updated_at'];
     protected $appends = ['url'];
     protected $dates = [
         'created_at',

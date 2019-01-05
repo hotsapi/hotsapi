@@ -57,6 +57,11 @@ class WebController extends Controller
         return view("docs");
     }
 
+    public function swagger()
+    {
+        return view("swagger");
+    }
+
     public function faq()
     {
         return view("faq");

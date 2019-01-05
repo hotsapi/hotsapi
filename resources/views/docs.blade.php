@@ -1,81 +1,106 @@
 @extends('template')
 @section('title', 'HotsApi')
 
-
-@section('head')
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/swagger-ui.css" >
-    <style>
-        body {
-            margin: 0;
-        }
-
-        pre {
-            padding: unset;
-            font-size: unset;
-            border: unset;
-            background-color: unset;
-        }
-
-        #swagger-ui {
-            padding-bottom: 120px;
-        }
-    </style>
-@endsection
-
 @section('content')
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position:absolute;width:0;height:0">
-        <defs>
-            <symbol viewBox="0 0 20 20" id="unlocked">
-                <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8z"></path>
-            </symbol>
+    <h3>There are 3 primary Hotsapi usage scenarios:</h3>
 
-            <symbol viewBox="0 0 20 20" id="locked">
-                <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8z"/>
-            </symbol>
+    <ol>
+        <li>
+            <p><strong>A public dataset on Google BigQuery.</strong> If you want to quickly run some queries on Hotsapi
+                dataset without setting up your own database instance it can be using this dataset. Those queries are
+                done in a familiar SQL and can be of any complexity without worrying about server performance.
+                It functions in "requester pays" mode where Hotsapi pays only for data storage and users pay for the
+                queries performed. Most casual users will probably fit into 1Tb/month free usage tier (though will still
+                need to activate google cloud account to use it). This can be useful for ad hoc queries, posts
+                like "patch ... 7 days later", and similar data mining efforts.</p>
+        </li>
 
-            <symbol viewBox="0 0 20 20" id="close">
-                <path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1.228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c.469.469.469 1.229 0 1.698z"/>
-            </symbol>
+        <li>
+            <p><strong>A stream of parsed match details objects.</strong> If you only need the data that is already
+                extracted by Hotsapi you can save on parsing replay files. You will need to keep your own database with
+                downloaded replay data, and run all their queries against it. First you need to download a seed database
+                dump and import it into your sql server. Then periodically poll <code>/replays/parsed</code> endpoint
+                with <code>min_parsed_id</code> to get newly parsed replay data.</p></li>
 
-            <symbol viewBox="0 0 20 20" id="large-arrow">
-                <path d="M13.25 10L6.109 2.58c-.268-.27-.268-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709 0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707 0-.979L13.25 10z"/>
-            </symbol>
+        <li><p><strong>A stream of raw replay files.</strong> If you need to extract some advanced data from replay
+                files you can parse them yourself. First you will need to do batch download and parse existing files
+                from our AWS S3 storage. The storage functions in "requester pays" mode where Hotsapi pays only for data
+                storage and users pay for file downloads, downloads are free within the same AWS region (eu-west-1).
+                Then you need to periodically poll <code>/repays</code> endpoint to get new replays. </p></li>
+    </ol>
 
-            <symbol viewBox="0 0 20 20" id="large-arrow-down">
-                <path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z"/>
-            </symbol>
+    <h3>Interacting with BigQuery</h3>
 
+    <p>Our public dataset has id <code>cloud-project-179020:hotsapi</code> and can be found <a
+            href="https://bigquery.cloud.google.com/dataset/cloud-project-179020:hotsapi">here</a>. You will need to
+        create Google Cloud account to use it. Queries against it cost $5 per Tb of data processed and the first
+        Tb/month is free (most likely all your queries will fit into free tier). BigQuery like all data warehouses uses
+        columnar storage format so it doesn't matter much how complex your query is but it does matter how many <em>columns</em>
+        you are looking at.</p>
 
-            <symbol viewBox="0 0 24 24" id="jump-to">
-                <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z"/>
-            </symbol>
+    <p>Using BigQuery doesn't require you to install any software/servers, you can perform all queries from the web UI.
+        It uses a dialect of SQL so it's easy to quickly start querying hotsapi data.</p>
 
-            <symbol viewBox="0 0 24 24" id="expand">
-                <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
-            </symbol>
+    <p>Hotsapi dataset contains denormalized data: a whole replay info is stored in a single table using nested columns.
+        In a way it is similar to document (json) databases like Mongo. A human readable yaml schema of tables can be
+        found <a href="https://github.com/poma/hotsapi/blob/master/utils/schema/schema.yml">here</a>.</p>
 
-        </defs>
-    </svg>
+    <h3>Database dumps</h3>
 
-    <div id="swagger-ui"></div>
+    <p>Since importing a full database dump in .sql format can take days or weeks, we split the dump into few parts:</p>
 
-    <script src="js/swagger-ui-bundle.js"> </script>
-    <script src="js/swagger-ui-standalone-preset.js"> </script>
-    <script>
-        window.onload = function() {
+    <ul>
+        <li><code>heroes.sql</code> that contains small tables with data like maps, heroes, talents, and translations
+        </li>
 
-            // Build a system
-            const ui = SwaggerUIBundle({
-                url: "spec/hotsapi-1.0.yaml",
-                dom_id: '#swagger-ui',
-                presets: [
-                    SwaggerUIBundle.presets.apis,
-                    SwaggerUIStandalonePreset
-                ],
-            });
+        <li><code>schema.sql</code> that contains schema for big tables but no data</li>
 
-            window.ui = ui
-        }
-    </script>
+        <li>A set of <code>.csv</code> files that contain data for big tables. Those files are updated daily.</li>
+    </ul>
+
+    <p>The CSV files contain only parsed replays and are append-only since the data after parsing is mostly immutable
+        (except some unimportant flags like <code>deleted</code> that will be out of sync with hotsapi current state).
+        CSV files can be imported into a MySQL isntance using <code>LOAD DATA INFILE</code> statement, which works
+        significantly faster than loading .sql files. Keep in mind that uncompressed data for MySQL instance can take
+        more than 10x size of compressed .csv files. <code>max_parsed_id</code> file contains maximum
+        <code>parsed_id</code> contained in this dump. Here's a full list of files for seed DB:</p>
+
+    <pre><code>https://storage.googleapis.com/hotsapi/db/schema/heroes.sql.gz
+https://storage.googleapis.com/hotsapi/db/schema/schema.sql.gz
+https://storage.googleapis.com/hotsapi/db/data/replays.csv.gz
+https://storage.googleapis.com/hotsapi/db/data/bans.csv.gz
+https://storage.googleapis.com/hotsapi/db/data/players.csv.gz
+https://storage.googleapis.com/hotsapi/db/data/scores.csv.gz
+https://storage.googleapis.com/hotsapi/db/data/player_talent.csv.gz
+https://storage.googleapis.com/hotsapi/db/data/max_parsed_id
+</code></pre>
+
+    <h3>Downloading replay files</h3>
+
+    <p>All files are stored on <a href="https://aws.amazon.com/s3/">Amazon S3</a> service. Currently it is in <a
+            href="http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html">"Requester pays" mode</a>
+        which means that traffic fees are payed by clients that download files instead of website owner. This allows us
+        to keep server costs low and run service even with low donations. S3 traffic is <em>free</em> if you download to
+        an AWS EC2 instance in EU (Ireland) (eu-west-1) region or $0.09/GB if you download to non-amazon server. A good
+        way for you to avoid costs is to launch a free tier EC2 instance, use it to download and analyze replays, and
+        then stream results to your main website. In any case you will need an AWS account and authenticate every
+        request to download files. Further documentation can be found <a
+            href="http://docs.aws.amazon.com/AmazonS3/latest/dev/RequesterPaysBuckets.html">here</a>. If your downloads
+        fail make sure you didn't forget to include <code>x-amz-request-payer</code> in your request header or make
+        corresponding setting in your SDK.</p>
+
+    <p>To save costs we delete the old replay files from storage. The metadata in database is stored forever. We
+        currently retain files fitting at least one of the following criteria:</p>
+
+    <ul>
+        <li>1 week after upload</li>
+
+        <li>1 month after the game took place</li>
+
+        <li>3 months after the game took place for Ranked games</li>
+    </ul>
+
+    <h3>API reference</h3>
+
+    <p>Interactive API documentation can be found on <a href="{{ url('swagger') }}">this</a> page</p>
 @endsection
