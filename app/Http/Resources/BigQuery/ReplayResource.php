@@ -40,6 +40,9 @@ class ReplayResource extends Resource
         if ($this->relationLoaded('players')) {
             $result['players'] = PlayerResource::collection($this->players);
         }
+        if ($this->relationLoaded('teams')) {
+            $result['teams'] = $this->teams;
+        }
         return $result;
     }
 }
