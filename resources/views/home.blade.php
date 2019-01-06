@@ -48,14 +48,15 @@
             <br><br>
             <h1>Services that use our API</h1>
             <div class="partner-link-wrapper">
+                <!-- Commented out sites are probably dead :( -->
                 <a target="_blank" href="http://stormspy.net" class="partner-link"><img src="{{asset('/img/logo-stormspy.png')}}"></a>
-                <a target="_blank" href="http://hots.guide" class="partner-link"><img src="{{asset('/img/logo-hotsguide.png')}}"></a>
+                <!--<a target="_blank" href="http://hots.guide" class="partner-link"><img src="{{asset('/img/logo-hotsguide.png')}}"></a>-->
                 <a target="_blank" href="http://heroes.report" class="partner-link"><img src="{{asset('/img/logo-heroesreport.png')}}"></a>
-                <a target="_blank" href="https://hots.dog" class="partner-link"><img src="{{asset('/img/logo-hotsdog.svg')}}"></a>
+                <!--<a target="_blank" href="https://hots.dog" class="partner-link"><img src="{{asset('/img/logo-hotsdog.svg')}}"></a>-->
                 <a target="_blank" href="https://play.google.com/store/apps/details?id=com.heroescompanion.app" class="partner-link"><img src="{{asset('/img/logo-heroescompanion.png')}}"></a>
-    			      <a target="_blank" href="https://hots.academy" class="partner-link"><img src="{{asset('/img/logo-hotsacademy.png')}}"></a>
-    			      <a target="_blank" href="https://heroesshare.net" class="partner-link"><img src="{{asset('/img/logo-heroesshare.png')}}"></a>
-          	    <a target="_blank" href="https://www.heroesprofile.com" class="partner-link"><img src="{{asset('/img/logo-heroesprofile.png')}}"></a>
+                <a target="_blank" href="https://hots.academy" class="partner-link"><img src="{{asset('/img/logo-hotsacademy.png')}}"></a>
+                <a target="_blank" href="https://heroesshare.net" class="partner-link"><img src="{{asset('/img/logo-heroesshare.png')}}"></a>
+          	    <!--<a target="_blank" href="https://www.heroesprofile.com" class="partner-link"><img src="{{asset('/img/logo-heroesprofile.png')}}"></a>-->
             </div>
         </div>
     </div>
