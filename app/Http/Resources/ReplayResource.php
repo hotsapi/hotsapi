@@ -42,7 +42,7 @@ class ReplayResource extends Resource
             $result['bans'] = count($this->bans) ? new BanResourceCollection($this->bans) : null;
         }
         if ($this->relationLoaded('players')) {
-            $result['players'] = PlayerResource::collection($this->players);
+            $result['players'] = PlayerResource::collection($this->players->sortBy('index'));
         }
         if ($this->relationLoaded('teams')) {
             $result['teams'] = $this->teams->sortBy('index');

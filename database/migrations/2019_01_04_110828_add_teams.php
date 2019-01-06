@@ -17,6 +17,7 @@ class AddTeams extends Migration
             $table->increments('id');
             $table->integer('replay_id')->unsigned();
             $table->tinyInteger('index')->unsigned();
+            $table->boolean('first_pick')->nullable();
             $table->boolean('winner')->nullable();
             $table->tinyInteger('team_level')->default(0);
             $table->integer('structure_xp')->unsigned()->default(0);

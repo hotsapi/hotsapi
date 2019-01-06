@@ -371,7 +371,7 @@ class ParserService
         $bans = [];
         $players = [];
         $teams = [];
-        foreach($data->players as $player) {
+        foreach($data->players as $index => $player) {
             $srcPlayer = $replay->players->where('blizz_id', $player->blizz_id)->first();
             if (!$srcPlayer) {
                 Log::warning("Can't find player with blizz_id $player->blizz_id in replay $replay->id");
@@ -384,7 +384,8 @@ class ParserService
                 'silenced' => $player->silenced,
                 'battletag_name' => $player->battletag_name,
                 'battletag_id' => $player->battletag_id,
-                'party' => $player->party
+                'party' => $player->party,
+                'index' => $player->index
             ];
 
             if ($player->score != null) {
@@ -475,14 +476,15 @@ class ParserService
             $teams[] = [
                 'replay_id' => $replay->id,
                 'index' => $teamIndex,
-                'winner' => $team->winner,
-                'team_level' => $team->team_level,
-                'structure_xp' => $team->structure_xp,
-                'creep_xp' => $team->creep_xp,
-                'hero_xp' => $team->hero_xp,
-                'minion_xp' => $team->minion_xp,
-                'trickle_xp' => $team->trickle_xp,
-                'total_xp' => $team->total_xp,
+                'first_pick' => $team->FirstPick,
+                'winner' => $team->Winner,
+                'team_level' => $team->TeamLevel,
+                'structure_xp' => $team->StructureXp,
+                'creep_xp' => $team->CreepXp,
+                'hero_xp' => $team->HeroXp,
+                'minion_xp' => $team->MinionXp,
+                'trickle_xp' => $team->TrickleXp,
+                'total_xp' => $team->TotalXp,
             ];
         }
 
