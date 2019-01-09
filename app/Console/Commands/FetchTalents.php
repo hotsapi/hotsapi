@@ -64,6 +64,7 @@ class FetchTalents extends Command
                 'role' => $data->role,
                 'type' => $data->type,
                 'release_date' => $data->releaseDate,
+                'release_patch' => $data->releasePatch
             ];
 
             foreach ($data->abilities as $owner => $abilityArray) {
