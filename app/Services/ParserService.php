@@ -251,6 +251,7 @@ class ParserService
                 return self::GAME_TYPE_UNRANKED_DRAFT;
 
             case 50061:
+            case 50091: // merged ranked
                 return self::GAME_TYPE_HERO_LEAGUE;
 
             case 50071:
