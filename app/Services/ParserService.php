@@ -251,13 +251,13 @@ class ParserService
             case 50051:
                 return self::GAME_TYPE_UNRANKED_DRAFT;
 
-            case 50091:
+            case 50061:
                 return self::GAME_TYPE_HERO_LEAGUE;
 
             case 50071:
                 return self::GAME_TYPE_TEAM_LEAGUE;
 
-            case 50061:
+            case 50091:
                 return self::GAME_TYPE_STORM_LEAGUE;
 
             default:
