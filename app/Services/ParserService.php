@@ -34,11 +34,12 @@ class ParserService
     const GAME_TYPE_UNRANKED_DRAFT = "UnrankedDraft";
     const GAME_TYPE_HERO_LEAGUE = "HeroLeague";
     const GAME_TYPE_TEAM_LEAGUE = "TeamLeague";
+    const GAME_TYPE_STORM_LEAGUE = "StormLeague";
     const GAME_TYPE_BRAWL = "Brawl";
     const GAME_TYPE_AI = "AI";
     const GAME_TYPE_UNKNOWN = "Unknown";
 
-    const GAMES_WITH_BANS = [self::GAME_TYPE_UNRANKED_DRAFT, self::GAME_TYPE_HERO_LEAGUE, self::GAME_TYPE_TEAM_LEAGUE];
+    const GAMES_WITH_BANS = [self::GAME_TYPE_UNRANKED_DRAFT, self::GAME_TYPE_HERO_LEAGUE, self::GAME_TYPE_TEAM_LEAGUE, self::GAME_TYPE_STORM_LEAGUE];
 
     /**
      * Talent cache
@@ -250,12 +251,14 @@ class ParserService
             case 50051:
                 return self::GAME_TYPE_UNRANKED_DRAFT;
 
-            case 50061:
-            case 50091: // merged ranked
+            case 50091:
                 return self::GAME_TYPE_HERO_LEAGUE;
 
             case 50071:
                 return self::GAME_TYPE_TEAM_LEAGUE;
+
+            case 50061:
+                return self::GAME_TYPE_STORM_LEAGUE;
 
             default:
                 Log::error("Unknown game type: '$gameModeId'");
