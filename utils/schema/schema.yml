@@ -56,6 +56,33 @@ replays:
         merc_camp_captures: integer
         watch_tower_captures: integer
         meta_experience: integer
+        damage_soaked: integer
+        physical_damage: integer
+        spell_damage: integer
+        protection_given_to_allies: integer
+        teamfight_damage_taken: integer
+        teamfight_escapes_performed: integer
+        teamfight_healing_done: integer
+        teamfight_hero_damage: integer
+        time_rooting_enemy_heroes: integer
+        time_silencing_enemy_heroes: integer
+        time_stunning_enemy_heroes: integer
+        multikill: integer
+        outnumbered_deaths: integer
+        vengeances_performed: integer
+        escapes_performed: integer
+        clutch_heals_performed: integer
+  teams:
+    - index: integer
+      first_pick: boolean
+      winner: boolean
+      team_level: integer
+      structure_xp: integer
+      creep_xp: integer
+      hero_xp: integer
+      minion_xp: integer
+      trickle_xp: integer
+      total_xp: integer
 
 heroes:
   name: string
