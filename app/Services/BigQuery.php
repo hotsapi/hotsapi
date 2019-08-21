@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Resources\BigQuery\ReplayResource;
 use App\Replay;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Log;
@@ -15,11 +16,13 @@ class BigQuery
      */
     public function insertRow(Replay $replay)
     {
-        $bigQuery = new BigQueryClient(['keyFilePath' => './../.gcloud.json', 'projectId' => 'cloud-project-179020']);
+        $bigQuery = new BigQueryClient(['keyFilePath' => __DIR__.'/../../.gcloud.json', 'projectId' => 'cloud-project-179020']);
 
         $table = $bigQuery->dataset('hotsapi')->table('replays');
-        $data = new \App\Http\Resources\BigQuery\ReplayResource($replay);
-        $result = $table->insertRow($data->toArray(null));
+        $res = new ReplayResource($replay);
+        // todo optimize next line
+        $row = json_decode(json_encode($res->toResponse(app('request'))->getData()), true);
+        $result = $table->insertRow($row, ['insertId' => $replay->parsed_id]);
 
         if (!$result->isSuccessful()) {
             foreach ($result->failedRows() as $row) {
