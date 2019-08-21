@@ -58,7 +58,7 @@
       },
       {
         "name": "team",
-        "type": "STRING"
+        "type": "INTEGER"
       },
       {
         "name": "index",
