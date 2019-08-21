@@ -13,7 +13,7 @@ replays:
   region: integer
   bans:
     - hero: string
-      team: string
+      team: integer
       index: integer
   players:
     - hero: string
