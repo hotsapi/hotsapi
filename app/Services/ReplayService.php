@@ -101,8 +101,7 @@ class ReplayService
         $replay->processed = 1;
         $replay->save();
 
-		// Disabled until I test it
-        // SendToBigQueryJob::dispatch($replay->id);
+        SendToBigQueryJob::dispatch($replay->id);
     }
 
     /**
