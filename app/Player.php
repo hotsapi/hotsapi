@@ -19,6 +19,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property int $blizz_id
  * @property int|null $party
  * @property int|null $silenced
+ * @property int|null $index
  * @property-read mixed $battletag
  * @property-read \App\Hero|null $hero
  * @property-read \App\Replay $replay
@@ -33,6 +34,7 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereParty($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereReplayId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereSilenced($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereIndex($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereTeam($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Player whereWinner($value)
  * @mixin \Eloquent

@@ -31,6 +31,22 @@ use Yadakhov\InsertOnDuplicateKey;
  * @property int|null $merc_camp_captures
  * @property int|null $watch_tower_captures
  * @property int|null $meta_experience
+ * @property int|null $damage_soaked
+ * @property int|null $physical_damage
+ * @property int|null $spell_damage
+ * @property int|null $protection_given_to_allies
+ * @property int|null $teamfight_damage_taken
+ * @property int|null $teamfight_escapes_performed
+ * @property int|null $teamfight_healing_done
+ * @property int|null $teamfight_hero_damage
+ * @property int|null $time_rooting_enemy_heroes
+ * @property int|null $time_silencing_enemy_heroes
+ * @property int|null $time_stunning_enemy_heroes
+ * @property int|null $multikill
+ * @property int|null $outnumbered_deaths
+ * @property int|null $vengeances_performed
+ * @property int|null $escapes_performed
+ * @property int|null $clutch_heals_performed
  * @property-read \App\Player $player
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereAssists($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereCreepDamage($value)
@@ -55,6 +71,22 @@ use Yadakhov\InsertOnDuplicateKey;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereTimeSpentDead($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereTownKills($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereWatchTowerCaptures($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereClutchHealsPerformed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereDamageSoaked($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereEscapesPerformed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereMultikill($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereOutnumberedDeaths($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score wherePhysicalDamage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereProtectionGivenToAllies($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereSpellDamage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereTeamfightDamageTaken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereTeamfightEscapesPerformed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereTeamfightHealingDone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereTeamfightHeroDamage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereTimeRootingEnemyHeroes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereTimeSilencingEnemyHeroes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereTimeStunningEnemyHeroes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Score whereVengeancesPerformed($value)
  * @mixin \Eloquent
  */
 class Score extends Model
