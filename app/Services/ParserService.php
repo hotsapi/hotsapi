@@ -389,7 +389,7 @@ class ParserService
                 'battletag_name' => $player->battletag_name,
                 'battletag_id' => $player->battletag_id,
                 'party' => $player->party,
-                'index' => $player->index
+                //'index' => $player->index
             ];
 
             if ($player->score != null) {
