@@ -8,7 +8,7 @@ use Illuminate\Http\Resources\Json\Resource;
  * Class TalentResource
  *
  * @package App\Http\Resources
- * @mixin \App\Talent
+ * @mixin \App\Team
  */
 class TeamResource extends Resource
 {
