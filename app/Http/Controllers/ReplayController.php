@@ -60,7 +60,7 @@ class ReplayController extends Controller
         }
 
         if ($request->with_players) {
-            $query->with('bans', 'bans.hero', 'players', 'players.hero', 'players.talents', 'players.score');
+            $query->with('bans', 'bans.hero', 'teams', 'players', 'players.hero', 'players.talents', 'players.score');
         }
 
         $query->orderBy('id');
@@ -84,7 +84,7 @@ class ReplayController extends Controller
         }
 
         if ($request->with_players) {
-            $query->with('bans', 'bans.hero', 'players', 'players.hero', 'players.talents', 'players.score');
+            $query->with('bans', 'bans.hero', 'teams', 'players', 'players.hero', 'players.talents', 'players.score');
         }
 
         $query->orderBy('parsed_id');
@@ -101,7 +101,7 @@ class ReplayController extends Controller
      */
     public function show($replay)
     {
-        $replay = Replay::on('mysql_slave')->with('game_map', 'bans', 'bans.hero', 'players', 'players.hero', 'players.talents', 'players.score')->findOrFail($replay);
+        $replay = Replay::on('mysql_slave')->with('game_map', 'bans', 'bans.hero', 'teams', 'players', 'players.hero', 'players.talents', 'players.score')->findOrFail($replay);
         return new ReplayResource($replay);
     }
 

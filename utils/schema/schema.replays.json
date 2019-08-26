@@ -58,7 +58,7 @@
       },
       {
         "name": "team",
-        "type": "STRING"
+        "type": "INTEGER"
       },
       {
         "name": "index",
@@ -232,8 +232,119 @@
           {
             "name": "meta_experience",
             "type": "INTEGER"
+          },
+          {
+            "name": "damage_soaked",
+            "type": "INTEGER"
+          },
+          {
+            "name": "physical_damage",
+            "type": "INTEGER"
+          },
+          {
+            "name": "spell_damage",
+            "type": "INTEGER"
+          },
+          {
+            "name": "protection_given_to_allies",
+            "type": "INTEGER"
+          },
+          {
+            "name": "teamfight_damage_taken",
+            "type": "INTEGER"
+          },
+          {
+            "name": "teamfight_escapes_performed",
+            "type": "INTEGER"
+          },
+          {
+            "name": "teamfight_healing_done",
+            "type": "INTEGER"
+          },
+          {
+            "name": "teamfight_hero_damage",
+            "type": "INTEGER"
+          },
+          {
+            "name": "time_rooting_enemy_heroes",
+            "type": "INTEGER"
+          },
+          {
+            "name": "time_silencing_enemy_heroes",
+            "type": "INTEGER"
+          },
+          {
+            "name": "time_stunning_enemy_heroes",
+            "type": "INTEGER"
+          },
+          {
+            "name": "multikill",
+            "type": "INTEGER"
+          },
+          {
+            "name": "outnumbered_deaths",
+            "type": "INTEGER"
+          },
+          {
+            "name": "vengeances_performed",
+            "type": "INTEGER"
+          },
+          {
+            "name": "escapes_performed",
+            "type": "INTEGER"
+          },
+          {
+            "name": "clutch_heals_performed",
+            "type": "INTEGER"
           }
         ]
+      }
+    ]
+  },
+  {
+    "name": "teams",
+    "mode": "REPEATED",
+    "type": "RECORD",
+    "fields": [
+      {
+        "name": "index",
+        "type": "INTEGER"
+      },
+      {
+        "name": "first_pick",
+        "type": "BOOLEAN"
+      },
+      {
+        "name": "winner",
+        "type": "BOOLEAN"
+      },
+      {
+        "name": "team_level",
+        "type": "INTEGER"
+      },
+      {
+        "name": "structure_xp",
+        "type": "INTEGER"
+      },
+      {
+        "name": "creep_xp",
+        "type": "INTEGER"
+      },
+      {
+        "name": "hero_xp",
+        "type": "INTEGER"
+      },
+      {
+        "name": "minion_xp",
+        "type": "INTEGER"
+      },
+      {
+        "name": "trickle_xp",
+        "type": "INTEGER"
+      },
+      {
+        "name": "total_xp",
+        "type": "INTEGER"
       }
     ]
   }

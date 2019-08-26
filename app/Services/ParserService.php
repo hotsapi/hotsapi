@@ -374,7 +374,8 @@ class ParserService
         $talents = [];
         $bans = [];
         $players = [];
-        foreach($data->players as $player) {
+        $teams = [];
+        foreach($data->players as $index => $player) {
             $srcPlayer = $replay->players->where('blizz_id', $player->blizz_id)->first();
             if (!$srcPlayer) {
                 Log::warning("Can't find player with blizz_id $player->blizz_id in replay $replay->id");
@@ -387,7 +388,8 @@ class ParserService
                 'silenced' => $player->silenced,
                 'battletag_name' => $player->battletag_name,
                 'battletag_id' => $player->battletag_id,
-                'party' => $player->party
+                'party' => $player->party,
+                'index' => $player->index
             ];
 
             if ($player->score != null) {
@@ -415,6 +417,22 @@ class ParserService
                     'merc_camp_captures' => $player->score->MercCampCaptures,
                     'watch_tower_captures' => $player->score->WatchTowerCaptures,
                     'meta_experience' => $player->score->MetaExperience,
+                    'damage_soaked' => $player->score->DamageSoaked,
+                    'physical_damage' => $player->score->PhysicalDamage,
+                    'spell_damage' => $player->score->SpellDamage,
+                    'protection_given_to_allies' => $player->score->ProtectionGivenToAllies,
+                    'teamfight_damage_taken' => $player->score->TeamfightDamageTaken,
+                    'teamfight_escapes_performed' => $player->score->TeamfightEscapesPerformed,
+                    'teamfight_healing_done' => $player->score->TeamfightHealingDone,
+                    'teamfight_hero_damage' => $player->score->TeamfightHeroDamage,
+                    'time_rooting_enemy_heroes' => $player->score->TimeRootingEnemyHeroes,
+                    'time_silencing_enemy_heroes' => $player->score->TimeSilencingEnemyHeroes,
+                    'time_stunning_enemy_heroes' => $player->score->TimeStunningEnemyHeroes,
+                    'multikill' => $player->score->Multikill,
+                    'outnumbered_deaths' => $player->score->OutnumberedDeaths,
+                    'vengeances_performed' => $player->score->VengeancesPerformed,
+                    'escapes_performed' => $player->score->EscapesPerformed,
+                    'clutch_heals_performed' => $player->score->ClutchHealsPerformed,
                 ];
             }
 
@@ -458,7 +476,23 @@ class ParserService
             }
         }
 
-        return compact('bans', 'players', 'talents', 'scores');
+        foreach ($data->teams as $teamIndex => $team) {
+            $teams[] = [
+                'replay_id' => $replay->id,
+                'index' => $teamIndex,
+                'first_pick' => $team->FirstPick,
+                'winner' => $team->Winner,
+                'team_level' => $team->TeamLevel,
+                'structure_xp' => $team->StructureXp,
+                'creep_xp' => $team->CreepXp,
+                'hero_xp' => $team->HeroXp,
+                'minion_xp' => $team->MinionXp,
+                'trickle_xp' => $team->TrickleXp,
+                'total_xp' => $team->TotalXp,
+            ];
+        }
+
+        return compact('bans', 'players', 'talents', 'scores', 'teams');
     }
 
 
