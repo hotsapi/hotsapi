@@ -45,7 +45,7 @@ class ReplayResource extends Resource
             $result['players'] = PlayerResource::collection($this->players->sortBy('index'));
         }
         if ($this->relationLoaded('teams')) {
-            $result['teams'] = $this->teams->sortBy('index');
+            $result['teams'] = TeamResource::collection($this->teams->sortBy('index'));
         }
         return $result;
     }
