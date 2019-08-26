@@ -389,7 +389,7 @@ class ParserService
                 'battletag_name' => $player->battletag_name,
                 'battletag_id' => $player->battletag_id,
                 'party' => $player->party,
-                //'index' => $player->index
+                'index' => $index
             ];
 
             if ($player->score != null) {
@@ -483,12 +483,12 @@ class ParserService
                 'first_pick' => $team->FirstPick,
                 'winner' => $team->Winner,
                 'team_level' => $team->TeamLevel,
-                'structure_xp' => $team->StructureXp,
-                'creep_xp' => $team->CreepXp,
-                'hero_xp' => $team->HeroXp,
-                'minion_xp' => $team->MinionXp,
-                'trickle_xp' => $team->TrickleXp,
-                'total_xp' => $team->TotalXp,
+                'structure_xp' => $team->StructureXP,
+                'creep_xp' => $team->CreepXP,
+                'hero_xp' => $team->HeroXP,
+                'minion_xp' => $team->MinionXP,
+                'trickle_xp' => $team->TrickleXP,
+                'total_xp' => $team->TotalXP,
             ];
         }
 
