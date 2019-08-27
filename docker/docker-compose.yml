@@ -1,0 +1,77 @@
+version: '2.2'
+
+volumes:
+  mysql:
+
+services:
+
+#  mysql:
+#    image: mysql:5.7
+#    restart: always
+#    env_file: .env
+#    volumes:
+#      - mysql:/var/lib/mysql
+#    # CREATE DATABASE IF NOT EXISTS ${DB_DATABASE}
+
+  memcached:
+    image: memcached
+    restart: always
+
+  # Temp stubs to build intermediate images
+  heroprotocol_image:
+    image: hotsapi/heroprotocol
+    build: ./heroprotocol
+    entrypoint: '/bin/bash'
+  parser_image:
+    image: hotsapi/parser
+    build: ./parser
+    entrypoint: '/bin/bash'
+  hotsapi_image:
+    image: hotsapi/hotsapi
+    build: ./hotsapi
+    entrypoint: '/bin/bash'
+
+#  hotsapi:
+#    image: hotsapi/webserver
+#    build: ./webserver
+#    restart: always
+#    env_file: .env
+#    environment:
+#      VIRTUAL_HOST: hotsapi.net
+#      LETSENCRYPT_HOST: hotsapi.net
+#    depends_on:
+#      - memcached
+
+  worker:
+    image: hotsapi/hotsapi
+    build: ./hotsapi
+    restart: always
+    env_file: .env
+    volumes:
+      - /.gcloud.json:/var/www/hotsapi/.gcloud.json
+    command: ['queue:work', '--sleep=3', '--tries=3', '--timeout=60']
+    depends_on:
+      - memcached
+    scale: 1 # 6
+    
+  parser:
+    image: hotsapi/hotsapi
+    build: ./hotsapi
+    restart: always
+    env_file: .env
+    command: ['hotsapi:parse']
+    # throttle this container first if not enough CPU
+    # default value for other containers is 1024
+    cpu_shares: 2
+    scale: 1 # 3 # CPU cores + some more
+
+  scheduler:
+    image: hotsapi/scheduler
+    build: ./scheduler
+    restart: always
+    env_file: .env
+
+
+  # prune script
+  # php artisan migrate --force
+  # update on heroprotocol/c# parser updates
