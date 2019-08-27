@@ -375,6 +375,11 @@ definitions:
         attribute_id:
           type: string
           description: 4 letter id corresponding to attribute value in replay file
+        c_hero_id:
+          type: string
+          description: language-independent hero identification from initdata
+        c_unit_id:
+          type: string
         translations:
           type: array
           items:
@@ -392,6 +397,8 @@ definitions:
         release_date:
           type: string
           format: date-time
+        release_patch:
+          type: string
         abilities:
           type: array
           items:
