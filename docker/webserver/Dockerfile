@@ -1,0 +1,15 @@
+FROM hotsapi/hotsapi
+
+RUN apt update && \
+	apt install -y php7.0-fpm nginx supervisor && \
+	rm -rf /var/lib/apt/lists/*
+
+RUN sed -i 's/upload_max_filesize = .*/upload_max_filesize = 10M/g' /etc/php/7.0/fpm/php.ini
+RUN sed -i 's/post_max_size = .*/post_max_size = 10M/g' /etc/php/7.0/fpm/php.ini
+RUN sed -i 's/;clear_env = .*/clear_env = no/g' /etc/php/7.0/fpm/pool.d/www.conf
+RUN mkdir /var/run/php
+COPY nginx.conf /etc/nginx
+COPY supervisord.conf /etc/supervisor
+
+ENTRYPOINT []
+CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]

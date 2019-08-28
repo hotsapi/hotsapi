@@ -31,16 +31,15 @@ services:
     build: ./hotsapi
     entrypoint: '/bin/bash'
 
-#  hotsapi:
-#    image: hotsapi/webserver
-#    build: ./webserver
-#    restart: always
-#    env_file: .env
-#    environment:
-#      VIRTUAL_HOST: hotsapi.net
-#      LETSENCRYPT_HOST: hotsapi.net
-#    depends_on:
-#      - memcached
+  php:
+    image: hotsapi/webserver
+    build: ./webserver
+    restart: always
+    env_file: .env
+    ports:
+      - 80:80
+    depends_on:
+      - memcached
 
   worker:
     image: hotsapi/hotsapi
