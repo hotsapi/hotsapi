@@ -2,6 +2,7 @@ services:
   - docker
 
 script:
+  - docker pull hotsapi/webserver
   - docker build -f docker/Dockerfile.heroprotocol -t hotsapi/heroprotocol .
   - docker build -f docker/Dockerfile.parser -t hotsapi/parser .
   - docker build -f docker/Dockerfile.hotsapi -t hotsapi/hotsapi .
