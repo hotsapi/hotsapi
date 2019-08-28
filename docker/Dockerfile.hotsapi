@@ -8,7 +8,7 @@ RUN apt update && \
 	rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/hotsapi
-RUN git clone https://github.com/poma/hotsapi.git /var/www/hotsapi
+COPY . /var/www/hotsapi
 # RUN chown -R www-data:www-data .
 RUN chmod -R a+w storage
 RUN chmod -R a+w bootstrap/cache

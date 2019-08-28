@@ -8,7 +8,7 @@ services:
 #  mysql:
 #    image: mysql:5.7
 #    restart: always
-#    env_file: .env
+#    env_file: .env.prod
 #    volumes:
 #      - mysql:/var/lib/mysql
 #    # CREATE DATABASE IF NOT EXISTS ${DB_DATABASE}
@@ -17,35 +17,25 @@ services:
     image: memcached
     restart: always
 
-  # Temp stubs to build intermediate images
-  heroprotocol_image:
-    image: hotsapi/heroprotocol
-    build: ./heroprotocol
-    entrypoint: '/bin/bash'
-  parser_image:
-    image: hotsapi/parser
-    build: ./parser
-    entrypoint: '/bin/bash'
-  hotsapi_image:
-    image: hotsapi/hotsapi
-    build: ./hotsapi
-    entrypoint: '/bin/bash'
+#  artisan:
+#    image: hotsapi/hotsapi
+#    restart: never
+#    env_file: .env.prod
 
-  php:
+  web:
     image: hotsapi/webserver
-    build: ./webserver
     restart: always
-    env_file: .env
-    ports:
-      - 80:80
+    env_file: .env.prod
+    environment:
+      VIRTUAL_HOST: hotsapi.net
+      LETSENCRYPT_HOST: hotsapi.net
     depends_on:
       - memcached
 
   worker:
     image: hotsapi/hotsapi
-    build: ./hotsapi
     restart: always
-    env_file: .env
+    env_file: .env.prod
     volumes:
       - /.gcloud.json:/var/www/hotsapi/.gcloud.json
     command: ['queue:work', '--sleep=3', '--tries=3', '--timeout=60']
@@ -55,9 +45,8 @@ services:
     
   parser:
     image: hotsapi/hotsapi
-    build: ./hotsapi
     restart: always
-    env_file: .env
+    env_file: .env.prod
     command: ['hotsapi:parse']
     # throttle this container first if not enough CPU
     # default value for other containers is 1024
@@ -65,12 +54,18 @@ services:
     scale: 3
 
   scheduler:
-    image: hotsapi/scheduler
-    build: ./scheduler
+    image: hotsapi/hotsapi
     restart: always
-    env_file: .env
+    env_file: .env.prod
+    entrypoint: 'bash -c "while [ true ]; do php artisan schedule:run --verbose --no-interaction & sleep 60; done"'
 
+  # TODO:
+  #   move parser and heroprotocol dockerfiles to respective repos and wrap them as separate services
+  #   prune script
+  #   php artisan migrate --force
+  #   update on heroprotocol/c# parser updates
 
-  # prune script
-  # php artisan migrate --force
-  # update on heroprotocol/c# parser updates
+networks:
+  default:
+    external:
+      name: frontend_default

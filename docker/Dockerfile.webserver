@@ -8,8 +8,9 @@ RUN sed -i 's/upload_max_filesize = .*/upload_max_filesize = 10M/g' /etc/php/7.0
 RUN sed -i 's/post_max_size = .*/post_max_size = 10M/g' /etc/php/7.0/fpm/php.ini
 RUN sed -i 's/;clear_env = .*/clear_env = no/g' /etc/php/7.0/fpm/pool.d/www.conf
 RUN mkdir /var/run/php
-COPY nginx.conf /etc/nginx
-COPY supervisord.conf /etc/supervisor
+COPY docker/nginx.conf /etc/nginx
+COPY docker/supervisord.conf /etc/supervisor
 
+EXPOSE 80
 ENTRYPOINT []
 CMD ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
