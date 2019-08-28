@@ -2,16 +2,13 @@
 # FROM ubuntu:16.04
 FROM hotsapi/parser
 
-# RUN apk --no-cache add
 RUN apt update && \
 	apt install -y git curl zip unzip composer \
 		php7.0 php7.0-mysql php7.0-zip php7.0-gd mcrypt php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-curl php7.0-json php-memcached && \
 	rm -rf /var/lib/apt/lists/*
-#memcached ?
 
 WORKDIR /var/www/hotsapi
 RUN git clone https://github.com/poma/hotsapi.git /var/www/hotsapi
-# RUN php artisan key:generate; fi
 # RUN chown -R www-data:www-data .
 RUN chmod -R a+w storage
 RUN chmod -R a+w bootstrap/cache
