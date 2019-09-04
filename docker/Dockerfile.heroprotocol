@@ -6,7 +6,6 @@ RUN apt update && \
 	rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/heroprotocol
-RUN git clone https://github.com/Blizzard/heroprotocol.git /opt/heroprotocol
-RUN chmod a+x /opt/heroprotocol/heroprotocol.py
+RUN git clone https://github.com/hotsapi/heroprotocol.git /opt/heroprotocol
 RUN ln -s /opt/heroprotocol/heroprotocol.py /usr/bin/heroprotocol
 ENTRYPOINT ['heroprotocol']
