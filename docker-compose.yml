@@ -26,6 +26,8 @@ services:
     image: hotsapi/webserver
     restart: always
     env_file: .env.prod
+    ports:
+      - 80:80
     environment:
       VIRTUAL_HOST: hotsapi.net
       LETSENCRYPT_HOST: hotsapi.net
