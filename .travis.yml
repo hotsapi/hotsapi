@@ -2,10 +2,10 @@ services:
   - docker
 
 script:
-  - docker build hotsapi/heroprotocol -f docker/Dockerfile.heroprotocol -t hotsapi/heroprotocol .
-  - docker build hotsapi/parser -f docker/Dockerfile.parser -t hotsapi/parser .
-  - docker build hotsapi/hotsapi -f docker/Dockerfile.hotsapi -t hotsapi/hotsapi .
-  - docker build hotsapi/webserver -f docker/Dockerfile.webserver -t hotsapi/webserver .
+  - docker build -f docker/Dockerfile.heroprotocol -t hotsapi/heroprotocol .
+  - docker build -f docker/Dockerfile.parser -t hotsapi/parser .
+  - docker build -f docker/Dockerfile.hotsapi -t hotsapi/hotsapi .
+  - docker build -f docker/Dockerfile.webserver -t hotsapi/webserver .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push hotsapi/heroprotocol
   - docker push hotsapi/parser
