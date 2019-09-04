@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://hotsapi.net'),
+    'url' => env('APP_URL', 'https://hotsapi.net'),
 
     /*
     |--------------------------------------------------------------------------
