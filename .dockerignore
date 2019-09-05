@@ -2,6 +2,7 @@
 /vendor
 /.idea
 /misc
+/utils/schema/node_modules
 .env
 .env.prod
 .gcloud.json
