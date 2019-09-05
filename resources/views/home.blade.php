@@ -48,7 +48,7 @@
             <br><br>
             <h1>Services that use our API</h1>
             <div class="partner-link-wrapper">
-                <a target="_blank" href="http://heroes.report" class="partner-link"><img src="{{asset('/img/logo-heroesreport.png')}}"></a>
+                <a target="_blank" href="https://heroes.report" class="partner-link"><img src="{{asset('/img/logo-heroesreport.png')}}"></a>
                 <a target="_blank" href="https://heroesshare.net" class="partner-link"><img src="{{asset('/img/logo-heroesshare.png')}}"></a>
           	    <a target="_blank" href="https://www.heroesprofile.com" class="partner-link"><img src="{{asset('/img/logo-heroesprofile.png')}}"></a>
           	    <a target="_blank" href="https://play.google.com/store/apps/details?id=com.production.holender.hotsrealtimeadvisor" class="partner-link"><img src="{{asset('/img/logo-hotscomplete-google.png')}}"></a>
