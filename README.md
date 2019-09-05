@@ -1,6 +1,6 @@
 # HotsApi [![Build Status](https://travis-ci.org/hotsapi/hotsapi.svg?branch=master)](https://travis-ci.org/hotsapi/hotsapi) [![Join the chat at https://gitter.im/hotsapi/Lobby](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/hotsapi/Lobby)
 
-[HotsApi.net](http://hotsapi.net/) is an open Heroes of the Storm replay database where everyone can download replays. It stores replays in a public AWS S3 bucket (currently in "Requester pays" mode) and provides an API to query replay metadata. Use  [Hotsapi.Uploader](http://hotsapi.net/upload) ([repo link](https://github.com/poma/Hotsapi.Uploader)) to upload your replay files.
+[HotsApi.net](https://hotsapi.net/) is an open Heroes of the Storm replay database where everyone can download replays. It stores replays in a public AWS S3 bucket (currently in "Requester pays" mode) and provides an API to query replay metadata. Use  [Hotsapi.Uploader](https://hotsapi.net/upload) ([repo link](https://github.com/poma/Hotsapi.Uploader)) to upload your replay files.
 
 There are API libraries for [Ruby](https://github.com/tbuehlmann/hots_api) and [Python](https://github.com/MakiseKurisu/hotsapi)
 
