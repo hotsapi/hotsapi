@@ -11,10 +11,6 @@
 |
 */
 
-//if (env('APP_ENV') === 'production') {
-//    URL::forceScheme('https');
-//}
-
 Route::get('/', 'WebController@home');
 Route::get('/upload', 'WebController@upload');
 Route::get('/docs', 'WebController@docs');

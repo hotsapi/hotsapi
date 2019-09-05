@@ -11,8 +11,8 @@
 |
 */
 
-Route::get ('replays', 'ReplayController@index')->middleware('throttle:30,1');
-Route::get ('replays/parsed', 'ReplayController@parsed')->middleware('throttle:30,1');
+Route::get ('replays', 'ReplayController@index');//->middleware('throttle:30,1');
+Route::get ('replays/parsed', 'ReplayController@parsed');//->middleware('throttle:30,1');
 // Disabled because their SQL queries are too slow
 //Route::get ('replays/min_id/{date}', 'ReplayController@minId')->middleware('throttle:30,1');
 //Route::get ('replays/parsed/min_id/{date}', 'ReplayController@minParsedId')->middleware('throttle:30,1');
@@ -22,7 +22,7 @@ Route::get ('replays/fingerprints/v3/{fingerprint}', 'ReplayController@checkV3')
 Route::get ('replays/fingerprints/v2/{fingerprint}', 'ReplayController@checkV2');
 Route::post('replays/fingerprints', 'ReplayController@massCheck');
 Route::get ('replays/min-build', 'ReplayController@minimumBuild');
-Route::get ('replays/{replay}', 'ReplayController@show')->middleware('throttle:60,1');
+Route::get ('replays/{replay}', 'ReplayController@show');//->middleware('throttle:60,1');
 
 Route::get ('heroes', 'HeroController@index');
 Route::get ('heroes/translations', 'HeroController@index'); // left for compatibility
