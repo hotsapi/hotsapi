@@ -30,6 +30,7 @@ services:
       VIRTUAL_HOST: hotsapi.net
       LETSENCRYPT_HOST: hotsapi.net
       HTTPS_METHOD: noredirect
+      NGINX_CLIENT_MAX_BODY_SIZE: 30M
     depends_on:
       - memcached
 
