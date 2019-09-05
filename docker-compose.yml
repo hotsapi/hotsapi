@@ -61,13 +61,13 @@ services:
     env_file: .env.prod
     entrypoint: 'bash -c "while [ true ]; do php artisan schedule:run --verbose --no-interaction & sleep 60; done"'
 
-#  prune:
-#    image: hotsapi/prune
-#    env_file: .env.prod
+  prune:
+    image: hotsapi/prune
+    env_file: .env.prod
+    # todo run this on cron
 
   # TODO:
   #   move parser and heroprotocol dockerfiles to respective repos and wrap them as separate services
-  #   prune script
   #   php artisan migrate --force
   #   update on heroprotocol/c# parser updates
 
