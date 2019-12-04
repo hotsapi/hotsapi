@@ -57,6 +57,6 @@ class Hero extends Model
 
     public function getIconUrlAttribute()
     {
-        return ["92x93" => "http://s3.hotsapi.net/img/heroes/92x93/$this->short_name.png"];
+        return ["92x93" => "https://github.com/heroespatchnotes/heroes-talents/raw/master/images/heroes/{$this->short_name}.png"];
     }
 }
