@@ -43,7 +43,7 @@ services:
     command: ['queue:work', '--sleep=3', '--tries=3', '--timeout=60']
     depends_on:
       - memcached
-    scale: 6
+    scale: 0
     
   parser:
     image: hotsapi/hotsapi
@@ -64,6 +64,9 @@ services:
   prune:
     image: hotsapi/prune
     env_file: .env.prod
+    environment:
+      CRON_TIME: '00 28 02 * * *'
+      
     # todo run this on cron
 
   # TODO:
