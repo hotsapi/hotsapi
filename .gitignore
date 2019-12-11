@@ -17,3 +17,4 @@ yarn-error.log
 misc
 .gcloud.json
 .docker
+goss/goss

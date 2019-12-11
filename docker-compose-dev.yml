@@ -1,0 +1,94 @@
+version: '3.7'
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: 'hotsapi'
+      MYSQL_USER: 'docker'
+      MYSQL_PASSWORD: 'docker'
+    healthcheck:
+      test: ['CMD', '/opt/goss/goss', '-g', '/opt/goss/goss-mysql.yaml', 'validate']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    volumes:
+      - ./goss:/opt/goss:ro
+
+  memcached:
+    image: memcached
+    restart: always
+
+  artisan:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.dev.multi-stage
+      target: hotsapi
+    image: hotsapidev/hotsapi:dev
+    env_file: .env
+    volumes:
+      - ${PWD}/goss:/opt/goss:ro
+      - ${PWD}/docker/docker-entrypoint-artisan.sh:/opt/docker-entrypoint-artisan.sh
+    entrypoint:
+      - /opt/docker-entrypoint-artisan.sh
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.dev.multi-stage
+      target: webserver
+    image: hotsapidev/webserver:dev
+    restart: always
+    env_file: .env
+    ports:
+      - "8888:80"
+    environment:
+      VIRTUAL_HOST: hotsapi.net
+      LETSENCRYPT_HOST: hotsapi.net
+      HTTPS_METHOD: noredirect
+      nginx_client_max_body_size: 30M
+    depends_on:
+      - memcached
+      - artisan
+
+  worker:
+    image: hotsapidev/hotsapi:dev
+    restart: always
+    env_file: .env
+    volumes:
+      - .gcloud.json:/var/www/hotsapi/.gcloud.json
+    command: ['queue:work', '--sleep=3', '--tries=3', '--timeout=60']
+    depends_on:
+      - memcached
+    
+  parser:
+    image: hotsapidev/hotsapi:dev
+    restart: on-failure
+    env_file: .env
+    command: ['hotsapi:parse']
+    depends_on:
+      - artisan
+
+  scheduler:
+    image: hotsapidev/hotsapi:dev
+    restart: always
+    env_file: .env
+    entrypoint: 'bash -c "while [ true ]; do php artisan schedule:run --verbose --no-interaction & sleep 60; done"'
+
+  prune:
+    image: hotsapi/prune
+    env_file: .env
+    # todo run this on cron
+
+  # TODO:
+  #   move parser and heroprotocol dockerfiles to respective repos and wrap them as separate services
+  #   php artisan migrate --force
+  #   update on heroprotocol/c# parser updates
