@@ -25,18 +25,16 @@ services:
 
   memcached:
     image: memcached
-    restart: on_error
+    restart: always
 
   artisan:
     image: hotsapi/hotsapi:dev
-    environment:
-      DB_CONNECTION: 'mysql-dev'
-      APP_ENV: 'local'
+    env_file: .env
     volumes:
       - ${PWD}/goss:/opt/goss:ro
       - ${PWD}/docker/docker-entrypoint-artisan.sh:/opt/docker-entrypoint-artisan.sh
     entrypoint:
-      - docker-entrypoint-artisan.sh
+      - /opt/docker-entrypoint-artisan.sh
 
   web:
     image: hotsapi/webserver
@@ -52,7 +50,7 @@ services:
       - artisan
 
   worker:
-    image: hotsapi/hotsapi
+    image: hotsapi/hotsapi:dev
     restart: always
     env_file: .env
     volumes:
@@ -62,7 +60,7 @@ services:
       - memcached
     
   parser:
-    image: hotsapi/hotsapi
+    image: hotsapi/hotsapi:dev
     restart: on-failure
     env_file: .env
     command: ['hotsapi:parse']
@@ -70,7 +68,7 @@ services:
       - artisan
 
   scheduler:
-    image: hotsapi/hotsapi
+    image: hotsapi/hotsapi:dev
     restart: always
     env_file: .env
     entrypoint: 'bash -c "while [ true ]; do php artisan schedule:run --verbose --no-interaction & sleep 60; done"'

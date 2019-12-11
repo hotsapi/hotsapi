@@ -1,5 +1,4 @@
 command:
-  db-accessible:
+  db-migrate:
     exit-status: 0
-    exec: 'mysql -u docker -pdocker hotsapi -h mysql:3306 -e "show tables;"
-
+    exec: 'php artisan migrate --force'
