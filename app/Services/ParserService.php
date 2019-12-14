@@ -316,11 +316,11 @@ class ParserService
      */
     public function parse($filename)
     {
-        $process = new Process("heroprotocol --json --header --details --initdata --attributeevents '$filename'");
+        $process = new Process(["heroprotocol", "--json", "--header", "--details", "--initdata", "--attributeevents", "'$filename'"]);
         if (0 !== $process->run()) {
             if (strpos($process->getErrorOutput(), "Unsupported base build") !== false) {
                 // check whether version is too new or too old
-                $process = new Process("heroprotocol --json --header '$filename'");
+                $process = new Process(["heroprotocol", "--json", "--header", "'$filename'"]);
                 $process->mustRun();
                 $result = json_decode($process->getOutput());
                 if ($result->m_version->m_build < self::MIN_SUPPORTED_BUILD) {
@@ -347,7 +347,7 @@ class ParserService
 
     public function extractExtendedData($filename)
     {
-        $process = new Process("hotsapi-parser '$filename'");
+        $process = new Process(["hotsapi-parser", "'$filename'"]);
         if (0 !== $process->run()) {
             throw new ProcessFailedException($process);
         }
