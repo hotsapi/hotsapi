@@ -49,4 +49,9 @@ class Ability extends Model
     {
         return $this->belongsTo(Hero::class);
     }
+
+    public function getIconUrlAttribute()
+    {
+        return $this->icon ? ["64x64" => "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/{$this->icon}"] : [];
+    }
 }

@@ -47,6 +47,6 @@ class Talent extends Model
 
     public function getIconUrlAttribute()
     {
-        return $this->icon ? ["64x64" => "http://s3.hotsapi.net/img/talents/64x64/$this->icon"] : [];
+        return $this->icon ? ["64x64" => "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/{$this->icon}"] : [];
     }
 }
