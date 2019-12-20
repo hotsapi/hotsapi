@@ -52,6 +52,6 @@ class Ability extends Model
 
     public function getIconUrlAttribute()
     {
-        return $this->icon ? ["64x64" => "https://github.com/heroespatchnotes/heroes-talents/raw/master/images/talents/{$this->icon}"] : [];
+        return $this->icon ? ["64x64" => "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/{$this->icon}"] : [];
     }
 }
