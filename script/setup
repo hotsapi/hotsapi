@@ -43,8 +43,6 @@ fi
 echo "Installing dependencies from Brewfile"
 brew bundle
 docker login
-
-
 #todo: determine shell and run the correct source commands for autocompletion
 ##
 #  for bash users
@@ -63,10 +61,6 @@ docker login
 #todo: hotsapi-project dev
 
 cd "${ROOT}"
+cp .env.example.docker .env
 
-cp .env.example .env
-
-docker-compose -f docker-compose-dev.yaml up
-
-
-
+docker-compose up

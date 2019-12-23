@@ -28,7 +28,11 @@ services:
     restart: always
 
   artisan:
-    image: hotsapi/hotsapi:dev
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.dev.multi-stage
+      target: hotsapi
+    image: hotsapidev/hotsapi:dev
     env_file: .env
     volumes:
       - ${PWD}/goss:/opt/goss:ro
@@ -37,9 +41,15 @@ services:
       - /opt/docker-entrypoint-artisan.sh
 
   web:
-    image: hotsapi/webserver
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile.dev.multi-stage
+      target: webserver
+    image: hotsapidev/webserver:dev
     restart: always
     env_file: .env
+    ports:
+      - "8888:80"
     environment:
       VIRTUAL_HOST: hotsapi.net
       LETSENCRYPT_HOST: hotsapi.net
@@ -50,7 +60,7 @@ services:
       - artisan
 
   worker:
-    image: hotsapi/hotsapi:dev
+    image: hotsapidev/hotsapi:dev
     restart: always
     env_file: .env
     volumes:
@@ -60,20 +70,16 @@ services:
       - memcached
     
   parser:
-    image: hotsapi/hotsapi:dev
+    image: hotsapidev/hotsapi:dev
     restart: on-failure
     env_file: .env
     command: ['hotsapi:parse']
-    depends_on:
-      - artisan
 
   scheduler:
-    image: hotsapi/hotsapi:dev
+    image: hotsapidev/hotsapi:dev
     restart: always
     env_file: .env
     entrypoint: 'bash -c "while [ true ]; do php artisan schedule:run --verbose --no-interaction & sleep 60; done"'
-    depends_on:
-      - artisan
 
   prune:
     image: hotsapi/prune
