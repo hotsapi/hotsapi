@@ -1,0 +1,4 @@
+command:
+  db-migrate:
+    exit-status: 0
+    exec: 'php artisan migrate --force'

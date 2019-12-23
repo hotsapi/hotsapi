@@ -57,6 +57,24 @@ return [
             ],
         ],
 
+        'mysql-dev' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST', 'mysql'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'hotsapi'),
+            'username' => env('DB_USERNAME', 'docker'),
+            'password' => env('DB_PASSWORD', 'docker'),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+            'options'   => [
+                PDO::MYSQL_ATTR_COMPRESS => env('DB_COMPRESSION', false),
+            ],
+        ],
+
         // We use read replica for all API operations except
         // the ones required for uploads (upload and check fingerprint)
         'mysql_slave' => [

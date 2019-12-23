@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+set -eu
+
+# Currently not needed, but these may be helpful for the future
+ROOT=$(git rev-parse --show-toplevel)
+GITSHA=$(git rev-parse --short HEAD)
+BUILDDATE=$(date -u +%Y%m%d.%H%M%S)
+
+HOMEBREW_INSTALL='/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'
+
+
+if ! [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "This setup script only supports MacOS for the time being..."
+    exit 1
+fi
+
+install_brew () {
+    case $1 in
+
+    'n')
+        echo "Skipping homebrew installation"
+        return ;;
+    'y')
+        eval ${HOMEBREW_INSTALL} ;;
+    esac
+
+    return
+}
+
+if ! [[ -x "$(command -v brew)" ]]; then
+    echo "Homebrew install missing, this may be required to install missing packages"
+
+    while read -p "Would you like to install Homebrew? Y/n:" confirm
+    do
+        if [[ "${confirm,,}" =~ ^(y|n)$ ]]; then
+            install_brew "${confirm,,}"
+            break
+        fi
+    done
+fi
+
+
+echo "Installing dependencies from Brewfile"
+brew bundle
+docker login
+#todo: determine shell and run the correct source commands for autocompletion
+##
+#  for bash users
+#    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc'
+#    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc'
+#
+#  for zsh users
+#    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+#    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+##
+
+#todo: gcloud init (this may not be needed)
+# gcloud iam service-accounts create hotsapi-dev-sa --description="hotsapi dev service account" --display-name="hotsapi-dev-sa"
+# gcloud iam service-accounts keys create --iam-account hotsapi-dev-sa@hotsapi-dev.iam.gserviceaccount.com .gcloud.json (in ROOT)
+
+#todo: hotsapi-project dev
+
+cd "${ROOT}"
+cp .env.example.docker .env
+
+docker-compose up

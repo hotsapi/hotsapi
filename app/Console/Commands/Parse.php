@@ -55,7 +55,9 @@ class Parse extends Command
      */
     public function handle()
     {
-        while(true) {
+        # Implement a rudimentary retry if database has gone away
+
+        while($this->dbAlive()) {
             try {
                 DB::statement("SET @update_id := 0;");
                 DB::update("UPDATE replays SET processed = -1, id = (SELECT @update_id := id) WHERE processed = 0 LIMIT 1;");
@@ -90,5 +92,26 @@ class Parse extends Command
         }
     }
 
+    /**
+     * Checks if the database is up
+     *
+     * @param int $retries number of tries, default 3
+     * @param int $sleep number of seconds to wait between each rety, default 5
+     * @return bool
+     */
+    private function dbAlive(int $retries=3, int $sleep=5) : bool
+    {
+        for($iter=0; $iter<$retries; $iter++) {
+            try {
+                DB::connection()->getPdo();
 
+                return true;
+            } catch (\PDOException $exception) {
+                report($exception);
+
+                sleep($sleep);
+            }
+        }
+        return false;
+    }
 }
