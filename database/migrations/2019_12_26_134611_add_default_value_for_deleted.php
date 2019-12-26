@@ -13,8 +13,11 @@ class AddDefaultValueForDeleted extends Migration
      */
     public function up()
     {
-
-        DB::statement('ALTER TABLE `hotsapi`.`replays` CHANGE COLUMN `deleted` `deleted` TINYINT(1) NOT NULL DEFAULT \'0\'');
+        // https://stackoverflow.com/a/42107554/9539
+        DB::getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
+        Schema::table('replays', function (Blueprint $table) {
+            $table->integer('deleted')->default(0)->change();
+        });
     }
 
     /**
@@ -24,6 +27,10 @@ class AddDefaultValueForDeleted extends Migration
      */
     public function down()
     {
-        DB::statement('ALTER TABLE `hotsapi`.`replays` CHANGE COLUMN `deleted` `deleted` TINYINT(1) NOT NULL');
+        // https://stackoverflow.com/a/42107554/9539
+        DB::getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
+        Schema::table('replays', function (Blueprint $table) {
+            $table->integer('deleted')->default(NULL)->change();
+        });
     }
 }
