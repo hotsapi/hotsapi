@@ -38,6 +38,8 @@ class Parse extends Command
      */
     private $replayService;
 
+    private $run = true;
+
     /**
      * Create a new command instance.
      * @param ReplayService $replayService
@@ -55,7 +57,12 @@ class Parse extends Command
      */
     public function handle()
     {
-        while(true) {
+        declare(ticks=1);
+        pcntl_signal(SIGINT, [$this, 'shutdown']);
+        pcntl_signal(SIGTERM, [$this, 'shutdown']);
+
+        $this->info('Parser started...');
+        while($this->run) {
             try {
                 DB::statement("SET @update_id := 0;");
                 DB::update("UPDATE replays SET processed = -1, id = (SELECT @update_id := id) WHERE processed = 0 LIMIT 1;");
@@ -90,5 +97,9 @@ class Parse extends Command
         }
     }
 
-
+    public function shutdown()
+    {
+        $this->info('Gracefully stopping parser...');
+        $this->run = false;
+    }
 }
