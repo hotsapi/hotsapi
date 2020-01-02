@@ -6,8 +6,9 @@ use App\Ability;
 use App\Hero;
 use App\HeroTalent;
 use App\Talent;
-use Guzzle;
 use Illuminate\Console\Command;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+use Symfony\Component\Process\Process;
 
 class FetchTalents extends Command
 {
@@ -24,6 +25,8 @@ class FetchTalents extends Command
      * @var string
      */
     protected $description = 'Command description';
+
+    private $cloneDir = "/tmp/heroes-talents";
 
     /**
      * Create a new command instance.
@@ -42,23 +45,44 @@ class FetchTalents extends Command
      */
     public function handle()
     {
+        $this->fetchHeroes();
+        list($heroes, $abilities, $talents) = $this->processHeroFiles();
+
+        $this->info('FetchTalents: Saving heroes data...');
+        Hero::insertOnDuplicateKey($heroes);
+        Ability::insertOnDuplicateKey($abilities);
+        HeroTalent::insertOnDuplicateKey($talents);
+
+        $this->info('FetchTalents: Finished');
+    }
+
+    private function fetchHeroes() {
+        $this->info('FetchTalents: Cloning heroes data from Github...');
+
+        $process = new Process("rm -rf " . $this->cloneDir);
+        $process->run();
+
+        $process = new Process("git clone --depth 1 https://github.com/heroespatchnotes/heroes-talents.git " . $this->cloneDir);
+        if (0 !== $process->run()) {
+            throw new ProcessFailedException($process);
+        }
+    }
+
+    private function processHeroFiles() {
+        $this->info('FetchTalents: Processing heroes data...');
+        $files = array_diff(scandir($this->cloneDir . '/hero'), array('.', '..'));
+
         $heroes = [];
         $abilities = [];
         $talents = [];
-        $talents_pivot = [];
-        foreach (Hero::all() as $hero) {
-            $this->info("Getting talents for $hero->name");
-            $response = Guzzle::get("https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/hero/$hero->short_name.json", ['http_errors' => false]);
-            if ($response->getStatusCode() != 200) {
-                $this->error("Error getting data for hero $hero->short_name, code " . $response->getStatusCode());
-                continue;
-            }
-            $data = json_decode($response->getBody());
+        foreach ($files as $file) {
+            $content = file_get_contents("$this->cloneDir" . '/hero/' . $file);
+            $data = json_decode($content);
 
             $heroes[] = [
-                'id' => $hero->id,
-                'name' => $hero->name,
-                'short_name' => $hero->short_name,
+                'id' => $data->id,
+                'name' => $data->name,
+                'short_name' => $data->shortName,
                 'c_hero_id' => $data->cHeroId,
                 'c_unit_id' => $data->cUnitId,
                 'role' => $data->role,
@@ -70,9 +94,9 @@ class FetchTalents extends Command
             foreach ($data->abilities as $owner => $abilityArray) {
                 foreach ($abilityArray as $ability) {
                     $abilities[] = [
-                        'hero_id' => $hero->id,
+                        'hero_id' => $data->id,
                         'owner' => $owner,
-                        'name' => preg_replace('/^.*\|/', '', $ability->abilityId),
+                        'name' => isset($ability->abilityId) ? preg_replace('/^.*\|/', '', $ability->abilityId) : null,
                         'title' => $ability->name,
                         'description' => $ability->description,
                         'hotkey' => $ability->hotkey ?? null,
@@ -87,28 +111,26 @@ class FetchTalents extends Command
                 foreach ($talentArray as $talent) {
                     // We can't use bulk upsert for talents because we need to obtain `id` field
                     $srcTalent = Talent::updateOrCreate([
-                            'name' => $talent->talentTreeId
-                        ], [
-                            'title' => $talent->name,
-                            'description' => $talent->description,
-                            'icon' => $talent->icon,
-                            'ability_id' => preg_replace('/^.*\|/', '', $talent->abilityId),
-                            'sort' => $talent->sort,
-                            'level' => $level,
-                            'cooldown' => $talent->cooldown ?? null,
-                            'mana_cost' => $talent->mana_cost ?? null,
+                        'name' => $talent->talentTreeId
+                    ], [
+                        'title' => $talent->name,
+                        'description' => $talent->description,
+                        'icon' => $talent->icon,
+                        'ability_id' => isset($talent->abilityId) ? preg_replace('/^.*\|/', '', $talent->abilityId) : null,
+                        'sort' => $talent->sort,
+                        'level' => $level,
+                        'cooldown' => $talent->cooldown ?? null,
+                        'mana_cost' => $talent->mana_cost ?? null,
                     ]);
 
-                    $talents_pivot[] = [
-                        'hero_id' => $hero->id,
+                    $talents[] = [
+                        'hero_id' => $data->id,
                         'talent_id' => $srcTalent->id,
                     ];
                 }
             }
         }
 
-        HeroTalent::insertOnDuplicateKey($talents_pivot);
-        Hero::insertOnDuplicateKey($heroes);
-        Ability::insertOnDuplicateKey($abilities);
+        return array($heroes, $abilities, $talents);
     }
 }
