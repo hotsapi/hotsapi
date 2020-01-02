@@ -1,0 +1,23 @@
+{
+  "name": "integration_tests",
+  "version": "1.0.0",
+  "description": "Integration tests that hit the api and web endpoints",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run test:unit",
+    "test:unit": "mocha \"*.js\"",
+    "test:unit:watch": "mocha -w \"*.js\""
+  },
+  "author": "Richard Nienaber",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "chai-subset": "^1.6.0",
+    "mocha": "^6.2.2"
+  }
+}

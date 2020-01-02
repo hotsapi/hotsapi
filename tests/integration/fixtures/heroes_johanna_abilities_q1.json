@@ -1,0 +1,11 @@
+{
+  "owner": "Johanna",
+  "name": "Q1",
+  "title": "Punish",
+  "description": "Step forward dealing 113 (+4% per level) damage and Slowing enemies by 60% decaying over 2 seconds.",
+  "icon": null,
+  "hotkey": "Q",
+  "cooldown": 8,
+  "mana_cost": 40,
+  "trait": false
+}

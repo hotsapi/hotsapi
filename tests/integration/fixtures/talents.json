@@ -1,0 +1,342 @@
+[
+  {
+    "name": "AnduinDivineStarPowerWordShield",
+    "title": "Power Word: Shield",
+    "description": "If Divine Star hits an enemy Hero, gain a Shield that absorbs 172 (+4% per level) damage for 4 seconds.",
+    "icon": "storm_ui_icon_anduin_divine_star.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_anduin_divine_star.png"
+    },
+    "ability": "W1",
+    "sort": 2,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 7,
+    "heroes": [
+      "Anduin"
+    ]
+  },
+  {
+    "name": "ArtanisShieldOverloadForceofWill",
+    "title": "Force of Will",
+    "description": "Casting Basic Abilities reduces the cooldown of Shield Overload by 5 seconds.",
+    "icon": "storm_ui_icon_artanis_shieldoverload.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_artanis_shieldoverload.png"
+    },
+    "ability": "D1",
+    "sort": 2,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 16,
+    "heroes": [
+      "Artanis"
+    ]
+  },
+  {
+    "name": "AzmodanHeroicAbilityDemonicInvasion",
+    "title": "Demonic Invasion",
+    "description": "Rain a small army of Demonic Grunts down on enemies, dealing 65 (+4% per level) damage per impact. Grunts deal 42 (+4% per level) damage, have 750 (+4% per level) Health and last up to 10 seconds. When Grunts die they explode, dealing 98 (+4% per level) damage to nearby enemies.  Usable while Channeling All Shall Burn.",
+    "icon": "storm_ui_icon_azmodan_demonicinvasion.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_azmodan_demonicinvasion.png"
+    },
+    "ability": "R1",
+    "sort": 1,
+    "cooldown": 90,
+    "mana_cost": null,
+    "level": 10,
+    "heroes": [
+      "Azmodan"
+    ]
+  },
+  {
+    "name": "BrightwingPhaseShiftHyperShift",
+    "title": "Hyper Shift",
+    "description": "Increase Phase Shift's healing by an additional 10% of the target's maximum Health. Nearby enemy Minion deaths reduce Phase Shift's cooldown by 2 seconds.",
+    "icon": "storm_ui_icon_brightwing_hypershift.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_brightwing_hypershift.png"
+    },
+    "ability": "Z1",
+    "sort": 2,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 1,
+    "heroes": [
+      "Brightwing"
+    ]
+  },
+  {
+    "name": "ChoUppercut",
+    "title": "Uppercut",
+    "description": "Surging Fist deals additional damage to Heroes equal to 7% of their max Health.",
+    "icon": "storm_ui_icon_cho_moltensurge_a.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_cho_moltensurge_a.png"
+    },
+    "ability": "Q1",
+    "sort": 1,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 4,
+    "heroes": [
+      "Cho"
+    ]
+  },
+  {
+    "name": "DVaBoostersHitTheNitrous",
+    "title": "Hit the Nitrous",
+    "description": "Initial speed bonus of Boosters is increased to 325%, then decays to normal boost speed over 0.5 seconds. During this time, Boosters deals 50% extra damage.",
+    "icon": "storm_ui_icon_dva_boosters_a.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_dva_boosters_a.png"
+    },
+    "ability": "Q1",
+    "sort": 2,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 1,
+    "heroes": [
+      "D.Va"
+    ]
+  },
+  {
+    "name": "GallEdgeOfMadness",
+    "title": "Edge of Madness",
+    "description": "Every subsequent hit of Shadowflame against the same enemy Hero deals an additional 12% damage, to a maximum of 60%. These bonuses are lost if the Hero has not been hit for 7 seconds.",
+    "icon": "storm_ui_icon_gall_shadowflame.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_gall_shadowflame.png"
+    },
+    "ability": "Q1",
+    "sort": 1,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 7,
+    "heroes": [
+      "Gall"
+    ]
+  },
+  {
+    "name": "IllidanMasteryFriendOrFoeDive",
+    "title": "Friend or Foe",
+    "description": "Increases the range of Dive by 20% and allows it to be used to dive to allied Heroes.",
+    "icon": "storm_ui_icon_illidan_dive_a.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_illidan_dive_a.png"
+    },
+    "ability": "Q1",
+    "sort": 2,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 4,
+    "heroes": [
+      "Illidan"
+    ]
+  },
+  {
+    "name": "MalfurionMasteryHinderingMoonfire",
+    "title": "Hindering Moonfire",
+    "description": "Moonfire Slows Heroes hit by 25% for 2 seconds.",
+    "icon": "storm_ui_icon_malfurion_moonfire.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_malfurion_moonfire.png"
+    },
+    "ability": "W1",
+    "sort": 2,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 13,
+    "heroes": [
+      "Malfurion"
+    ]
+  },
+  {
+    "name": "MalthaelSoulSiphon",
+    "title": "Soul Siphon",
+    "description": "Increase Soul Rip's bonus healing from Heroes to 4.75% of the Hero's maximum Health.",
+    "icon": "storm_ui_icon_malthael_soulrip.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_malthael_soulrip.png"
+    },
+    "ability": "Q1",
+    "sort": 1,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 13,
+    "heroes": [
+      "Malthael"
+    ]
+  },
+  {
+    "name": "MephistoConsumeSouls",
+    "title": "Consume Souls",
+    "description": "Channel for 2.5 seconds, revealing all enemy Heroes. After the Channel completes, all enemy Heroes take 357 (+4% per level) damage and are Slowed by 25% for 2.5 seconds.",
+    "icon": "storm_ui_icon_mephisto_souls.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_mephisto_souls.png"
+    },
+    "ability": "R1",
+    "sort": 1,
+    "cooldown": 120,
+    "mana_cost": null,
+    "level": 10,
+    "heroes": [
+      "Mephisto"
+    ]
+  },
+  {
+    "name": "MephistoShadeOfMephistoShadeLord",
+    "title": "Shade Lord",
+    "description": "Activate to swap locations with Shade of Mephisto and refresh its duration.  Passive: Shade of Mephisto benefits from all of Mephisto's level 7 Talents.",
+    "icon": "storm_ui_icon_mephisto_shade.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_mephisto_shade.png"
+    },
+    "ability": "Active",
+    "sort": 4,
+    "cooldown": 40,
+    "mana_cost": null,
+    "level": 20,
+    "heroes": [
+      "Mephisto"
+    ]
+  },
+  {
+    "name": "MurkyFishEye",
+    "title": "Fish Eye",
+    "description": "Egg's Health is increased by 100%, its sight radius is increased by 300% and it can see Stealthed enemies.  Passive: Spawning from his Egg increases Murky's mount speed to 45% for 5 seconds.",
+    "icon": "storm_ui_icon_murky_trait_spawnegg.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_murky_trait_spawnegg.png"
+    },
+    "ability": "D1",
+    "sort": 1,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 1,
+    "heroes": [
+      "Murky"
+    ]
+  },
+  {
+    "name": "WitchDoctorHeroicAbilityGargantuan",
+    "title": "Gargantuan",
+    "description": "Summon a Gargantuan to guard an area for 20 seconds. Deals 100 (+4% per level) damage when summoned, attacks for 140 (+4% per level) damage, and can be ordered to stomp nearby enemies.",
+    "icon": "storm_ui_icon_nazeebo_gargantuan.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_nazeebo_gargantuan.png"
+    },
+    "ability": "R1",
+    "sort": 1,
+    "cooldown": 70,
+    "mana_cost": null,
+    "level": 10,
+    "heroes": [
+      "Nazeebo"
+    ]
+  },
+  {
+    "name": "StukovVirulentReaction",
+    "title": "Virulent Reaction",
+    "description": "Detonating a Weighted Pustule on an enemy who is inside of Lurking Arm Roots them for 2 seconds.",
+    "icon": "storm_ui_icon_stukov_lurkingarm_b.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_stukov_lurkingarm_b.png"
+    },
+    "ability": "E1",
+    "sort": 3,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 13,
+    "heroes": [
+      "Stukov"
+    ]
+  },
+  {
+    "name": "SylvanasTalentLifeDrain",
+    "title": "Life Drain",
+    "description": "Heal for 15% of damage dealt by Sylvanas to enemies with 3 stacks of Banshee's Curse. Healing is doubled against Heroes.",
+    "icon": "storm_ui_icon_talent_autoattack_heal.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_autoattack_heal.png"
+    },
+    "ability": "Passive",
+    "sort": 2,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 16,
+    "heroes": [
+      "Sylvanas"
+    ]
+  },
+  {
+    "name": "ButcherMasteryFreshMeatBloodFrenzy",
+    "title": "Blood Frenzy",
+    "description": "Basic Attacks against enemy Heroes grant 5% increased Attack and Movement Speed for 3 seconds, up to 25%.",
+    "icon": "storm_ui_icon_talent_autoattack_speed.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_autoattack_speed.png"
+    },
+    "ability": "Passive",
+    "sort": 3,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 16,
+    "heroes": [
+      "The Butcher"
+    ]
+  },
+  {
+    "name": "UtherMasteryWaveofLightHolyRadiance",
+    "title": "Wave of Light",
+    "description": "Quest: Damage or heal Heroes 60 times with Holy Radiance.  Reward: Increase the duration of Devotion by 0.5 seconds.  Passive: Damaging or healing Heroes with Holy Radiance refunds 5 Mana and reduces its cooldown by 1 second.",
+    "icon": "storm_ui_icon_uther_holyradiance.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_uther_holyradiance.png"
+    },
+    "ability": "W1",
+    "sort": 2,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 1,
+    "heroes": [
+      "Uther"
+    ]
+  },
+  {
+    "name": "NecromancerTalentHarvestVitality",
+    "title": "Harvest Vitality",
+    "description": "Cursed Strikes heals for 70% of the damage dealt to Heroes.",
+    "icon": "storm_ui_icon_necromancer_cursedstrikes_off.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_necromancer_cursedstrikes_off.png"
+    },
+    "ability": "W1",
+    "sort": 1,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 7,
+    "heroes": [
+      "Xul"
+    ]
+  },
+  {
+    "name": "ZagaraMasteryMutalisk",
+    "title": "Mutalisk",
+    "description": "Reduce the cooldown of Hunter Killer by 4 seconds.  Hunter Killer now spawns a Mutalisk. Mutalisks have a bounce attack and last for 30 seconds.",
+    "icon": "storm_ui_icon_zagara_hunterkillermuta.png",
+    "icon_url": {
+      "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_hunterkillermuta.png"
+    },
+    "ability": "W1",
+    "sort": 2,
+    "cooldown": null,
+    "mana_cost": null,
+    "level": 16,
+    "heroes": [
+      "Zagara"
+    ]
+  }
+]

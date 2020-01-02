@@ -1,0 +1,455 @@
+{
+  "name": "Valeera",
+  "short_name": "valeera",
+  "attribute_id": "VALE",
+  "translations": [
+    "valeera",
+    "valira",
+    "\u0432\u0430\u043b\u0438\u0440\u0430",
+    "\u74e6\u8389\u62c9",
+    "\u74e6\u9e97\u62c9",
+    "\ubc1c\ub9ac\ub77c"
+  ],
+  "role": "Assassin",
+  "type": "Melee",
+  "release_date": "2017-01-24",
+  "icon_url": {
+    "92x93": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/heroes\/valeera.png"
+  },
+  "abilities": [
+    {
+      "owner": "Valeera",
+      "name": "D1",
+      "title": "Vanish",
+      "description": "Vanish from sight, becoming Stealthed, gaining 20% Movement Speed and access to new Abilities. For the first second, Valeera is Unrevealable and can pass through other units. Remaining stationary for at least 1.5 seconds while Stealthed grants Invisible.  After being Stealthed for 3 seconds, Ambush, Cheap Shot, and Garrote have 100% increased range, and cause Valeera to teleport to the target when used.",
+      "icon": null,
+      "hotkey": "D",
+      "cooldown": 8,
+      "mana_cost": null,
+      "trait": true
+    },
+    {
+      "owner": "ValeeraStealth",
+      "name": "D2",
+      "title": "Cancel Stealth",
+      "description": "Cancels Stealth.",
+      "icon": null,
+      "hotkey": "D",
+      "cooldown": 1,
+      "mana_cost": null,
+      "trait": true
+    },
+    {
+      "owner": "Valeera",
+      "name": "E1",
+      "title": "Eviscerate",
+      "description": "Eviscerate an enemy, dealing damage per Combo Point.  1 Point: 85 (+4% per level) 2 Points: 170 (+4% per level) 3 Points: 255 (+4% per level)  Stealth: Garrote Silence and damage an enemy over time.",
+      "icon": null,
+      "hotkey": "E",
+      "cooldown": 1,
+      "mana_cost": 25,
+      "trait": false
+    },
+    {
+      "owner": "ValeeraStealth",
+      "name": "E2",
+      "title": "Garrote",
+      "description": "Deal 20 (+4% per level) damage to an enemy and an additional 140 (+4% per level) damage over 7 seconds, and Silence them for 2.5 seconds.  Awards 1 Combo Point.  Unstealth: Eviscerate High damage finishing move.",
+      "icon": null,
+      "hotkey": "E",
+      "cooldown": 1,
+      "mana_cost": 30,
+      "trait": false
+    },
+    {
+      "owner": "Valeera",
+      "name": "Q1",
+      "title": "Sinister Strike",
+      "description": "Dash forward, hitting all enemies in a line for 110 (+4% per level) damage. If Sinister Strike hits a Hero, Valeera stops dashing immediately and the cooldown is reduced to 1 second.  Awards 1 Combo Point.  Stealth: Ambush Heavily damage an enemy and reduce their Armor.",
+      "icon": null,
+      "hotkey": "Q",
+      "cooldown": 5,
+      "mana_cost": 30,
+      "trait": false
+    },
+    {
+      "owner": "ValeeraStealth",
+      "name": "Q2",
+      "title": "Ambush",
+      "description": "Ambush an enemy, dealing 130 (+4% per level) damage and reducing their Armor by 10 for 5 seconds.  Awards 1 Combo Point.  Unstealth: Sinister Strike Dash forward, damaging enemies.",
+      "icon": null,
+      "hotkey": "Q",
+      "cooldown": 1,
+      "mana_cost": 10,
+      "trait": false
+    },
+    {
+      "owner": "Valeera",
+      "name": "R1",
+      "title": "Cloak of Shadows",
+      "description": "Valeera is enveloped in a Cloak of Shadows, which immediately removes all damage over time effects from her. For 1.5 seconds, she becomes Unstoppable and gains 75 Spell Armor, reducing Ability Damage taken by 75%.  Using this Ability does not break Stealth.",
+      "icon": null,
+      "hotkey": "R",
+      "cooldown": 15,
+      "mana_cost": null,
+      "trait": false
+    },
+    {
+      "owner": "Valeera",
+      "name": "R2",
+      "title": "Smoke Bomb",
+      "description": "Create a cloud of smoke. While in the smoke, Valeera is Unrevealable, can pass through other units, and gains 30 Armor, reducing damage taken by 30%. Valeera can continue to attack and use abilities without being revealed. Lasts 5 seconds.  Using this Ability does not break Stealth.",
+      "icon": null,
+      "hotkey": "R",
+      "cooldown": 60,
+      "mana_cost": null,
+      "trait": false
+    },
+    {
+      "owner": "Valeera",
+      "name": "W1",
+      "title": "Blade Flurry",
+      "description": "Deal 130 (+4% per level) damage in an area around Valeera.  Awards 1 Combo Point per enemy Hero hit.  Stealth: Cheap Shot Stun, Blind, and damage an enemy.",
+      "icon": null,
+      "hotkey": "W",
+      "cooldown": 4,
+      "mana_cost": 40,
+      "trait": false
+    },
+    {
+      "owner": "ValeeraStealth",
+      "name": "W2",
+      "title": "Cheap Shot",
+      "description": "Deal 30 (+4% per level) damage to an enemy, Stun them for 0.75 seconds, and Blind them for 2 seconds once Cheap Shot's Stun expires.  Awards 1 Combo Point.  Unstealth: Blade Flurry Deal damage in an area around Valeera.",
+      "icon": null,
+      "hotkey": "W",
+      "cooldown": 1,
+      "mana_cost": 30,
+      "trait": false
+    }
+  ],
+  "talents": [
+    {
+      "name": "ValeeraVigor",
+      "title": "Vigor",
+      "description": "Valeera regenerates an additional 3 Energy per second.  Reward: After Gathering 20 Regen Globes, increase Valeera's maximum Energy to 120.",
+      "icon": "storm_ui_icon_talent_conjurerspursuit.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_talent_conjurerspursuit.png"
+      },
+      "ability": "Passive",
+      "sort": 1,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 1
+    },
+    {
+      "name": "ValeeraVanishSubtlety",
+      "title": "Subtlety",
+      "description": "After teleporting with Ambush, Cheap Shot, or Garrote, regenerate 10 Energy per second for 5 seconds.",
+      "icon": "storm_ui_icon_valeera_vanish.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_vanish.png"
+      },
+      "ability": "D2",
+      "sort": 2,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 1
+    },
+    {
+      "name": "ValeeraCombatReadiness",
+      "title": "Combat Readiness",
+      "description": "Each Combo Point spent grants 75 Physical Armor against the next enemy Hero Basic Attack, reducing its damage by 75%. Stores up to 3 charges.",
+      "icon": "storm_ui_icon_talent_block.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_talent_block.png"
+      },
+      "ability": "Passive",
+      "sort": 3,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 1
+    },
+    {
+      "name": "ValeeraCripplingPoison",
+      "title": "Crippling Poison",
+      "description": "Activate to make Valeera's next damaging Ability and subsequent Abilities within 4 seconds Slow targets by 20% for 4 seconds.  Activating Crippling Poison does not break Stealth.",
+      "icon": "storm_ui_icon_valeera_cripplingpoison.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_cripplingpoison.png"
+      },
+      "ability": "Active",
+      "sort": 4,
+      "cooldown": 15,
+      "mana_cost": null,
+      "level": 1
+    },
+    {
+      "name": "ValeeraSinisterStrikeRelentlessStrikes",
+      "title": "Relentless Strikes",
+      "description": "Reduces the Energy cost of Sinister Strike by 15.",
+      "icon": "storm_ui_icon_valeera_sinisterstrike.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_sinisterstrike.png"
+      },
+      "ability": "Q1",
+      "sort": 1,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 4
+    },
+    {
+      "name": "ValeeraGarroteHemorrhage",
+      "title": "Hemorrhage",
+      "description": "Valeera's Basic Attacks deal 40% additional damage to enemies affected by Garrote.",
+      "icon": "storm_ui_icon_valeera_garrote.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_garrote.png"
+      },
+      "ability": "E2",
+      "sort": 2,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 4
+    },
+    {
+      "name": "ValeeraVanishInitiative",
+      "title": "Initiative",
+      "description": "Ambush, Cheap Shot, and Garrote grant 15% Movement Speed for 3 seconds and award 2 Combo Points.",
+      "icon": "storm_ui_icon_valeera_vanish.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_vanish.png"
+      },
+      "ability": "D2",
+      "sort": 3,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 4
+    },
+    {
+      "name": "ValeeraWoundPoison",
+      "title": "Wound Poison",
+      "description": "Activate to make Valeera's next damaging Ability and subsequent Abilities within 4 seconds reduce enemy healing received by 50% for 4 seconds.  Activating Wound Poison does not break Stealth.",
+      "icon": "storm_ui_icon_valeera_woundpoison.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_woundpoison.png"
+      },
+      "ability": "Active",
+      "sort": 4,
+      "cooldown": 15,
+      "mana_cost": null,
+      "level": 4
+    },
+    {
+      "name": "ValeeraSinisterStrikeMutilate",
+      "title": "Mutilate",
+      "description": "Sinister Strike now hits with both blades, dealing 125% additional damage, but its range is reduced by 1.",
+      "icon": "storm_ui_icon_valeera_sinisterstrike.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_sinisterstrike.png"
+      },
+      "ability": "Q1",
+      "sort": 1,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 7
+    },
+    {
+      "name": "ValeeraBladeFlurryFatalFinesse",
+      "title": "Fatal Finesse",
+      "description": "Quest: Each time Blade Flurry damages an enemy Hero, its damage increases by 6, up to 90.  Reward: After damaging 15 Heroes with Blade Flurry, permanently reduce its Energy cost by 20.",
+      "icon": "storm_ui_icon_valeera_bladeflurry.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_bladeflurry.png"
+      },
+      "ability": "W1",
+      "sort": 2,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 7
+    },
+    {
+      "name": "ValeeraEviscerateSliceAndDice",
+      "title": "Slice and Dice",
+      "description": "Eviscerating an enemy with 3 Combo Points grants 150% Attack Speed. Lasts 3 seconds or 3 Basic Attacks.  Passive: Basic Attacks restore 2 Energy.",
+      "icon": "storm_ui_icon_valeera_eviscerate.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_eviscerate.png"
+      },
+      "ability": "E1",
+      "sort": 3,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 7
+    },
+    {
+      "name": "ValeeraSmokeBomb",
+      "title": "Smoke Bomb",
+      "description": "Create a cloud of smoke. While in the smoke, Valeera is Unrevealable, can pass through other units, and gains 30 Armor, reducing damage taken by 30%. Valeera can continue to attack and use abilities without being revealed. Lasts 5 seconds.  Using this Ability does not break Stealth.",
+      "icon": "storm_ui_icon_valeera_smokebomb.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_smokebomb.png"
+      },
+      "ability": "R2",
+      "sort": 1,
+      "cooldown": 60,
+      "mana_cost": null,
+      "level": 10
+    },
+    {
+      "name": "ValeeraCloakOfShadows",
+      "title": "Cloak of Shadows",
+      "description": "Valeera is enveloped in a Cloak of Shadows, which immediately removes all damage over time effects from her. For 1.5 seconds, she becomes Unstoppable and gains 75 Spell Armor, reducing Ability Damage taken by 75%.  Using this Ability does not break Stealth.",
+      "icon": "storm_ui_icon_valeera_cloakofshadows.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_cloakofshadows.png"
+      },
+      "ability": "R1",
+      "sort": 2,
+      "cooldown": 15,
+      "mana_cost": null,
+      "level": 10
+    },
+    {
+      "name": "ValeeraAmbushDeathFromAbove",
+      "title": "Death From Above",
+      "description": "Teleporting with Ambush reduces the cooldown of Vanish by 4 seconds.",
+      "icon": "storm_ui_icon_valeera_ambush.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_ambush.png"
+      },
+      "ability": "Q2",
+      "sort": 1,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 13
+    },
+    {
+      "name": "ValeeraCheapShotBlind",
+      "title": "Blind",
+      "description": "Increase the duration of Cheap Shot's Blind by 2.5 seconds.",
+      "icon": "storm_ui_icon_valeera_cheapshot.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_cheapshot.png"
+      },
+      "ability": "W2",
+      "sort": 2,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 13
+    },
+    {
+      "name": "ValeeraGarroteStrangle",
+      "title": "Strangle",
+      "description": "Using Garrote on a Hero reduces their Spell Power by 40% for 6 seconds.",
+      "icon": "storm_ui_icon_valeera_garrote.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_garrote.png"
+      },
+      "ability": "E2",
+      "sort": 3,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 13
+    },
+    {
+      "name": "ValeeraSinisterStrikeSealFate",
+      "title": "Seal Fate",
+      "description": "Sinister Strike deals 50% additional damage and generates an additional Combo Point when used against Silenced, Rooted, or Stunned enemy Heroes.",
+      "icon": "storm_ui_icon_valeera_sinisterstrike.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_sinisterstrike.png"
+      },
+      "ability": "Q1",
+      "sort": 1,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 16
+    },
+    {
+      "name": "ValeeraAmbushAssassinate",
+      "title": "Assassinate",
+      "description": "Ambush deals 50% additional damage and reduces the target's Armor by an additional 10 if no other enemy Heroes are within 4 range of the victim.",
+      "icon": "storm_ui_icon_valeera_ambush.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_ambush.png"
+      },
+      "ability": "Q2",
+      "sort": 2,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 16
+    },
+    {
+      "name": "ValeeraThistleTea",
+      "title": "Thistle Tea",
+      "description": "Activate to instantly restore 100 Energy.  Activating Thistle Tea does not break Stealth.",
+      "icon": "storm_ui_icon_valeera_thistletea.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_thistletea.png"
+      },
+      "ability": "Active",
+      "sort": 3,
+      "cooldown": 40,
+      "mana_cost": null,
+      "level": 16
+    },
+    {
+      "name": "ValeeraSmokeBombAdrenalineRush",
+      "title": "Adrenaline Rush",
+      "description": "While in the Smoke Bomb, Valeera regenerates an additional 40 Energy per second.",
+      "icon": "storm_ui_icon_valeera_smokebomb.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_smokebomb.png"
+      },
+      "ability": "R2",
+      "sort": 1,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 20
+    },
+    {
+      "name": "ValeeraCloakOfShadowsEnvelopingShadows",
+      "title": "Enveloping Shadows",
+      "description": "Whenever Valeera uses Vanish, she also gains Cloak of Shadows.",
+      "icon": "storm_ui_icon_valeera_cloakofshadows.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_cloakofshadows.png"
+      },
+      "ability": "R1",
+      "sort": 2,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 20
+    },
+    {
+      "name": "ValeeraGarroteRupture",
+      "title": "Rupture",
+      "description": "Increase Garrote's damage over time by 100%. Valeera's Basic Attacks refresh the duration of Garrote.",
+      "icon": "storm_ui_icon_valeera_garrote.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_garrote.png"
+      },
+      "ability": "E2",
+      "sort": 3,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 20
+    },
+    {
+      "name": "ValeeraVanishElusiveness",
+      "title": "Elusiveness",
+      "description": "Increases Valeera's Movement Speed while Vanished by an additional 20%.",
+      "icon": "storm_ui_icon_valeera_vanish.png",
+      "icon_url": {
+        "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_valeera_vanish.png"
+      },
+      "ability": "D2",
+      "sort": 4,
+      "cooldown": null,
+      "mana_cost": null,
+      "level": 20
+    }
+  ]
+}

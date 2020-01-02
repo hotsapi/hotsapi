@@ -1,0 +1,17 @@
+{
+  "name": "WitchDoctorPandemic",
+  "title": "Pandemic",
+  "description": "Reward: After hitting 40 Heroes with Plague of Toads, it spawns 2 additional toads.",
+  "icon": "storm_ui_icon_nazeebo_plagueoftoads.png",
+  "icon_url": {
+    "64x64": "https:\/\/raw.githubusercontent.com\/heroespatchnotes\/heroes-talents\/master\/images\/talents\/storm_ui_icon_nazeebo_plagueoftoads.png"
+  },
+  "ability": "E1",
+  "sort": 2,
+  "cooldown": null,
+  "mana_cost": null,
+  "level": 1,
+  "heroes": [
+    "Nazeebo"
+  ]
+}

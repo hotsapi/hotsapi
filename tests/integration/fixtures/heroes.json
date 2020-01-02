@@ -1,0 +1,1137 @@
+[
+  {
+    "name": "Diablo",
+    "short_name": "diablo",
+    "attribute_id": "Diab",
+    "translations": [
+      "diablo",
+      "диабло",
+      "迪亚波罗",
+      "迪亞布羅",
+      "노전수",
+      "디아블로"
+    ],
+    "role": "Warrior",
+    "type": "Melee",
+    "release_date": "2014-03-13",
+    "icon_url": {
+      "92x93": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/heroes/diablo.png"
+    },
+    "abilities": [
+      {
+        "owner": "Diablo",
+        "name": "Q1",
+        "title": "Shadow Charge",
+        "description": "Charge an enemy, knocking them back, dealing 40 (+4% per level) damage and gaining 15% Movement Speed for 2 seconds. If the enemy hits terrain, they are Stunned for 1 second and take an additional 120 (+4% per level) damage.",
+        "icon": null,
+        "hotkey": "Q",
+        "cooldown": 13,
+        "mana_cost": 70,
+        "trait": false
+      },
+      {
+        "owner": "Diablo",
+        "name": "W1",
+        "title": "Fire Stomp",
+        "description": "Unleashes fire waves toward the targeted area that deal 12 (+4% per level) damage each. Once they reach maximum range they return, dealing an additional 36 (+4% per level) damage. Diablo heals for 130% of the damage dealt to Heroes.",
+        "icon": null,
+        "hotkey": "W",
+        "cooldown": 8,
+        "mana_cost": 35,
+        "trait": false
+      },
+      {
+        "owner": "Diablo",
+        "name": "E1",
+        "title": "Overpower",
+        "description": "Grabs the target and slams it behind Diablo, dealing 73 (+4% per level) damage and Stunning for 0.25 seconds.",
+        "icon": null,
+        "hotkey": "E",
+        "cooldown": 13,
+        "mana_cost": 40,
+        "trait": false
+      },
+      {
+        "owner": "Diablo",
+        "name": "R1",
+        "title": "Apocalypse",
+        "description": "Create a demonic rune under each enemy Hero on the battleground. After 1.75 seconds the rune explodes dealing 137 (+4% per level) damage and Stunning them for 1.75 seconds.",
+        "icon": null,
+        "hotkey": "R",
+        "cooldown": 90,
+        "mana_cost": 50,
+        "trait": false
+      },
+      {
+        "owner": "Diablo",
+        "name": "R2",
+        "title": "Lightning Breath",
+        "description": "After 0.5 seconds, become Unstoppable and Channel for up to 4 seconds, dealing 50 (+4% per level) damage every 0.25 seconds to enemies in front of Diablo. Enemies affected are Slowed by 4% for 2 seconds, up to 40%.  Lightning Breath's direction changes with your mouse cursor position.",
+        "icon": null,
+        "hotkey": "R",
+        "cooldown": 90,
+        "mana_cost": 80,
+        "trait": false
+      },
+      {
+        "owner": "Diablo",
+        "name": "D1",
+        "title": "Black Soulstone",
+        "description": "Repeatable Quest: Gain 10 Souls per Hero killed and 1 Soul per Minion, up to 100. For each Soul, gain 0.3% maximum Health. If Diablo has 100 Souls upon dying, he will resurrect in 5 seconds but lose 100 Souls.",
+        "icon": null,
+        "hotkey": null,
+        "cooldown": null,
+        "mana_cost": null,
+        "trait": true
+      }
+    ],
+    "talents": [
+      {
+        "name": "DiabloMasteryFeastOnFearBlackSoulstone",
+        "title": "Feast on Fear",
+        "description": "Stunning an enemy Hero with Shadow Charge or Overpower heals Diablo for 12% of his maximum Health over 3 seconds.",
+        "icon": "storm_ui_icon_diablo_combo_1.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_combo_1.png"
+        },
+        "ability": "Passive",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 1
+      },
+      {
+        "name": "DiabloMasteryDevilsDueBlackSoulstone",
+        "title": "Devil's Due",
+        "description": "Black Soulstone increases the effects of Regen Globes and Healing Fountains by 2.25% per Soul.",
+        "icon": "storm_ui_icon_diablo_blacksoulstone_var1.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_blacksoulstone_var1.png"
+        },
+        "ability": "D1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 1
+      },
+      {
+        "name": "DiabloSoulShield",
+        "title": "Soul Shield",
+        "description": "Activate to gain 25 plus 50% of Diablo's current Souls as Spell Armor for 4 seconds. Every time Diablo damages an enemy Hero, reduce this cooldown by 1 second.",
+        "icon": "storm_ui_icon_talent_spellshield.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_spellshield.png"
+        },
+        "ability": "Active",
+        "sort": 3,
+        "cooldown": 45,
+        "mana_cost": null,
+        "level": 1
+      },
+      {
+        "name": "DiabloShadowChargeSacrificialSoul",
+        "title": "Sacrificial Soul",
+        "description": "Stunning a Hero with Shadow Charge grants 10 Souls and 25 Armor for 4 seconds. While at 100 Souls, increase this Armor to 50.",
+        "icon": "storm_ui_icon_diablo_shadowcharge_var1.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_shadowcharge_var1.png"
+        },
+        "ability": "Q1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 4
+      },
+      {
+        "name": "DiabloFireStompSoulsToTheFlame",
+        "title": "Souls to the Flame",
+        "description": "Fire Stomp grants 1 Soul every 3 times it damages an enemy Hero, and heals for an additional 1.3% of its damage dealt per Soul.",
+        "icon": "storm_ui_icon_diablo_firestomp.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_firestomp.png"
+        },
+        "ability": "W1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 4
+      },
+      {
+        "name": "DiabloLifeLeech",
+        "title": "Life Leech",
+        "description": "Diablo gains 1 Soul and heals for 1.5% of his maximum Health when Basic Attacking an enemy Hero. While at 100 Souls, increase this healing to 3% of his maximum Health.",
+        "icon": "storm_ui_icon_talent_autoattack_heal.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_autoattack_heal.png"
+        },
+        "ability": "Passive",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 4
+      },
+      {
+        "name": "DiabloShadowChargeOverpowerEternalFlames",
+        "title": "Eternal Flames",
+        "description": "When Diablo Stuns an enemy Hero with Shadow Charge or Overpower, reset the cooldown of Fire Stomp and Diablo gains 35 Mana.",
+        "icon": "storm_ui_icon_diablo_firestomp.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_firestomp.png"
+        },
+        "ability": "W1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 7
+      },
+      {
+        "name": "DiabloMalevolence",
+        "title": "Malevolence",
+        "description": "Basic Abilities cause Diablo's next Basic Attack within 6 seconds to deal an additional 100 (+4% per level) Spell Damage. Stores up to 2 charges.",
+        "icon": "storm_ui_icon_talent_autoattack_damage.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_autoattack_damage.png"
+        },
+        "ability": "Passive",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 7
+      },
+      {
+        "name": "DiabloDiabolicalMomentum",
+        "title": "Diabolical Momentum",
+        "description": "When Diablo's Basic Attacks damage enemies, reduce the cooldown of his Basic Abilities by 1.25 seconds.",
+        "icon": "storm_ui_icon_talent_autoattack_cooldown.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_autoattack_cooldown.png"
+        },
+        "ability": "Passive",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 7
+      },
+      {
+        "name": "DiabloHeroicAbilityApocalypse",
+        "title": "Apocalypse",
+        "description": "Create a demonic rune under each enemy Hero on the battleground. After 1.75 seconds the rune explodes dealing 137 (+4% per level) damage and Stunning them for 1.75 seconds.",
+        "icon": "storm_ui_icon_diablo_apocalypse.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_apocalypse.png"
+        },
+        "ability": "R1",
+        "sort": 1,
+        "cooldown": 90,
+        "mana_cost": null,
+        "level": 10
+      },
+      {
+        "name": "DiabloHeroicAbilityLightningBreath",
+        "title": "Lightning Breath",
+        "description": "After 0.5 seconds, become Unstoppable and Channel for up to 4 seconds, dealing 50 (+4% per level) damage every 0.25 seconds to enemies in front of Diablo. Enemies affected are Slowed by 4% for 2 seconds, up to 40%.  Lightning Breath's direction changes with your mouse cursor position.",
+        "icon": "storm_ui_icon_diablo_lightningbreath.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_lightningbreath.png"
+        },
+        "ability": "R2",
+        "sort": 2,
+        "cooldown": 90,
+        "mana_cost": null,
+        "level": 10
+      },
+      {
+        "name": "DiabloDevastatingCharge",
+        "title": "Devastating Charge",
+        "description": "Increase Shadow Charge's terrain collision damage by 50%.  Quest: Hit an enemy Hero against terrain 5 times.  Reward: Hitting enemy Heroes against terrain reduces their Armor by 15 for 4 seconds.",
+        "icon": "storm_ui_icon_diablo_shadowcharge_var1.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_shadowcharge_var1.png"
+        },
+        "ability": "Q1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 13
+      },
+      {
+        "name": "DiabloHellfire",
+        "title": "Hellfire",
+        "description": "Each enemy Hero hit by Fire Stomp grants 2% Spell Power for 10 seconds, up to 30%.  While at maximum stacks, Diablo deals 15 (+4% per level) damage per second to nearby enemies.",
+        "icon": "storm_ui_icon_diablo_firestomp.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_firestomp.png"
+        },
+        "ability": "W1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 13
+      },
+      {
+        "name": "DiabloShadowChargeOverpowerCruelty",
+        "title": "Cruelty",
+        "description": "Stunning an enemy Hero with Shadow Charge or Overpower increases Diablo's Attack Speed by 50% for 7 seconds, up to 100%.",
+        "icon": "storm_ui_icon_diablo_combo_1.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_combo_1.png"
+        },
+        "ability": "Passive",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 13
+      },
+      {
+        "name": "DiabloTalentDominationOverpower",
+        "title": "Domination",
+        "description": "Casting Overpower resets the cooldown of Shadow Charge.",
+        "icon": "storm_ui_icon_diablo_shadowcharge_var1.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_shadowcharge_var1.png"
+        },
+        "ability": "Q1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 16
+      },
+      {
+        "name": "DiabloDebilitatingFlames",
+        "title": "Debilitating Flames",
+        "description": "Enemy Heroes hit by Fire Stomp are Slowed by 5% for 4 seconds, up to 50%. Heroes Slowed by 25% or more by Debilitating Flames deal 50% less damage.",
+        "icon": "storm_ui_icon_diablo_firestomp.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_firestomp.png"
+        },
+        "ability": "W1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 16
+      },
+      {
+        "name": "DiabloOverpowerOverpoweringNightmare",
+        "title": "Overpowering Nightmare",
+        "description": "Gain 2 additional charges of Overpower, with a 2 second cooldown between uses.",
+        "icon": "storm_ui_icon_diablo_overpower_var1.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_overpower_var1.png"
+        },
+        "ability": "E1",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 16
+      },
+      {
+        "name": "DiabloMasteryDyingBreathApocalypse",
+        "title": "Dying Breath",
+        "description": "Apocalypse's cooldown is reduced by 25 seconds for every enemy Hero hit (to a minimum of 5 seconds) and is cast for free when Diablo dies.",
+        "icon": "storm_ui_icon_diablo_apocalypse.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_apocalypse.png"
+        },
+        "ability": "R1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 20
+      },
+      {
+        "name": "DiabloMasteryHellstormLightningBreath",
+        "title": "Hellstorm",
+        "description": "Lightning Breath lasts 200% longer.",
+        "icon": "storm_ui_icon_diablo_lightningbreath.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_lightningbreath.png"
+        },
+        "ability": "R2",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 20
+      },
+      {
+        "name": "DiabloTalentLordOfTerror",
+        "title": "Lord of Terror",
+        "description": "Activate to steal 10% of the maximum Health of nearby enemy Heroes and gain 5 Souls per Hero hit.",
+        "icon": "storm_ui_icon_diablo_lordofterror.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_diablo_lordofterror.png"
+        },
+        "ability": "Active",
+        "sort": 3,
+        "cooldown": 60,
+        "mana_cost": null,
+        "level": 20
+      },
+      {
+        "name": "DiabloHellgate",
+        "title": "Hellgate",
+        "description": "Teleport and place a demonic rune at target location. After 1.75 seconds the rune explodes dealing 137 (+4% per level) damage and stunning enemies for 1.75 seconds.",
+        "icon": "storm_ui_icon_talent_boltofthestorm.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_boltofthestorm.png"
+        },
+        "ability": "Active",
+        "sort": 4,
+        "cooldown": 100,
+        "mana_cost": null,
+        "level": 20
+      }
+    ]
+  },
+  {
+    "name": "Zagara",
+    "short_name": "zagara",
+    "attribute_id": "Zaga",
+    "translations": [
+      "zagara",
+      "загара",
+      "扎加拉",
+      "札迦拉",
+      "자가라"
+    ],
+    "role": "Specialist",
+    "type": "Ranged",
+    "release_date": "2014-06-25",
+    "icon_url": {
+      "92x93": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/heroes/zagara.png"
+    },
+    "abilities": [
+      {
+        "owner": "Zagara",
+        "name": "Q1",
+        "title": "Baneling Barrage",
+        "description": "Launch 1 Baneling that deals 86 (+4% per level) damage to enemies it hits.  Stores up to 4 charges.",
+        "icon": null,
+        "hotkey": "Q",
+        "cooldown": 3,
+        "mana_cost": 10,
+        "trait": false
+      },
+      {
+        "owner": "Zagara",
+        "name": "W1",
+        "title": "Hunter Killer",
+        "description": "Summon a Hydralisk to attack a single target, dealing 71 (+5% per level) damage per second. Lasts 8 seconds.",
+        "icon": null,
+        "hotkey": "W",
+        "cooldown": 16,
+        "mana_cost": 75,
+        "trait": false
+      },
+      {
+        "owner": "Zagara",
+        "name": "E1",
+        "title": "Infested Drop",
+        "description": "Bombard target area with a Zerg Drop Pod for 140 (+4% per level) damage.  The pod spawns 2 Roachlings that deal 27 (+4% per level) damage per second and last for 8 seconds.",
+        "icon": null,
+        "hotkey": "E",
+        "cooldown": 12,
+        "mana_cost": 50,
+        "trait": false
+      },
+      {
+        "owner": "Zagara",
+        "name": "R1",
+        "title": "Nydus Network",
+        "description": "Summon a Nydus Worm on Creep anywhere that Zagara has vision. Zagara can enter a Nydus Worm and travel to any other Nydus Worm by right-clicking near it. While inside a Nydus Worm, Zagara regenerates 10% Health and Mana per second.  Stores up to 2 charges. Maximum of 4 Nydus Worms at a time.  Passive: Creep spreads 15% farther.  Passive: While on Creep, each Basic Attack reduces all of Zagara's cooldowns by 0.4 seconds.",
+        "icon": null,
+        "hotkey": "R",
+        "cooldown": 120,
+        "mana_cost": 50,
+        "trait": false
+      },
+      {
+        "owner": "Zagara",
+        "name": "R2",
+        "title": "Devouring Maw",
+        "description": "Summon a Devouring Maw that devours enemies for 4 seconds. Devoured enemies cannot fight and take 94 (+4% per level) damage per second.  Usable on Unstoppable enemies.",
+        "icon": null,
+        "hotkey": "R",
+        "cooldown": 80,
+        "mana_cost": 70,
+        "trait": false
+      },
+      {
+        "owner": "Zagara",
+        "name": "D1",
+        "title": "Creep Tumor",
+        "description": "Lay a Creep Tumor that generates Creep. While on Creep, Zagara gains 20% additional attack range and both Zagara and her summons move 20% faster. Tumors last 240 seconds and reveal the surrounding area while active.  Stores up to 3 charges.",
+        "icon": null,
+        "hotkey": "D",
+        "cooldown": 18,
+        "mana_cost": null,
+        "trait": true
+      }
+    ],
+    "talents": [
+      {
+        "name": "GenericTalentSpellShield",
+        "title": "Spell Shield",
+        "description": "Every 30 seconds, gain 50 Spell Armor against the next enemy Ability and subsequent Abilities for 3 seconds, reducing the damage taken by 50%.  Can be toggled to allow or prevent this talent from triggering automatically.",
+        "icon": "storm_ui_icon_talent_spellshield.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_spellshield.png"
+        },
+        "ability": "Active",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 13
+      },
+      {
+        "name": "GenericTalentFuryoftheStorm",
+        "title": "Fury of the Storm",
+        "description": "Every 5 seconds, your next Basic Attack will deal an additional 91 (+4% per level) damage to the target, and 228 (+4% per level) damage to all nearby Minions, Mercenaries, and Monsters.",
+        "icon": "storm_ui_icon_talent_autoattack_damage.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_autoattack_damage.png"
+        },
+        "ability": "Passive",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 20
+      },
+      {
+        "name": "ZagaraMasteryVolatileAcid",
+        "title": "Volatile Acid",
+        "description": "Banelings can travel 50% further before exploding and their damage is increased by 20%.",
+        "icon": "storm_ui_icon_zagara_banelingbarrage.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_banelingbarrage.png"
+        },
+        "ability": "Q1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 1
+      },
+      {
+        "name": "ZagaraMasteryCorpseFeeders",
+        "title": "Corpse Feeders",
+        "description": "Reduces the cooldown of Infested Drop by 3 seconds and Roachlings have 30% more Health.",
+        "icon": "storm_ui_icon_zagara_infesteddrop.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_infesteddrop.png"
+        },
+        "ability": "E1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 1
+      },
+      {
+        "name": "ZagaraMasteryInfest",
+        "title": "Infest",
+        "description": "Nearby Ranged Minions deal an additional 125% damage, plus an additional 1% per 1000 Siege damage Zagara has dealt. Can be toggled on or off.",
+        "icon": "storm_ui_icon_zagara_infest.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_infest.png"
+        },
+        "ability": "Active",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 1
+      },
+      {
+        "name": "ZagaraMasteryEnvenomedSpines",
+        "title": "Envenomed Spines",
+        "description": "Activate to have Zagara's next Basic Attack apply 230 (+4% per level) damage over 5 seconds.",
+        "icon": "storm_ui_icon_talent_autoattack_range.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_autoattack_range.png"
+        },
+        "ability": "Active",
+        "sort": 1,
+        "cooldown": 30,
+        "mana_cost": null,
+        "level": 4
+      },
+      {
+        "name": "ZagaraCombatStyleMedusaBlades",
+        "title": "Medusa Blades",
+        "description": "Basic Attacks deal 33% damage to three nearby targets.",
+        "icon": "storm_ui_icon_talent_autoattack_aoe.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_autoattack_aoe.png"
+        },
+        "ability": "Passive",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 4
+      },
+      {
+        "name": "ZagaraMasterySerratedSpines",
+        "title": "Serrated Spines",
+        "description": "Quest: Each Basic Attack against a Hero increases Zagara's Attack Damage by 0.2%.",
+        "icon": "storm_ui_icon_talent_autoattack_damage.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_talent_autoattack_damage.png"
+        },
+        "ability": "Passive",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 4
+      },
+      {
+        "name": "ZagaraMasteryBanelingMassacre",
+        "title": "Baneling Massacre",
+        "description": "Gain 2 additional charges of Banelings, and reduce the cooldown of Baneling Barrage by 0.5 seconds.",
+        "icon": "storm_ui_icon_zagara_banelingbarrage.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_banelingbarrage.png"
+        },
+        "ability": "Q1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 7
+      },
+      {
+        "name": "ZagaraViscousAcid",
+        "title": "Viscous Acid",
+        "description": "Banelings Slow enemies by 25% for 2.5 seconds.",
+        "icon": "storm_ui_icon_zagara_banelingbarrage_a.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_banelingbarrage_a.png"
+        },
+        "ability": "Q1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 7
+      },
+      {
+        "name": "ZagaraMasteryBileDrop",
+        "title": "Bile Drop",
+        "description": "Quest: Passively increases the radius of Infested Drop by 20%.  Reward: After hitting 12 Heroes with Infested Drop, it spawns an additional Roachling.",
+        "icon": "storm_ui_icon_zagara_infesteddrop.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_infesteddrop.png"
+        },
+        "ability": "E1",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 7
+      },
+      {
+        "name": "ZagaraHeroicAbilityDevouringMaw",
+        "title": "Devouring Maw",
+        "description": "Summon a Devouring Maw that devours enemies for 4 seconds. Devoured enemies cannot fight and take 94 (+4% per level) damage per second.  Usable on Unstoppable enemies.",
+        "icon": "storm_ui_icon_zagara_devouringmaw.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_devouringmaw.png"
+        },
+        "ability": "R2",
+        "sort": 1,
+        "cooldown": 80,
+        "mana_cost": null,
+        "level": 10
+      },
+      {
+        "name": "ZagaraHeroicAbilityNydusAssault",
+        "title": "Nydus Network",
+        "description": "Summon a Nydus Worm on Creep anywhere that Zagara has vision. Zagara can enter a Nydus Worm and travel to any other Nydus Worm by right-clicking near it. While inside a Nydus Worm, Zagara regenerates 10% Health and Mana per second.  Stores up to 2 charges. Maximum of 4 Nydus Worms at a time.  Passive: Creep spreads 15% farther.  Passive: While on Creep, each Basic Attack reduces all of Zagara's cooldowns by 0.4 seconds.",
+        "icon": "storm_ui_icon_zagara_nydusworm.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_nydusworm.png"
+        },
+        "ability": "R1",
+        "sort": 2,
+        "cooldown": 120,
+        "mana_cost": null,
+        "level": 10
+      },
+      {
+        "name": "ZagaraMasteryHydraliskTransfusion",
+        "title": "Hydralisk Transfusion",
+        "description": "Zagara is healed for 60% of the damage dealt by Hunter Killers' Basic Attacks to Heroes.",
+        "icon": "storm_ui_icon_zagara_hunterkiller.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_hunterkiller.png"
+        },
+        "ability": "W1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 13
+      },
+      {
+        "name": "ZagaraMasteryProtectiveCoating",
+        "title": "Protective Coating",
+        "description": "While on Creep, Zagara gains 20 Armor, taking 20% less damage.",
+        "icon": "storm_ui_icon_zagara_creep.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_creep.png"
+        },
+        "ability": "D1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 13
+      },
+      {
+        "name": "ZagaraMasteryCorrosiveSaliva",
+        "title": "Corrosive Saliva",
+        "description": "When attacking Heroes, Hunter Killers and Roachlings deal additional damage equal to 1.75% of their maximum Health.",
+        "icon": "storm_ui_icon_zagara_hunterkiller.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_hunterkiller.png"
+        },
+        "ability": "W1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 16
+      },
+      {
+        "name": "ZagaraMasteryMutalisk",
+        "title": "Mutalisk",
+        "description": "Reduce the cooldown of Hunter Killer by 4 seconds.  Hunter Killer now spawns a Mutalisk. Mutalisks have a bounce attack and last for 30 seconds.",
+        "icon": "storm_ui_icon_zagara_hunterkillermuta.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_hunterkillermuta.png"
+        },
+        "ability": "W1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 16
+      },
+      {
+        "name": "ZagaraJaggedBarbsTalent",
+        "title": "Jagged Barbs",
+        "description": "While on Creep, Zagara gains 40% more Basic Attack damage and her attack range is increased by an additional 10%.",
+        "icon": "storm_ui_icon_zagara_creep.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_creep.png"
+        },
+        "ability": "D1",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 16
+      },
+      {
+        "name": "ZagaraMasteryTyrantMaw",
+        "title": "Tyrant Maw",
+        "description": "Devouring Maw deals 50% more damage. Takedowns reduce its cooldown by 25 seconds.",
+        "icon": "storm_ui_icon_zagara_devouringmaw.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_devouringmaw.png"
+        },
+        "ability": "R2",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 20
+      },
+      {
+        "name": "ZagaraMasteryEndlessCreep",
+        "title": "Endless Creep",
+        "description": "The cast range for Creep Tumor is increased by 2000%. Creep Tumors now last 600 seconds. While on Creep, Zagara gains an additional 10% Movement Speed.",
+        "icon": "storm_ui_icon_zagara_nydusworm.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_zagara_nydusworm.png"
+        },
+        "ability": "R1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 20
+      }
+    ]
+  },
+  {
+    "name": "Deathwing",
+    "short_name": "deathwing",
+    "attribute_id": "DEAT",
+    "translations": [
+      "aile de mort",
+      "alamorte",
+      "alamuerte",
+      "asa da morte",
+      "todesschwinge",
+      "śmiercioskrzydły",
+      "смертокрыл",
+      "死亡之翼",
+      "데스윙",
+      "deathwing"
+    ],
+    "role": "Warrior",
+    "type": "Melee",
+    "release_date": "2019-12-03",
+    "icon_url": {
+      "92x93": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/heroes/deathwing.png"
+    },
+    "abilities": [
+      {
+        "owner": "Deathwing",
+        "name": "Q1",
+        "title": "Molten Flame",
+        "description": "After 1.5 seconds, Deathwing breathes a stream of flame, dealing 21 (+4% per level) damage every 0.125 seconds. Drains 30 Energy per second.",
+        "icon": null,
+        "hotkey": "Q",
+        "cooldown": 3,
+        "mana_cost": 10,
+        "trait": false
+      },
+      {
+        "owner": "Deathwing",
+        "name": "W1",
+        "title": "Incinerate",
+        "description": "After 0.75 seconds, Deathwing flaps his wings, dealing 80 (+4% per level) damage to nearby enemies.  World Breaker: Lava Burst Create a lava pool that damages and Slows",
+        "icon": null,
+        "hotkey": "W",
+        "cooldown": 4,
+        "mana_cost": 15,
+        "trait": false
+      },
+      {
+        "owner": "Deathwing",
+        "name": "E1",
+        "title": "Onslaught",
+        "description": "After 0.5 seconds, Deathwing lunges in a direction dealing 40 (+4% per level) damage to enemies and Slowing them by 35% for 2 seconds. Deathwing bites enemies at the end of the lunge, dealing an additional 75 (+4% per level) damage.  World Breaker: Earth Shatter Damage and Stun enemies in two lines",
+        "icon": null,
+        "hotkey": "E",
+        "cooldown": 5,
+        "mana_cost": 20,
+        "trait": false
+      },
+      {
+        "owner": "Deathwing",
+        "name": "R1",
+        "title": "Cataclysm",
+        "description": "After 2 seconds, Deathwing flies in the targeted direction, dealing 90 (+4% per level) damage on impact and leaving scorched ground that deals 44 (+4% per level) damage a second. Lasts 6 seconds.",
+        "icon": null,
+        "hotkey": "R",
+        "cooldown": 90,
+        "mana_cost": null,
+        "trait": false
+      },
+      {
+        "owner": "Deathwing",
+        "name": "D1",
+        "title": "Aspect of Death",
+        "description": "Deathwing is fitted with 4 Armor Plates which grant 10 Armor each. Every 25% Health lost causes Deathwing to lose a plate. Plates are only restored when Dragonflight is used, based on the amount of Health Deathwing has when landing.  Deathwing is also a mighty Dragon Aspect who is permanently Unstoppable and deals 100% additional Spell Damage to Heroes, but views his allies with contempt and ignores any of their friendly effects.",
+        "icon": null,
+        "hotkey": null,
+        "cooldown": null,
+        "mana_cost": null,
+        "trait": true
+      },
+      {
+        "owner": "Deathwing",
+        "name": "Z1",
+        "title": "Dragonflight",
+        "description": "After 3 seconds, fly into the sky, becoming Immune to all effects and gaining 2.5% Health per second. Once cast, this ability cannot be interrupted. Cannot be cast for 4 seconds after taking damage, Basic Attacking or casting an Ability.",
+        "icon": null,
+        "hotkey": "Z",
+        "cooldown": 45,
+        "mana_cost": null,
+        "trait": false
+      },
+      {
+        "owner": "Deathwing",
+        "name": "11",
+        "title": "Form Switch",
+        "description": "Switches Deathwing between Destroyer and World Breaker forms, each granting access to two unique Basic Abilities.  Incinerate damages enemies around Deathwing and Onslaught allows him to lunge at enemies.  Lava Burst creates a Slowing area and Earth Shatter Stuns enemies in two lines.",
+        "icon": null,
+        "hotkey": "1",
+        "cooldown": 20,
+        "mana_cost": null,
+        "trait": false
+      }
+    ],
+    "talents": [
+      {
+        "name": "DeathwingDragonSoul",
+        "title": "Dragon Soul",
+        "description": "Destroyer: Incinerate heals Deathwing for 75% of the damage dealt to enemy Heroes.  World Breaker: Lava Burst's explosion damage heals Deathwing for 150% of the damage dealt to enemy Heroes.",
+        "icon": "storm_ui_icon_deathwing_heat_wave.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_heat_wave.png"
+        },
+        "ability": "W1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 1
+      },
+      {
+        "name": "DeathwingMoltenBlood",
+        "title": "Molten Blood",
+        "description": "While Deathwing has 3 or more Armor Plates, he heals for 0.4% of his maximum Health per second.",
+        "icon": "storm_ui_icon_deathwing_aspect_of_death.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_aspect_of_death.png"
+        },
+        "ability": "D1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 1
+      },
+      {
+        "name": "DeathwingDraconicMight",
+        "title": "Draconic Might",
+        "description": "Deathwing's Basic Attacks against enemy Heroes heal him for 30% of the damage dealt. Upon losing an Armor Plate, Deathwing becomes Protected for 0.75 seconds.",
+        "icon": "storm_ui_icon_deathwing_aspect_of_death_alt1.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_aspect_of_death_alt1.png"
+        },
+        "ability": "D1",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 1
+      },
+      {
+        "name": "DeathwingInfernus",
+        "title": "Infernus",
+        "description": "When Molten Flame is cast at 75% Energy or higher, its damage is increased by 75% against Heroes.",
+        "icon": "storm_ui_icon_deathwing_molten_flame.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_molten_flame.png"
+        },
+        "ability": "Q1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 4
+      },
+      {
+        "name": "DeathwingHeatWave",
+        "title": "Heat Wave",
+        "description": "Destroyer: After hitting an enemy Hero with Incinerate, Deathwing deals 16 (+4% per level) damage per second to all nearby enemies for the next 8 seconds. Stacks up to 4 times.  World Breaker: Increase the explosion damage of Lava Burst by 125%.",
+        "icon": "storm_ui_icon_deathwing_heat_wave.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_heat_wave.png"
+        },
+        "ability": "W1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 4
+      },
+      {
+        "name": "DeathwingDragonsIre",
+        "title": "Dragon's Ire",
+        "description": "While Deathwing has 3 or fewer Armor Plates, his damage is increased by 30%.",
+        "icon": "storm_ui_icon_deathwing_aspect_of_death.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_aspect_of_death.png"
+        },
+        "ability": "D1",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 4
+      },
+      {
+        "name": "DeathwingFirestorm",
+        "title": "Firestorm",
+        "description": "When Deathwing lands, he drops 7 meteors near the landing area, dealing 65 (+4% per level) damage to enemies hit. Heroes hit by the meteors reduce Dragonflight's cooldown by 12 seconds.  Meteors prioritize landing on Heroes, otherwise they fall randomly in the area.",
+        "icon": "storm_ui_icon_deathwing_firestorm.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_firestorm.png"
+        },
+        "ability": "Z1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 7
+      },
+      {
+        "name": "DeathwingDeathDrop",
+        "title": "Death Drop",
+        "description": "Hitting an enemy Hero with Destroyer or World Breaker's landing damage reduces their Spell Armor by 15 for 6 seconds and Deathwing's Basic Ability cooldowns by 2 seconds.",
+        "icon": "storm_ui_icon_deathwing_deathdrop.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_deathdrop.png"
+        },
+        "ability": "Z1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 7
+      },
+      {
+        "name": "DeathwingSkyfall",
+        "title": "Skyfall",
+        "description": "After using Dragonflight, Deathwing can drop meteors anywhere within vision dealing 58 (+4% per level) damage to enemies in the area. Has 3 charges.  If a Hero is hit, Deathwing heals for 3% of his maximum Health and reduces his landing cooldowns by 1.5 seconds.",
+        "icon": "storm_ui_icon_deathwing_skyfall.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_skyfall.png"
+        },
+        "ability": "Z1",
+        "sort": 3,
+        "cooldown": 10,
+        "mana_cost": null,
+        "level": 7
+      },
+      {
+        "name": "DeathwingBurnBeneathMyShadow",
+        "title": "Burn Beneath My Shadow",
+        "description": "When an enemy Fort or Keep is destroyed the cooldown of Cataclysm is reset. Cataclysm's periodic damage is increased by 100%.",
+        "icon": "storm_ui_icon_deathwing_cataclysm.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_cataclysm.png"
+        },
+        "ability": "R1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 10
+      },
+      {
+        "name": "DeathwingBellowingRoar",
+        "title": "Bellowing Roar",
+        "description": "After 1 second, Deathwing unleashes a mighty roar, dealing 25 (+4% per level) damage to nearby Heroes and causing them to run in Fear for 2 seconds.",
+        "icon": "storm_ui_icon_deathwing_bellowing_roar.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_bellowing_roar.png"
+        },
+        "ability": "Active",
+        "sort": 2,
+        "cooldown": 60,
+        "mana_cost": null,
+        "level": 10
+      },
+      {
+        "name": "DeathwingWickedInferno",
+        "title": "Wicked Inferno",
+        "description": "Molten Flame's Energy cost per second is reduced by 10.  After using Molten Flame, Deathwing gains 15 Energy over 3 seconds.",
+        "icon": "storm_ui_icon_deathwing_molten_flame.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_molten_flame.png"
+        },
+        "ability": "Q1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 13
+      },
+      {
+        "name": "DeathwingRuination",
+        "title": "Ruination",
+        "description": "Destroyer: The bite from Onslaught now Slows by 60% for 1.5 seconds.  World Breaker: Reduce Earth Shatter's cooldown by 6 seconds and its Energy cost by 10.",
+        "icon": "storm_ui_icon_deathwing_ruination.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_ruination.png"
+        },
+        "ability": "E1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 13
+      },
+      {
+        "name": "DeathwingFireAndFury",
+        "title": "Fire and Fury",
+        "description": "Basic Attacks against Rooted, Slowed, or Stunned enemy Heroes deal 30% additional damage and reduce the cooldowns of Deathwing's Basic Abilities by 0.5 seconds.",
+        "icon": "storm_ui_icon_deathwing_fire_and_fury.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_fire_and_fury.png"
+        },
+        "ability": "Passive",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 13
+      },
+      {
+        "name": "DeathwingConflagration",
+        "title": "Conflagration",
+        "description": "Dealing 320 (+4% per level) damage with Molten Flame to enemy Heroes within 4 seconds causes them to burn for an additional 100 (+4% per level) damage over 4 seconds. While burning, they explode every 1 second, dealing 80 (+4% per level) damage to all nearby enemies.",
+        "icon": "storm_ui_icon_deathwing_molten_flame.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_molten_flame.png"
+        },
+        "ability": "Q1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 16
+      },
+      {
+        "name": "DeathwingGazeOntoDestruction",
+        "title": "Gaze Onto Destruction",
+        "description": "Hitting Heroes with Destroyer or World Breaker's landing causes their damage to be reduced by 75% and Slows them by 40% for 5 seconds.",
+        "icon": "storm_ui_icon_deathwing_deathdrop.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_deathdrop.png"
+        },
+        "ability": "Z1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 16
+      },
+      {
+        "name": "DeathwingElementiumPlating",
+        "title": "Elementium Plating",
+        "description": "Activate to gain a Shield equal to 30% of Deathwing's missing Health for 8 seconds. While the Shield holds, Deathwing regenerates 2% of his maximum Health per second.  When the Shield expires or is destroyed, Deathwing regains Armor Plates appropriate for his new Health.  The Shield and effect end immediately if Deathwing uses Dragonflight.",
+        "icon": "storm_ui_icon_deathwing_elemental_plating.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_elemental_plating.png"
+        },
+        "ability": "Active",
+        "sort": 3,
+        "cooldown": 60,
+        "mana_cost": null,
+        "level": 16
+      },
+      {
+        "name": "DeathwingStoodInTheFire",
+        "title": "Stood in the Fire",
+        "description": "Enemy Heroes are Slowed by 40% while standing in scorched ground, and its duration is increased by 50%.",
+        "icon": "storm_ui_icon_deathwing_cataclysm.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_cataclysm.png"
+        },
+        "ability": "R1",
+        "sort": 1,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 20
+      },
+      {
+        "name": "DeathwingArrivalOfAGod",
+        "title": "Arrival of a God",
+        "description": "Destroyer or World Breaker's landing damage is increased by 400%.  Deathwing also gains the benefits of all of his level 7 talents.",
+        "icon": "storm_ui_icon_deathwing_deathdrop.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_deathdrop.png"
+        },
+        "ability": "Z1",
+        "sort": 2,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 20
+      },
+      {
+        "name": "DeathwingDestroyersRampage",
+        "title": "Destroyer's Rampage",
+        "description": "For the next 6 seconds after landing in Destroyer form, Deathwing's damage is increased by 40% and his Basic Ability cooldowns recharge 50% faster.  Damaging Heroes refreshes this effect and switching to World Breaker form removes the effect.",
+        "icon": "storm_ui_icon_deathwing_destroyer.png",
+        "icon_url": {
+          "64x64": "https://raw.githubusercontent.com/heroespatchnotes/heroes-talents/master/images/talents/storm_ui_icon_deathwing_destroyer.png"
+        },
+        "ability": "Z1",
+        "sort": 3,
+        "cooldown": null,
+        "mana_cost": null,
+        "level": 20
+      }
+    ]
+  }
+]

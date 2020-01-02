@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "parsed_id": 1,
+    "filename": "056dc095-b206-52dd-f7b3-18760e64db00",
+    "size": 749608,
+    "game_type": "QuickMatch",
+    "game_date": "2019-12-18 02:31:36",
+    "game_map": "Cursed Hollow",
+    "game_length": 952,
+    "game_version": "2.49.1.77692",
+    "fingerprint": "056dc095-b206-52dd-f7b3-18760e64db00",
+    "region": 1,
+    "processed": true,
+    "deleted": false,
+    "url": "http:\/\/hotsapi.s3-website-.amazonaws.com\/056dc095-b206-52dd-f7b3-18760e64db00.StormReplay"
+  },
+  {
+    "id": 2,
+    "parsed_id": 2,
+    "filename": "57ed6692-cf0d-58de-1709-ea90fed96a30",
+    "size": 809989,
+    "game_type": "QuickMatch",
+    "game_date": "2019-12-18 02:35:55",
+    "game_map": "Warhead Junction",
+    "game_length": 1125,
+    "game_version": "2.49.1.77692",
+    "fingerprint": "57ed6692-cf0d-58de-1709-ea90fed96a30",
+    "region": 1,
+    "processed": true,
+    "deleted": false,
+    "url": "http:\/\/hotsapi.s3-website-.amazonaws.com\/57ed6692-cf0d-58de-1709-ea90fed96a30.StormReplay"
+  }
+]
