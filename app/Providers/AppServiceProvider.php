@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         # migration fix for mysql < 5.7.7, needed for travis
-        Schema::defaultStringLength(191);
+        Schema::defaultStringLength(255);
 
         Resource::withoutWrapping();
 
