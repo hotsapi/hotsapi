@@ -1,0 +1,80 @@
+version: '2.2'
+
+volumes:
+  mysql:
+
+services:
+
+#  mysql:
+#    image: mysql:5.7
+#    restart: always
+#    env_file: .env.prod
+#    volumes:
+#      - mysql:/var/lib/mysql
+#    # CREATE DATABASE IF NOT EXISTS ${DB_DATABASE}
+
+  memcached:
+    image: memcached
+    restart: always
+
+#  artisan:
+#    image: hotsapi/hotsapi
+#    restart: never
+#    env_file: .env.prod
+
+  web:
+    image: hotsapi/webserver
+    restart: always
+    env_file: .env.prod
+    environment:
+      VIRTUAL_HOST: hotsapi.net
+      LETSENCRYPT_HOST: hotsapi.net
+      HTTPS_METHOD: noredirect
+      nginx_client_max_body_size: 30M
+    depends_on:
+      - memcached
+
+  worker:
+    image: hotsapi/hotsapi
+    restart: always
+    env_file: .env.prod
+    volumes:
+      - /.gcloud.json:/var/www/hotsapi/.gcloud.json
+    command: ['queue:work', '--sleep=3', '--tries=3', '--timeout=60']
+    depends_on:
+      - memcached
+    scale: 0
+    
+  parser:
+    image: hotsapi/hotsapi
+    restart: always
+    env_file: .env.prod
+    command: ['hotsapi:parse']
+    # throttle this container first if not enough CPU
+    # default value for other containers is 1024
+    cpu_shares: 2
+    scale: 3
+
+  scheduler:
+    image: hotsapi/hotsapi
+    restart: always
+    env_file: .env.prod
+    entrypoint: 'bash -c "while [ true ]; do php artisan schedule:run --verbose --no-interaction & sleep 60; done"'
+
+  prune:
+    image: hotsapi/prune
+    env_file: .env.prod
+    environment:
+      CRON_TIME: '00 28 02 * * *'
+      
+    # todo run this on cron
+
+  # TODO:
+  #   move parser and heroprotocol dockerfiles to respective repos and wrap them as separate services
+  #   php artisan migrate --force
+  #   update on heroprotocol/c# parser updates
+
+networks:
+  default:
+    external:
+      name: frontend_default

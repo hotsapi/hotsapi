@@ -8,28 +8,31 @@ Currently API is still in alpha and may change
 
 # Installation
 
-HotsApi is a PHP/Laravel app so the easiest way to run it locally is using [Homestead](https://laravel.com/docs/5.4/homestead). Alternatively, you can use a cookbook from [hotsapi.chef](https://github.com/hotsapi/hotsapi.chef) repo that can automatically install all the dependencies and configure webserver.
+You need to have `docker` and `docker-compose` installed on your machine
 
-## Homestead
+```shell script
+cp .env.example .env
+# edit env file if needed
 
-In addition to default homestead config you will need:
+# bring up mysql service
+docker-compose up -d mysql
 
-* Install [heroprotocol](https://github.com/Blizzard/heroprotocol) parser: `cd /opt && sudo git clone https://github.com/Blizzard/heroprotocol.git`
-* Make a globally available heroprotocol executable: `sudo ln -s /opt/heroprotocol/heroprotocol.py /usr/bin/heroprotocol`
-* Make sure heroprotocol has executable permission `chmod +x /opt/heroprotocol/heroprotocol.py`
-* Configure `.env` file `cp .env.example .env`
-* Run `composer install`
-* Run `php artisan migrate`
-* Make sure `storage` dir is writable
+# run migrations 
+docker-compose run artisan migrate:fresh --seed
 
-## Chef
+# populate maps, heroes, talents tables
+docker-compose run artisan hotsapi:fetch-translations
+docker-compose run artisan hotsapi:fetch-talents
 
-* SSH into a clean Ubuntu 16.04 installation
-* Clone a chef repo `git clone https://github.com/poma/hotsapi.chef.git`
-* `cd hotsapi.chef`
-* Create a chef config file `cp chef.example.json chef.json`
-* Modify `chef.json` if needed (test server should be able to start without any modifications)
-* Run chef `sudo ./bootstrap.sh`
+# run webserver, available at localhost:8080
+docker-compose up -d hotsapi
+
+# Look at logs
+docker-compose logs -f
+
+# parse uploaded replays
+docker-compose run artisan hotsapi:parse
+```
 
 # Contributing
 
