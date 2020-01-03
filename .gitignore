@@ -4,6 +4,9 @@
 /.phpstorm.meta.php
 .gcloud.json
 .docker
+.env.prod
+chef.json
+/misc/
 
 # End of custom entries
 
