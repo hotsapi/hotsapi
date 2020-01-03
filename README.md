@@ -24,6 +24,9 @@ docker-compose run artisan migrate:fresh --seed
 docker-compose run artisan hotsapi:fetch-translations
 docker-compose run artisan hotsapi:fetch-talents
 
+# install composer dependencies locally because we are using local files instead of content dir from the container
+docker-compose run --entrypoint 'composer install' hotsapi
+
 # run webserver, available at localhost:8080
 docker-compose up -d hotsapi
 
