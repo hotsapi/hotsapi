@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * App\Map
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Map extends Model
 {
+    use InsertOnDuplicateKey;
+
     protected $guarded = ['id'];
     protected $hidden = ['id'];
     public $timestamps = false;
