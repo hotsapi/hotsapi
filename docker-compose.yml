@@ -2,6 +2,7 @@ version: '2'
 
 volumes:
   mysql:
+  tmp:
 
 services:
   mysql:
@@ -22,6 +23,9 @@ services:
     entrypoint: ["php", "artisan"]
     volumes:
       - .:/var/www/hotsapi
+      - tmp:/tmp
+    depends_on:
+      - mysql
 
   hotsapi:
     build:
@@ -31,4 +35,19 @@ services:
       - 8080:80
     volumes:
       - .:/var/www/hotsapi
+      - tmp:/tmp
+    depends_on:
+      - mysql
+      - parser
+      - heroprotocol
+
+  parser:
+    image: hotsapi/hotsapi-parser
+    volumes:
+      - tmp:/tmp
+
+  heroprotocol:
+    image: hotsapi/heroprotocol
+    volumes:
+      - tmp:/tmp
 

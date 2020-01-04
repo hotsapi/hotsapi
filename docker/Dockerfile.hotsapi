@@ -1,6 +1,4 @@
-# building heroprotocol -> parser -> hotsapi sequentially in a single container
-# FROM ubuntu:16.04
-FROM hotsapi/parser
+FROM ubuntu:16.04
 
 RUN apt update && \
 	apt install -y git curl zip unzip composer \
