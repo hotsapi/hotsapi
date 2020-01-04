@@ -41,6 +41,7 @@ class FetchTranslations extends Command
     {
         $this->fetchMaps();
         $this->fetchHeroes();
+        $this->info('FetchTranslations: Finished');
     }
 
     public function fetchMaps()
@@ -68,23 +69,29 @@ class FetchTranslations extends Command
     public function fetchHeroes()
     {
         $heroes = Hero::with('translations')->get();
-        $json = json_decode(\Guzzle::get('https://api.hotslogs.com/Public/Data/Heroes')->getBody());
+
+        $this->info('FetchTranslations: Retrieving heroes data from HeroesProfile...');
+        $json = json_decode(\Guzzle::get('https://api.heroesprofile.com/Heroes')->getBody());
+
+        $this->info('FetchTranslations: Processing hero data...');
+        $translations = [];
         foreach ($json as $hero) {
-            $dbHero = $heroes->where('name', $hero->PrimaryName)->first();
-            $shortName = strtolower(preg_replace('/[^\w]/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $hero->PrimaryName)));
+            $dbHero = $heroes->where('name', $hero->name)->first();
             if (!$dbHero) {
-                $dbHero = Hero::create(['name' => $hero->PrimaryName, 'short_name' => $shortName, 'attribute_id' => $hero->AttributeName]);
+                $shortName = strtolower(preg_replace('/[^\w]/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $hero->name)));
+                $dbHero = Hero::create(['name' => $hero->name, 'short_name' => $shortName, 'attribute_id' => $hero->attribute_id]);
             }
-            $translations = explode(',', $hero->Translations);
-            $translations []= $hero->PrimaryName;
-            $translations = array_map(function ($x) { return mb_strtolower($x); }, $translations);
-            $translations = array_unique($translations);
-            foreach ($translations as $translation) {
-                $translation = mb_strtolower($translation);
-                if ($dbHero->translations->where('name', $translation)->isEmpty()) {
-                    $dbHero->translations()->save(new HeroTranslation(['name' => $translation]));
-                }
+
+            $heroTranslations = array_map(function ($x) { return mb_strtolower($x); }, $hero->translations);
+            $heroTranslations[] = mb_strtolower($hero->name);
+            $heroTranslations = array_unique($heroTranslations);
+            foreach ($heroTranslations as $heroTranslation) {
+                $translations[] = ['hero_id' => $dbHero->id, 'name' => $heroTranslation];
             }
         }
+
+        $this->info('FetchTranslations: Saving heroes translation data...');
+        HeroTranslation::insertOnDuplicateKey($translations);
+        return;
     }
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * App\HeroTranslation
@@ -18,6 +19,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class HeroTranslation extends Model
 {
+    use InsertOnDuplicateKey;
+
     protected $table = 'hero_translations';
     protected $guarded = ['id', 'hero_id'];
     protected $hidden = ['id', 'hero_id'];

@@ -88,7 +88,8 @@ class FetchTalents extends Command
                 'role' => $data->role,
                 'type' => $data->type,
                 'release_date' => $data->releaseDate,
-                'release_patch' => $data->releasePatch
+                'release_patch' => $data->releasePatch,
+                'attribute_id' => $data->attributeId
             ];
 
             foreach ($data->abilities as $owner => $abilityArray) {
