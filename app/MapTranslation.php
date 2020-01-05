@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Yadakhov\InsertOnDuplicateKey;
 
 /**
  * App\MapTranslation
@@ -18,6 +19,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class MapTranslation extends Model
 {
+    use InsertOnDuplicateKey;
+
     protected $guarded = ['id', 'map_id'];
     protected $hidden = ['id', 'map_id'];
     public $timestamps = false;

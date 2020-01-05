@@ -1,0 +1,454 @@
+[
+  {
+    "name": "Alterac Pass",
+    "translations": [
+      "alterac pass",
+      "alteracpass",
+      "ca\u00f1\u00f3n de alterac",
+      "garganta de alterac",
+      "paso de alterac",
+      "passe d\u2019alterac",
+      "passo d'alterac",
+      "prze\u0142\u0119cz alterak",
+      "\u0430\u043b\u044c\u0442\u0435\u0440\u0430\u043a\u0441\u043a\u0438\u0439 \u043f\u0435\u0440\u0435\u0432\u0430\u043b",
+      "\u5965\u7279\u5170\u514b\u6218\u9053",
+      "\u5967\u7279\u862d\u514b\u9698\u53e3",
+      "\uc54c\ud130\ub799 \uace0\uac1c",
+      "la passe d\u2019alterac"
+    ]
+  },
+  {
+    "name": "Battlefield of Eternity",
+    "translations": [
+      "campo de batalha da eternidade",
+      "campo de batalla de la eternidad",
+      "\u6c38\u6046\u6230\u5834",
+      "\u6c38\u6052\u6218\u573a",
+      "\uc601\uc6d0\uc758 \uc804\uc7c1\ud130",
+      "campos de batalla de la eternidad",
+      "schlachtfeld der ewigkeit",
+      "champs de l\u2019\u00e9ternit\u00e9",
+      "\u0432\u0435\u0447\u043d\u0430\u044f \u0431\u0438\u0442\u0432\u0430",
+      "campi di battaglia eterni",
+      "pole bitewne wieczno\u015bci",
+      "battlefield of eternity",
+      "les champs de l\u2019\u00e9ternit\u00e9"
+    ]
+  },
+  {
+    "name": "Blackheart's Bay",
+    "translations": [
+      "baie de c\u0153ur-noir",
+      "schwarzherzbucht",
+      "bah\u00eda de almanegra",
+      "zatoka czarnosercego",
+      "baia di cuornero",
+      "\u0431\u0443\u0445\u0442\u0430 \u0447\u0435\u0440\u043d\u043e\u0441\u0435\u0440\u0434\u0430",
+      "ba\u00eda do cora\u00e7\u00e3o negro",
+      "\ube14\ub799\ud558\ud2b8 \ud56d\ub9cc",
+      "\u9ed1\u5fc3\u6e7e",
+      "\u9ed1\u5fc3\u7063",
+      "blackheart's bay",
+      "la baie de c\u0153ur-noir"
+    ]
+  },
+  {
+    "name": "Braxis Holdout",
+    "translations": [
+      "endstation braxis",
+      "\u5e03\u840a\u897f\u65af\u5be6\u9a57\u6240",
+      "\ube0c\ub77d\uc2dc\uc2a4 \ud56d\uc804",
+      "resist\u00eancia de braxis",
+      "\u0431\u043e\u0439\u043d\u044f \u043d\u0430 \u0431\u0440\u0430\u043a\u0441\u0438\u0441\u0435",
+      "laboratoire de braxis",
+      "resistencia en braxis",
+      "\u5e03\u62c9\u514b\u897f\u65af\u7981\u533a",
+      "\u5e03\u83b1\u514b\u897f\u65af\u7981\u533a",
+      "plac\u00f3wka na braxis",
+      "distaccamento di braxis",
+      "braxis holdout",
+      "le laboratoire de braxis"
+    ]
+  },
+  {
+    "name": "Braxis Outpost",
+    "translations": [
+      "au\u00dfenposten braxis",
+      "avamposto di braxis",
+      "avant-poste de braxis",
+      "avanzada de braxis",
+      "posterunek na braxis",
+      "posto avan\u00e7ado braxis",
+      "puesto de avanzada de braxis",
+      "\u0430\u0432\u0430\u043d\u043f\u043e\u0441\u0442 \u043d\u0430 \u0431\u0440\u0430\u043a\u0441\u0438\u0441\u0435",
+      "\ube0c\ub77d\uc2dc\uc2a4 \uc804\ucd08\uae30\uc9c0",
+      "\u5e03\u83b1\u514b\u897f\u65af\u524d\u54e8",
+      "\u5e03\u840a\u897f\u65af\u54e8\u7ad9",
+      "braxis outpost",
+      "l\u2019avant-poste de braxis",
+      "\u5e03\u840a\u897f\u65af\u524d\u54e8\u6230"
+    ]
+  },
+  {
+    "name": "Checkpoint: Hanamura",
+    "translations": [
+      "point de contr\u00f4le\u00a0: hanamura",
+      "ponto de controle: hanamura",
+      "punkt kontrolny: hanamura",
+      "punto de control: hanamura",
+      "\u043a\u043e\u043d\u0442\u0440\u043e\u043b\u044c\u043d\u0430\u044f \u0442\u043e\u0447\u043a\u0430: \u0445\u0430\u043d\u0430\u043c\u0443\u0440\u0430",
+      "\u68c0\u67e5\u70b9\uff1a\u82b1\u6751",
+      "\uacbd\uc720\uc9c0: \ud558\ub098\ubb34\ub77c",
+      "\u6fc0\u6230\u82b1\u6751",
+      "checkpoint: hanamura"
+    ]
+  },
+  {
+    "name": "Cursed Hollow",
+    "translations": [
+      "val maudit",
+      "verfluchtes tal",
+      "cuenca maldita",
+      "valle maledetta",
+      "przekl\u0119ta kotlina",
+      "\u043f\u0440\u043e\u043a\u043b\u044f\u0442\u0430\u044f \u043b\u043e\u0449\u0438\u043d\u0430",
+      "creux maudit",
+      "hondonada maldita",
+      "clareira maldita",
+      "\uc800\uc8fc\ubc1b\uc740 \uace8\uc9dc\uae30",
+      "\u8bc5\u5492\u8c37",
+      "\u8a5b\u5492\u8c37\u5730",
+      "cursed hollow - scaling test",
+      "val maudit - test d\u2019\u00e9chelonnage",
+      "valle maledetta (test adattamento)",
+      "\u043f\u0440\u043e\u043a\u043b\u044f\u0442\u0430\u044f \u043b\u043e\u0449\u0438\u043d\u0430: \u0442\u0435\u0441\u0442 \u043f\u0430\u0440\u0430\u043c\u0435\u0442\u0440\u043e\u0432",
+      "\u8a5b\u5492\u8c37\u5730 - \u8abf\u6574\u6e2c\u8a66",
+      "przekl\u0119ta kotlina \u2013 test skalowania",
+      "\uc800\uc8fc\ubc1b\uc740 \uace8\uc9dc\uae30 - \uc218\uce58 \ubcc0\uacbd \ud14c\uc2a4\ud2b8",
+      "clareira maldita - teste de escalonamento",
+      "verfluchtes tal \u2013 skalierungstest",
+      "\u8bc5\u5492\u8c37 - \u6570\u503c\u6d4b\u8bd5",
+      "cuenca maldita: prueba de escala",
+      "hondonada maldita - mapa de prueba",
+      "sandbox (cursed hollow)",
+      "bac \u00e0 sable (val maudit)",
+      "mapa fechado (clareira maldita)",
+      "sandbox (valle maledetta)",
+      "prueba grupal (hondonada maldita)",
+      "\uc0cc\ub4dc\ubc15\uc2a4 (\uc800\uc8fc\ubc1b\uc740 \uace8\uc9dc\uae30)",
+      "\u043f\u0435\u0441\u043e\u0447\u043d\u0438\u0446\u0430 (\u043f\u0440\u043e\u043a\u043b\u044f\u0442\u0430\u044f \u043b\u043e\u0449\u0438\u043d\u0430)",
+      "\u6c99\u76d2\uff08\u8bc5\u5492\u8c37\uff09",
+      "terreno de pruebas (cuenca maldita)",
+      "sandbox (verfluchtes tal)",
+      "sandbox (przekl\u0119ta kotlina)",
+      "\u8a66\u9a57\u6a21\u5f0f\uff08\u8a5b\u5492\u8c37\u5730\uff09",
+      "sandbox (hondonada maldita)",
+      "cursed hollow",
+      "b\u00f3jka na \u015bnie\u017cki",
+      "choc au sommet",
+      "combate bajo cero",
+      "contenda na neve",
+      "contienda nevada",
+      "rissa nella neve",
+      "schneeballschlacht",
+      "snow brawl",
+      "\u043f\u043e\u0442\u0430\u0441\u043e\u0432\u043a\u0430 \u0441\u043e \u0441\u043d\u0435\u0436\u043a\u0430\u043c\u0438",
+      "\u96ea\u7403\u4e71\u6597",
+      "\u96ea\u7403\u5927\u4e82\u9b25",
+      "\ub208\uc2f8\uc6c0 \ub09c\ud22c",
+      "le val maudit",
+      "bac \u00e0 sable (le val maudit)"
+    ]
+  },
+  {
+    "name": "Dragon Shire",
+    "translations": [
+      "comt\u00e9 du dragon",
+      "dracheng\u00e4rten",
+      "condado del drag\u00f3n",
+      "smocze w\u0142o\u015bci",
+      "contea del drago",
+      "\u0434\u0440\u0430\u043a\u043e\u043d\u0438\u0439 \u043a\u0440\u0430\u0439",
+      "comarca del drag\u00f3n",
+      "condado do drag\u00e3o",
+      "\uc6a9\uc758 \ub465\uc9c0",
+      "\u5de8\u9f99\u9547",
+      "\u5de8\u9f8d\u90e1",
+      "dragon shire",
+      "le comt\u00e9 du dragon"
+    ]
+  },
+  {
+    "name": "Escape From Braxis",
+    "translations": [
+      "flucht von braxis",
+      "fuga da braxis",
+      "la fuite de braxis",
+      "ucieczka z braxis",
+      "\u043f\u043e\u0431\u0435\u0433 \u0441 \u0431\u0440\u0430\u043a\u0441\u0438\u0441\u0430",
+      "\u9003\u96e2\u5e03\u840a\u897f\u65af",
+      "\ube0c\ub77d\uc2dc\uc2a4 \ud0c8\ucd9c",
+      "fuga de braxis",
+      "\u9003\u79bb\u5e03\u83b1\u514b\u897f\u65af",
+      "escape from braxis",
+      "escape de braxis",
+      "\u9003\u96e2\u5e03\u840a\u897f\u65af\uff08\u82f1\u96c4\u6a21\u5f0f\uff09",
+      "\ube0c\ub77d\uc2dc\uc2a4 \ud0c8\ucd9c (\uc601\uc6c5 \ub09c\uc774\ub3c4)",
+      "escape from braxis (heroic)",
+      "flucht von braxis (heroisch)",
+      "fuga da braxis (eroica)",
+      "fuga de braxis (heroico)",
+      "la fuite de braxis (h\u00e9ro\u00efque)",
+      "\u0433\u0435\u0440\u043e\u0438\u0447\u0435\u0441\u043a\u0438\u0439 \u043f\u043e\u0431\u0435\u0433 \u0441 \u0431\u0440\u0430\u043a\u0441\u0438\u0441\u0430",
+      "\u9003\u79bb\u5e03\u83b1\u514b\u897f\u65af\uff08\u82f1\u96c4\u96be\u5ea6\uff09",
+      "heroiczna ucieczka z braxis",
+      "escape de braxis (heroico)"
+    ]
+  },
+  {
+    "name": "Escape From Braxis",
+    "translations": []
+  },
+  {
+    "name": "Garden of Terror",
+    "translations": [
+      "jard\u00edn del terror",
+      "ogr\u00f3d grozy",
+      "jardins de terreur",
+      "garten der \u00e4ngste",
+      "\u0441\u0430\u0434 \u0443\u0436\u0430\u0441\u043e\u0432",
+      "giardino del terrore",
+      "jardim do terror",
+      "placeholder",
+      "\uacf5\ud3ec\uc758 \uc815\uc6d0",
+      "\u6050\u9b54\u56ed",
+      "\u6050\u6016\u82b1\u5712",
+      "garden of terror",
+      "les jardins de terreur"
+    ]
+  },
+  {
+    "name": "Hanamura Temple",
+    "translations": [
+      "\u82b1\u6751",
+      "\ud558\ub098\ubb34\ub77c",
+      "\u0445\u0430\u043d\u0430\u043c\u0443\u0440\u0430",
+      "hanamura #6",
+      "hanamura",
+      "hanamura temple",
+      "templo de hanamura",
+      "tempio di hanamura",
+      "tempel von hanamura",
+      "\u0445\u0440\u0430\u043c \u0445\u0430\u043d\u0430\u043c\u0443\u0440\u044b",
+      "\ud558\ub098\ubb34\ub77c \uc0ac\uc6d0",
+      "le temple d\u2019hanamura",
+      "\u015bwi\u0105tynia w hanamurze",
+      "\u82b1\u6751\u5bfa",
+      "\u82b1\u6751\u795e\u6bbf"
+    ]
+  },
+  {
+    "name": "Haunted Mines",
+    "translations": [
+      "mines hant\u00e9es",
+      "geisterminen",
+      "minas encantadas",
+      "nawiedzone kopalnie",
+      "miniere infestate",
+      "\u043f\u0440\u0438\u0437\u0440\u0430\u0447\u043d\u044b\u0435 \u043a\u043e\u043f\u0438",
+      "minas embrujadas",
+      "mina assombrada",
+      "\uc8fd\uc74c\uc758 \uad11\uc0b0",
+      "\u9b3c\u7075\u77ff",
+      "\u4ea1\u9ab8\u7926\u5751",
+      "haunted mines",
+      "la mine hant\u00e9e"
+    ]
+  },
+  {
+    "name": "Industrial District",
+    "translations": [
+      "distretto industriale",
+      "district industriel",
+      "distrito industrial",
+      "dzielnica przemys\u0142owa",
+      "industriebezirk",
+      "\u043f\u0440\u043e\u043c\u0437\u043e\u043d\u0430",
+      "\u5de5\u4e1a\u56ed\u533a",
+      "\u6a5f\u6230\u5de5\u696d\u5340",
+      "\uacf5\uc5c5 \uc9c0\uad6c",
+      "industrial district",
+      "\u043f\u0440\u043e\u043c\u044b\u0448\u043b\u0435\u043d\u043d\u044b\u0439 \u0440\u0430\u0439\u043e\u043d",
+      "\u043a\u0431 \u0432\u043e\u043b\u044c\u0441\u043a\u043e\u0439"
+    ]
+  },
+  {
+    "name": "Infernal Shrines",
+    "translations": [
+      "santuarios infernales",
+      "santu\u00e1rios infernais",
+      "sagrarios infernales",
+      "sanctuaires infernaux",
+      "h\u00f6llenschreine",
+      "\u7149\u7344\u8056\u58c7",
+      "\ubd88\uc9c0\uc625 \uc2e0\ub2e8",
+      "piekielne kapliczki",
+      "altari infernali",
+      "\u043e\u0441\u043a\u0432\u0435\u0440\u043d\u0435\u043d\u043d\u044b\u0435 \u0441\u0432\u044f\u0442\u0438\u043b\u0438\u0449\u0430",
+      "\u70bc\u72f1\u5723\u575b",
+      "infernal shrines",
+      "les sanctuaires infernaux"
+    ]
+  },
+  {
+    "name": "Lost Cavern",
+    "translations": [
+      "caverna perdida",
+      "\u5931\u843d\u6d1e\u7a9f",
+      "vergessene h\u00f6hle",
+      "\u0437\u0430\u0442\u0435\u0440\u044f\u043d\u043d\u044b\u0439 \u0433\u0440\u043e\u0442",
+      "caverna perduta",
+      "grotte perdue",
+      "zaginiona pieczara",
+      "\uc783\uc5b4\ubc84\ub9b0 \ub3d9\uad74",
+      "caveau perdu",
+      "le caveau perdu",
+      "lost cavern"
+    ]
+  },
+  {
+    "name": "Pull Party",
+    "translations": [
+      "accro au crochet",
+      "agganci pericolosi",
+      "echar el gancho",
+      "fiesta de ganchos",
+      "poci\u0105gaj\u0105cy zszywa",
+      "puxa-puxa",
+      "\u043f\u0440\u0438\u0442\u044f\u0433\u0430\u0442\u0435\u043b\u044c\u043d\u044b\u0435 \u043b\u0438\u0447\u043d\u043e\u0441\u0442\u0438",
+      "\u62c9\u94a9\u6d3e\u5bf9",
+      "\u9264\u9264\u6d3e\u5c0d",
+      "\uac08\uace0\ub9ac \ud30c\ud2f0",
+      "ich glaub es hakt",
+      "pull party",
+      "ich glaub, es hakt",
+      "impreza przy basenie"
+    ]
+  },
+  {
+    "name": "Silver City",
+    "translations": [
+      "\u767d\u94f6\u57ce",
+      "\u9280\u5149\u4e4b\u57ce",
+      "\uc740\ube5b \ub3c4\uc2dc",
+      "\u0441\u0435\u0440\u0435\u0431\u0440\u044f\u043d\u044b\u0439 \u0433\u043e\u0440\u043e\u0434",
+      "srebrne miasto",
+      "silberne stadt",
+      "la cit\u00e9 d\u2019argent",
+      "ciudad de plata",
+      "citt\u00e0 d'argento",
+      "cidade de prata",
+      "ciudad argenta",
+      "silver city"
+    ]
+  },
+  {
+    "name": "Sky Temple",
+    "translations": [
+      "temple c\u00e9leste",
+      "templo celeste",
+      "\u5929\u7a7a\u6bbf",
+      "tempel des himmels",
+      "podniebna \u015bwi\u0105tynia",
+      "tempio celeste",
+      "\u043d\u0435\u0431\u0435\u0441\u043d\u044b\u0439 \u0445\u0440\u0430\u043c",
+      "\u5929\u7a7a\u795e\u6bbf",
+      "\ud558\ub298 \uc0ac\uc6d0",
+      "sky temple",
+      "le temple c\u00e9leste"
+    ]
+  },
+  {
+    "name": "Tomb of the Spider Queen",
+    "translations": [
+      "tumba de la reina ara\u00f1a",
+      "\u86db\u540e\u4e4b\u5893",
+      "tumba da aranha rainha",
+      "\uac70\ubbf8 \uc5ec\uc655\uc758 \ubb34\ub364",
+      "tombe de la reine araign\u00e9e",
+      "grabkammer der spinnenk\u00f6nigin",
+      "grobowiec paj\u0119czej kr\u00f3lowej",
+      "tomba della regina ragno",
+      "\u0433\u0440\u043e\u0431\u043d\u0438\u0446\u0430 \u043a\u043e\u0440\u043e\u043b\u0435\u0432\u044b \u043f\u0430\u0443\u043a\u043e\u0432",
+      "\u86db\u540e\u5893",
+      "tomb of the spider queen",
+      "la tombe de la reine araign\u00e9e"
+    ]
+  },
+  {
+    "name": "Towers of Doom",
+    "translations": [
+      "torres da perdi\u00e7\u00e3o",
+      "torres de fatalidad",
+      "torres de la perdici\u00f3n",
+      "tours du destin",
+      "t\u00fcrme des unheils",
+      "wie\u017ce zag\u0142ady",
+      "\u0431\u0430\u0448\u043d\u0438 \u0440\u043e\u043a\u0430",
+      "\u5384\u904b\u4e4b\u5854",
+      "\u672b\u65e5\u5854",
+      "\ud30c\uba78\uc758 \ud0d1",
+      "torri della rovina",
+      "towers of doom",
+      "les tours du destin"
+    ]
+  },
+  {
+    "name": "Volskaya Foundry",
+    "translations": [
+      "fundici\u00f3n de volskaya",
+      "fundi\u00e7\u00e3o volskaya",
+      "volskaya",
+      "\ubcfc\uc2a4\uce74\uc57c \uacf5\uc7a5",
+      "\u4f0f\u65af\u51f1\u4e9e\u9444\u9020\u5ee0",
+      "\u6c83\u65af\u5361\u5a05\u94f8\u9020\u5382",
+      "fonderia volskaya",
+      "fonderie volskaya",
+      "odlewnia volskaya industries",
+      "volskaya-fertigung",
+      "\u0437\u0430\u0432\u043e\u0434 \u0432\u043e\u043b\u044c\u0441\u043a\u043e\u0439",
+      "volskaya foundry",
+      "sandbox (volskaya foundry)",
+      "sandbox (volskaya-fertigung)",
+      "sandbox (odlewnia volskaya industries)",
+      "\u6c99\u76d2\uff08\u6c83\u65af\u5361\u5a05\u94f8\u9020\u5382\uff09",
+      "\u8a66\u9a57\u6a21\u5f0f\uff08\u4f0f\u65af\u51f1\u4e9e\u9444\u9020\u5ee0\uff09",
+      "sandbox (fundici\u00f3n de volskaya)",
+      "\uc0cc\ub4dc\ubc15\uc2a4 (\ubcfc\uc2a4\uce74\uc57c \uacf5\uc7a5)",
+      "\u043f\u0435\u0441\u043e\u0447\u043d\u0438\u0446\u0430 (\u0437\u0430\u0432\u043e\u0434 \u0432\u043e\u043b\u044c\u0441\u043a\u043e\u0439)",
+      "odlewnia volskaya",
+      "mapa fechado (fundi\u00e7\u00e3o volskaya)",
+      "terreno de pruebas (fundici\u00f3n de volskaya)",
+      "la fonderie volskaya",
+      "bac \u00e0 sable (la fonderie volskaya)",
+      "sandbox (fonderia volskaya)"
+    ]
+  },
+  {
+    "name": "Warhead Junction",
+    "translations": [
+      "cruce nuclear",
+      "estaci\u00f3n nuclear",
+      "jun\u00e7\u00e3o da ogiva",
+      "menace nucl\u00e9aire",
+      "\ud575\ud0c4\ub450 \uaca9\uc804\uc9c0",
+      "\u5f39\u5934\u67a2\u7ebd\u7ad9",
+      "\u6838\u6b66\u6230\u5730",
+      "\u044f\u0434\u0435\u0440\u043d\u044b\u0439 \u043f\u043e\u043b\u0438\u0433\u043e\u043d",
+      "sprengkopfmanufaktur",
+      "poligon nuklearny",
+      "stazione atomica",
+      "warhead junction"
+    ]
+  }
+]

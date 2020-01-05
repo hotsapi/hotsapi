@@ -39,30 +39,7 @@ class FetchTranslations extends Command
      */
     public function handle()
     {
-        $this->fetchMaps();
         $this->fetchHeroes();
-    }
-
-    public function fetchMaps()
-    {
-        $maps = Map::with('translations')->get();
-        $json = json_decode(\Guzzle::get('https://api.hotslogs.com/Public/Data/Maps')->getBody());
-        foreach ($json as $map) {
-            $dbMap = $maps->where('name', $map->PrimaryName)->first();
-            if (!$dbMap) {
-                $dbMap = Map::create(['name' => $map->PrimaryName]);
-            }
-            $translations = explode(',', $map->Translations);
-            $translations []= $map->PrimaryName;
-            $translations = array_map(function ($x) { return mb_strtolower($x); }, $translations);
-            $translations = array_unique($translations);
-            foreach ($translations as $translation) {
-                $translation = mb_strtolower($translation);
-                if ($dbMap->translations->where('name', $translation)->isEmpty()) {
-                    $dbMap->translations()->save(new MapTranslation(['name' => $translation]));
-                }
-            }
-        }
     }
 
     public function fetchHeroes()
