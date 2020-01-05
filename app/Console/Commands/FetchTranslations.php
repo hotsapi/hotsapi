@@ -39,7 +39,13 @@ class FetchTranslations extends Command
      */
     public function handle()
     {
+        $this->fetchMaps();
         $this->fetchHeroes();
+    }
+
+    public function fetchMaps()
+    {
+        // todo: fetch map translations
     }
 
     public function fetchHeroes()
