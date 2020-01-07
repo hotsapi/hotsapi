@@ -61,8 +61,7 @@ class FetchTranslations extends Command
         foreach ($json as $hero) {
             $dbHero = $heroes->where('name', $hero->name)->first();
             if (!$dbHero) {
-                $shortName = strtolower(preg_replace('/[^\w]/', '', iconv('UTF-8', 'ASCII//TRANSLIT', $hero->name)));
-                $dbHero = Hero::create(['name' => $hero->name, 'short_name' => $shortName, 'attribute_id' => $hero->attribute_id]);
+                continue; # we need accurate hero ids for replay parsing so we don't add heroes here.
             }
 
             $heroTranslations = array_map(function ($x) { return mb_strtolower($x); }, $hero->translations);

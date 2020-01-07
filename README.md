@@ -21,8 +21,8 @@ docker-compose up -d mysql
 docker-compose run artisan migrate:fresh --seed
 
 # populate maps, heroes, talents tables
-docker-compose run artisan hotsapi:fetch-translations
 docker-compose run artisan hotsapi:fetch-talents
+docker-compose run artisan hotsapi:fetch-translations
 
 # install composer dependencies locally because we are using local files instead of content dir from the container
 docker-compose run --entrypoint 'composer install' hotsapi
