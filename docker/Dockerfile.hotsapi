@@ -2,9 +2,14 @@
 # FROM ubuntu:16.04
 FROM hotsapi/parser
 
-RUN apt update && \
-	apt install -y git curl zip unzip composer \
-		php7.0 php7.0-mysql php7.0-zip php7.0-gd mcrypt php7.0-mcrypt php7.0-mbstring php7.0-xml php7.0-curl php7.0-json php-memcached && \
+ENV LANG C.UTF-8
+RUN add-apt-repository -y ppa:ondrej/php && \
+    gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv 4F4EA0AAE5267A6C && \
+    gpg --export --armor 4F4EA0AAE5267A6C | apt-key add - && \
+    apt -y update && \
+    apt install -y git curl zip unzip php7.1 php7.1-mysql php7.1-zip php7.1-gd mcrypt php7.1-mcrypt php7.1-mbstring php7.1-xml php7.1-curl php7.1-json && \
+    apt install -y php-memcached && \
+    apt install -y composer && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN composer global require hirak/prestissimo

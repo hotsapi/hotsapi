@@ -3,7 +3,7 @@
 FROM hotsapi/heroprotocol
 
 RUN apt update && \
-	  apt install -y git curl apt-transport-https && \
+	  apt install -y git curl apt-transport-https software-properties-common && \
 	  rm -rf /var/lib/apt/lists/*
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /etc/apt/trusted.gpg.d/microsoft.gpg
 RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-xenial-prod xenial main" > /etc/apt/sources.list.d/dotnetdev.list
