@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
+use stdClass;
 
 /**
  * Class ReplayResource
@@ -42,7 +43,10 @@ class ReplayResource extends Resource
             $result['bans'] = count($this->bans) ? new BanResourceCollection($this->bans) : null;
         }
         if ($this->relationLoaded('players')) {
-            $result['players'] = PlayerResource::collection($this->players->sortBy('index'));
+            $result['players'] = new stdClass();
+            foreach ($this->players as $index => $player) {
+                $result['players']->{$index} = new PlayerResource($player);
+            }
         }
         if ($this->relationLoaded('teams')) {
             $result['teams'] = TeamResource::collection($this->teams->sortBy('index'));
