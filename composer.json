@@ -6,19 +6,20 @@
     "type": "project",
     "require": {
         "php": ">=7.1",
+        "ext-json": "*",
         "barryvdh/laravel-cors": "0.*",
         "barryvdh/laravel-ide-helper": "^2.4",
         "doctrine/dbal": "^2.5",
         "fideloper/proxy": "^4.0",
         "google/cloud-bigquery": "^1.4",
         "kozz/laravel-guzzle-provider": "~6.0",
-        "laravel/framework": "5.8.*",
+        "laravel/framework": "^6.0",
+        "laravel/helpers": "^1.1",
         "laravel/tinker": "~1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "predis/predis": "^1.1",
         "swagger-api/swagger-ui": "^3.2",
-        "yadakhov/insert-on-duplicate-key": "^1.2",
-        "ext-json": "*"
+        "yadakhov/insert-on-duplicate-key": "^1.2"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -66,7 +67,7 @@
         "sort-packages": true,
         "optimize-autoloader": true,
         "platform": {
-            "php": "7.1.33"
+            "php": "7.2.26"
         }
     }
 }
