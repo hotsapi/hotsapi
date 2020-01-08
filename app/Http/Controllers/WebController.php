@@ -16,7 +16,7 @@ class WebController extends Controller
 
     public function __construct()
     {
-        $totalReplayCount = Cache::remember('totalReplayCount', 1, function () {
+        $totalReplayCount = Cache::remember('totalReplayCount', 60, function () {
             try {
                 // return Replay::count(); // too slow, let's use an approximation instead
                 return DB::select("SELECT TABLE_ROWS FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'replays'")[0]->TABLE_ROWS;
@@ -35,7 +35,7 @@ class WebController extends Controller
 
     public function upload()
     {
-        $data = Cache::remember('setupLink', 60, function () {
+        $data = Cache::remember('setupLink', 3600, function () {
             try {
                 $release = json_decode((new Client())->get('https://api.github.com/repos/poma/Hotsapi.Uploader/releases/latest')->getBody());
                 return [
