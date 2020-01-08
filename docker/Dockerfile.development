@@ -41,13 +41,17 @@ RUN add-apt-repository -y ppa:ondrej/php && \
     gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv 4F4EA0AAE5267A6C && \
     gpg --export --armor 4F4EA0AAE5267A6C | apt-key add - && \
     apt -y update && \
-	apt install -y git curl zip unzip php7.2 php7.2-mysql php7.2-zip php7.2-gd php7.2-mbstring php7.2-xml php7.2-curl php7.2-json && \
+	apt install -y git curl zip unzip php7.3 php7.3-mysql php7.3-zip php7.3-gd php7.3-mbstring php7.3-xml php7.3-curl php7.3-json && \
 	apt install -y php-memcached && \
 	rm -rf /var/lib/apt/lists/*
 
 RUN apt update && \
-	apt install -y composer php7.2-fpm nginx supervisor && \
+	apt install -y php7.3-fpm nginx supervisor && \
 	rm -rf /var/lib/apt/lists/*
+
+RUN curl -s https://getcomposer.org/download/1.9.1/composer.phar --output /usr/bin/composer && \
+    echo "1f210b9037fcf82670d75892dfc44400f13fe9ada7af9e787f93e50e3b764111 /usr/bin/composer" | sha256sum -c && \
+    chmod 755 /usr/bin/composer
 
 RUN composer global require hirak/prestissimo
 
@@ -55,10 +59,10 @@ WORKDIR /var/www/hotsapi
 COPY composer.json composer.lock ./
 RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader && rm -rf /root/.composer
 
-RUN sed -i 's/upload_max_filesize = .*/upload_max_filesize = 30M/g' /etc/php/7.2/fpm/php.ini && \
-    sed -i 's/post_max_size = .*/post_max_size = 30M/g' /etc/php/7.2/fpm/php.ini  && \
-    sed -i 's/;clear_env = .*/clear_env = no/g' /etc/php/7.2/fpm/pool.d/www.conf  && \
-    sed -i 's/pm.max_children = .*/pm.max_children = 10/g' /etc/php/7.2/fpm/pool.d/www.conf
+RUN sed -i 's/upload_max_filesize = .*/upload_max_filesize = 30M/g' /etc/php/7.3/fpm/php.ini && \
+    sed -i 's/post_max_size = .*/post_max_size = 30M/g' /etc/php/7.3/fpm/php.ini  && \
+    sed -i 's/;clear_env = .*/clear_env = no/g' /etc/php/7.3/fpm/pool.d/www.conf  && \
+    sed -i 's/pm.max_children = .*/pm.max_children = 10/g' /etc/php/7.3/fpm/pool.d/www.conf
 RUN mkdir /var/run/php
 COPY docker/nginx.conf /etc/nginx
 COPY docker/supervisord.conf /etc/supervisor
