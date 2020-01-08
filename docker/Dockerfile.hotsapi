@@ -7,7 +7,7 @@ RUN add-apt-repository -y ppa:ondrej/php && \
     gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv 4F4EA0AAE5267A6C && \
     gpg --export --armor 4F4EA0AAE5267A6C | apt-key add - && \
     apt -y update && \
-    apt install -y git curl zip unzip php7.3 php7.3-mysql php7.3-zip php7.3-gd php7.3-mbstring php7.3-xml php7.3-curl php7.3-json && \
+    apt install -y git curl zip unzip php7.4 php7.4-mysql php7.4-zip php7.4-gd php7.4-mbstring php7.4-xml php7.4-curl php7.4-json && \
     apt install -y php-memcached && \
 	rm -rf /var/lib/apt/lists/*
 
