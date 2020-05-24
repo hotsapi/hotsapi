@@ -20,6 +20,9 @@
         <div align="center">
             Support us on <a href="https://www.patreon.com/bePatron?u=7326354">Patreon</a>
         </div>
+        <div align="center">
+          <a href="https://skilltreedevelopment.com">Skill Tree Development, LLC</a>
+        </div>
     </footer>
 
     <script src="{{ mix('/js/app.js') }}"></script>
