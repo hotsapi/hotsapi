@@ -316,47 +316,16 @@ class ParserService
      */
     public function parse($filename)
     {
-        $process = new Process("heroprotocol --json --header --details --initdata --attributeevents '$filename'");
-        if (0 !== $process->run()) {
-            if (strpos($process->getErrorOutput(), "Unsupported base build") !== false) {
-                // check whether version is too new or too old
-                $process = new Process("heroprotocol --json --header '$filename'");
-                $process->mustRun();
-                $result = json_decode($process->getOutput());
-                if ($result->m_version->m_build < self::MIN_SUPPORTED_BUILD) {
-                    return false;
-                } else {
-                    throw new Exception("Unsupported build but version is greater than minimum: " . $result->m_version->m_build);
-                }
-            }
-            throw new ProcessFailedException($process);
-        }
-        $output = $process->getOutput();
-        $lines = explode(PHP_EOL, $output);
-        $result = (object)[
-            "header" => json_decode($lines[0]),
-            "details" => json_decode($lines[1]),
-            "initdata" => json_decode($lines[3]), // lines[2] contains cache entries
-            "attributeevents" => json_decode($lines[4]),
-        ];
-        if (!$result->header || !$result->details || !$result->initdata || !$result->attributeevents) {
-            throw new Exception("Error parsing parser output:\n$output\n");
-        }
-        return $result;
+        $host = env('HEROPROTOCOL_HOST', 'heroprotocol:5000');
+        $filename = str_replace('/tmp/', '', $filename);
+        return json_decode(\Guzzle::get('http://' . $host . '/' . $filename . '?header&details&initdata&attributeevents')->getBody());
     }
 
     public function extractExtendedData($filename)
     {
-        $process = new Process("hotsapi-parser '$filename'");
-        if (0 !== $process->run()) {
-            throw new ProcessFailedException($process);
-        }
-        $output = $process->getOutput();
-        $result = json_decode($output);
-        if (!$result) {
-            throw new Exception("Error parsing parser output:\n$output\n");
-        }
-        return $result;
+        $host = env('PARSER_HOST', 'parser:8080');
+        $filename = str_replace('/tmp/', '', $filename);
+        return json_decode(\Guzzle::get('http://' . $host . '/' . $filename)->getBody());
     }
 
     public function analyzeExtended($filename, Replay $replay)
