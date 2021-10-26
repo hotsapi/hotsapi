@@ -19,6 +19,6 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
-    "jquery-ui": "^1.12.1"
+    "jquery-ui": "^1.13.0"
   }
 }
